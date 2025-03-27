@@ -1,0 +1,8305 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{color,pxfonts,fix-cm}
+\usepackage{latexsym}
+\usepackage[mathletters]{ucs}
+\usepackage[T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage{pict2e}
+\usepackage{wasysym}
+\usepackage[english]{babel}
+\usepackage{tikz}
+\pagestyle{empty}
+\usepackage[margin=0in,paperwidth=595pt,paperheight=842pt]{geometry}
+\begin{document}
+\definecolor{color_29791}{rgb}{0,0,0}
+\begin{tikzpicture}[overlay]\path(0pt,0pt);\end{tikzpicture}
+\begin{picture}(-5,0)(2.5,0)
+\put(75,-69.92999){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-69.92999){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}\#\#AdaBoostRegressor advance}
+\put(75,-79.92999){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-89.92999){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-89.92999){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}import pandas as pd}
+\put(75,-99.92999){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-99.92999){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}import numpy as np}
+\put(75,-109.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-109.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}from sklearn.ensemble import AdaBoostRegressor}
+\put(75,-119.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-119.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}from sklearn.tree import DecisionTreeRegressor}
+\put(75,-129.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-129.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}from sklearn.model\_selection import train\_test\_split, GridSearchCV, cross\_val\_score}
+\put(75,-139.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-139.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}from sklearn.metrics import mean\_squared\_error, r2\_score}
+\put(75,-149.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-149.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}from itertools import combinations}
+\put(75,-159.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-159.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}import os}
+\put(75,-169.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-179.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-179.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}\# Define the path to the file containing descriptors}
+\put(75,-189.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-189.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}os.chdir("C:\\\\Users\\\\HP\\\\Desktop\\\\ewmachine")  \# Update this path to your file location}
+\put(75,-199.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-199.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}\# Read the descriptors from the file}
+\put(75,-209.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-209.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}data = pd.read\_csv("data\_file.csv")}
+\put(75,-219.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-219.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}\# Define the target variable (dependent variable)}
+\put(75,-229.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-229.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}target = 'Hardness'  }
+\put(75,-239.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-249.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-249.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}\# Define the maximum number of descriptors (features) to consider}
+\put(75,-259.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-259.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}n = len(data.columns) - 1  }
+\put(75,-269.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-279.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-279.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}\# Get the list of feature names}
+\put(75,-289.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-289.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}feature\_names = data.columns.drop(target)}
+\put(75,-299.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-309.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-309.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}\# Initialize a dictionary to store results}
+\put(75,-319.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-319.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}results = \{}
+\put(75,-329.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-329.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}    'Number of Descriptors': [],}
+\put(75,-339.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-339.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}    'Descriptors': [],}
+\put(75,-349.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-349.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}    'Best Hyperparameters': [],}
+\put(75,-359.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-359.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}    'R2 Score (CV)': [],}
+\put(75,-369.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-369.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}    'RMSE (CV)': []}
+\put(75,-379.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-379.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}\}}
+\put(75,-389.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-399.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-399.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}\# Define the parameter grid for hyperparameter tuning}
+\put(75,-409.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-409.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}param\_grid = \{}
+\put(75,-419.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-419.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}    'n\_estimators': [50, 100, 200],  \# Number of weak learners}
+\put(75,-429.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-429.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}    'learning\_rate': [0.01, 0.1, 0.5, 1.0],  \# Learning rate}
+\put(75,-439.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-439.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}    'estimator\_\_max\_depth': [1, 3, 5]  \# Max depth of the base estimator (decision tree)}
+\put(75,-449.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-449.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}\}}
+\put(75,-459.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-469.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-469.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}\# Loop through the number of descriptors from 1 to n}
+\put(75,-479.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-479.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}for num\_descriptors in range(1, n + 1):}
+\put(75,-489.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-489.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}    \# Generate all combinations of descriptors of size 'num\_descriptors'}
+\put(75,-499.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-499.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}    for descriptor\_combination in combinations(feature\_names, num\_descriptors):}
+\put(75,-509.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-509.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        \# Prepare the data}
+\put(75,-519.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-519.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        X = data[list(descriptor\_combination)]}
+\put(75,-529.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-529.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        y = data[target]}
+\put(75,-539.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-539.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        }
+\put(75,-549.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-549.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        \# Split the data into training and testing sets}
+\put(75,-559.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-559.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        X\_train, X\_test, y\_train, y\_test = train\_test\_split(X, y, test\_size=0.2, random\_state=42)}
+\put(75,-569.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-569.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        }
+\put(75,-579.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-579.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        \# Initialize the base estimator (decision tree)}
+\put(75,-589.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-589.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        estimator = DecisionTreeRegressor(random\_state=42)}
+\put(75,-599.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-599.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        }
+\put(75,-609.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-609.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        \# Initialize the AdaBoost model}
+\put(75,-619.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-619.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        model = AdaBoostRegressor(estimator=estimator, random\_state=42)}
+\put(75,-629.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-629.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        }
+\put(75,-639.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-639.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        \# Perform Grid Search for hyperparameter tuning}
+\put(75,-649.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-649.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        grid\_search = GridSearchCV(estimator=model, param\_grid=param\_grid, cv=5, }
+\put(75,-659.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}scoring='r2', n\_jobs=-1)}
+\put(75,-669.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-669.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        grid\_search.fit(X\_train, y\_train)}
+\put(75,-679.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-679.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        }
+\put(75,-689.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-689.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        \# Get the best model and hyperparameters}
+\put(75,-699.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-699.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        best\_model = grid\_search.best\_estimator\_}
+\put(75,-709.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-709.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        best\_params = grid\_search.best\_params\_}
+\put(75,-719.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-719.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        }
+\put(75,-729.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-729.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        \# Perform cross-validation on the best model}
+\put(75,-739.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-739.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        cv\_r2\_scores = cross\_val\_score(best\_model, X\_train, y\_train, cv=5, scoring='r2')}
+\put(75,-749.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}}
+\put(75,-749.93){\fontsize{10}{1}\usefont{T1}{uarial}{m}{n}\selectfont\color{color_29791}        cv\_rmse\_scores = np.sqrt(-cross\_val\_score(best\_model, X\_train, y\_train, cv=5, }
+\end{picture}
+\newpage
+\begin{tikzpicture}[overlay]
+\path(0pt,0pt);
+\begin{scope}
+\clip
+(75pt, -72pt) -- (490pt, -72pt)
+ -- (490pt, -72pt)
+ -- (490pt, -60.40002pt)
+ -- (490pt, -60.40002pt)
+ -- (75pt, -60.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -82pt) -- (490pt, -82pt)
+ -- (490pt, -82pt)
+ -- (490pt, -70.40002pt)
+ -- (490pt, -70.40002pt)
+ -- (75pt, -70.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -92pt) -- (490pt, -92pt)
+ -- (490pt, -92pt)
+ -- (490pt, -80.40002pt)
+ -- (490pt, -80.40002pt)
+ -- (75pt, -80.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -102pt) -- (490pt, -102pt)
+ -- (490pt, -102pt)
+ -- (490pt, -90.40002pt)
+ -- (490pt, -90.40002pt)
+ -- (75pt, -90.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -112pt) -- (490pt, -112pt)
+ -- (490pt, -112pt)
+ -- (490pt, -100.4pt)
+ -- (490pt, -100.4pt)
+ -- (75pt, -100.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -122pt) -- (490pt, -122pt)
+ -- (490pt, -122pt)
+ -- (490pt, -110.4pt)
+ -- (490pt, -110.4pt)
+ -- (75pt, -110.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -132pt) -- (490pt, -132pt)
+ -- (490pt, -132pt)
+ -- (490pt, -120.4pt)
+ -- (490pt, -120.4pt)
+ -- (75pt, -120.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -142pt) -- (490pt, -142pt)
+ -- (490pt, -142pt)
+ -- (490pt, -130.4pt)
+ -- (490pt, -130.4pt)
+ -- (75pt, -130.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -152pt) -- (490pt, -152pt)
+ -- (490pt, -152pt)
+ -- (490pt, -140.4pt)
+ -- (490pt, -140.4pt)
+ -- (75pt, -140.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -162pt) -- (490pt, -162pt)
+ -- (490pt, -162pt)
+ -- (490pt, -150.4pt)
+ -- (490pt, -150.4pt)
+ -- (75pt, -150.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -172pt) -- (490pt, -172pt)
+ -- (490pt, -172pt)
+ -- (490pt, -160.4pt)
+ -- (490pt, -160.4pt)
+ -- (75pt, -160.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -182pt) -- (490pt, -182pt)
+ -- (490pt, -182pt)
+ -- (490pt, -170.4pt)
+ -- (490pt, -170.4pt)
+ -- (75pt, -170.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -192pt) -- (490pt, -192pt)
+ -- (490pt, -192pt)
+ -- (490pt, -180.4pt)
+ -- (490pt, -180.4pt)
+ -- (75pt, -180.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -202pt) -- (490pt, -202pt)
+ -- (490pt, -202pt)
+ -- (490pt, -190.4pt)
+ -- (490pt, -190.4pt)
+ -- (75pt, -190.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -212pt) -- (490pt, -212pt)
+ -- (490pt, -212pt)
+ -- (490pt, -200.4pt)
+ -- (490pt, -200.4pt)
+ -- (75pt, -200.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -222pt) -- (490pt, -222pt)
+ -- (490pt, -222pt)
+ -- (490pt, -210.4pt)
+ -- (490pt, -210.4pt)
+ -- (75pt, -210.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -232pt) -- (490pt, -232pt)
+ -- (490pt, -232pt)
+ -- (490pt, -220.4pt)
+ -- (490pt, -220.4pt)
+ -- (75pt, -220.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -242pt) -- (490pt, -242pt)
+ -- (490pt, -242pt)
+ -- (490pt, -230.4pt)
+ -- (490pt, -230.4pt)
+ -- (75pt, -230.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -252pt) -- (490pt, -252pt)
+ -- (490pt, -252pt)
+ -- (490pt, -240.4pt)
+ -- (490pt, -240.4pt)
+ -- (75pt, -240.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -262pt) -- (490pt, -262pt)
+ -- (490pt, -262pt)
+ -- (490pt, -250.4pt)
+ -- (490pt, -250.4pt)
+ -- (75pt, -250.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -272pt) -- (490pt, -272pt)
+ -- (490pt, -272pt)
+ -- (490pt, -260.4pt)
+ -- (490pt, -260.4pt)
+ -- (75pt, -260.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -282pt) -- (490pt, -282pt)
+ -- (490pt, -282pt)
+ -- (490pt, -270.4pt)
+ -- (490pt, -270.4pt)
+ -- (75pt, -270.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -292pt) -- (490pt, -292pt)
+ -- (490pt, -292pt)
+ -- (490pt, -280.4pt)
+ -- (490pt, -280.4pt)
+ -- (75pt, -280.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -302pt) -- (490pt, -302pt)
+ -- (490pt, -302pt)
+ -- (490pt, -290.4pt)
+ -- (490pt, -290.4pt)
+ -- (75pt, -290.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -312pt) -- (490pt, -312pt)
+ -- (490pt, -312pt)
+ -- (490pt, -300.4pt)
+ -- (490pt, -300.4pt)
+ -- (75pt, -300.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -322pt) -- (490pt, -322pt)
+ -- (490pt, -322pt)
+ -- (490pt, -310.4pt)
+ -- (490pt, -310.4pt)
+ -- (75pt, -310.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -332pt) -- (490pt, -332pt)
+ -- (490pt, -332pt)
+ -- (490pt, -320.4pt)
+ -- (490pt, -320.4pt)
+ -- (75pt, -320.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -342pt) -- (490pt, -342pt)
+ -- (490pt, -342pt)
+ -- (490pt, -330.4pt)
+ -- (490pt, -330.4pt)
+ -- (75pt, -330.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -352pt) -- (490pt, -352pt)
+ -- (490pt, -352pt)
+ -- (490pt, -340.4pt)
+ -- (490pt, -340.4pt)
+ -- (75pt, -340.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -362pt) -- (490pt, -362pt)
+ -- (490pt, -362pt)
+ -- (490pt, -350.4pt)
+ -- (490pt, -350.4pt)
+ -- (75pt, -350.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -372pt) -- (490pt, -372pt)
+ -- (490pt, -372pt)
+ -- (490pt, -360.4pt)
+ -- (490pt, -360.4pt)
+ -- (75pt, -360.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -382pt) -- (490pt, -382pt)
+ -- (490pt, -382pt)
+ -- (490pt, -370.4pt)
+ -- (490pt, -370.4pt)
+ -- (75pt, -370.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -392pt) -- (490pt, -392pt)
+ -- (490pt, -392pt)
+ -- (490pt, -380.4pt)
+ -- (490pt, -380.4pt)
+ -- (75pt, -380.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -402pt) -- (490pt, -402pt)
+ -- (490pt, -402pt)
+ -- (490pt, -390.4pt)
+ -- (490pt, -390.4pt)
+ -- (75pt, -390.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -412pt) -- (490pt, -412pt)
+ -- (490pt, -412pt)
+ -- (490pt, -400.4pt)
+ -- (490pt, -400.4pt)
+ -- (75pt, -400.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -422pt) -- (490pt, -422pt)
+ -- (490pt, -422pt)
+ -- (490pt, -410.4pt)
+ -- (490pt, -410.4pt)
+ -- (75pt, -410.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -432pt) -- (490pt, -432pt)
+ -- (490pt, -432pt)
+ -- (490pt, -420.4pt)
+ -- (490pt, -420.4pt)
+ -- (75pt, -420.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -442pt) -- (490pt, -442pt)
+ -- (490pt, -442pt)
+ -- (490pt, -430.4pt)
+ -- (490pt, -430.4pt)
+ -- (75pt, -430.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -452pt) -- (490pt, -452pt)
+ -- (490pt, -452pt)
+ -- (490pt, -440.4pt)
+ -- (490pt, -440.4pt)
+ -- (75pt, -440.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -462pt) -- (490pt, -462pt)
+ -- (490pt, -462pt)
+ -- (490pt, -450.4pt)
+ -- (490pt, -450.4pt)
+ -- (75pt, -450.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -472pt) -- (490pt, -472pt)
+ -- (490pt, -472pt)
+ -- (490pt, -460.4pt)
+ -- (490pt, -460.4pt)
+ -- (75pt, -460.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -482pt) -- (490pt, -482pt)
+ -- (490pt, -482pt)
+ -- (490pt, -470.4pt)
+ -- (490pt, -470.4pt)
+ -- (75pt, -470.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -492pt) -- (490pt, -492pt)
+ -- (490pt, -492pt)
+ -- (490pt, -480.4pt)
+ -- (490pt, -480.4pt)
+ -- (75pt, -480.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -502pt) -- (490pt, -502pt)
+ -- (490pt, -502pt)
+ -- (490pt, -490.4pt)
+ -- (490pt, -490.4pt)
+ -- (75pt, -490.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -512pt) -- (490pt, -512pt)
+ -- (490pt, -512pt)
+ -- (490pt, -500.4pt)
+ -- (490pt, -500.4pt)
+ -- (75pt, -500.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -522pt) -- (490pt, -522pt)
+ -- (490pt, -522pt)
+ -- (490pt, -510.4pt)
+ -- (490pt, -510.4pt)
+ -- (75pt, -510.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -532pt) -- (490pt, -532pt)
+ -- (490pt, -532pt)
+ -- (490pt, -520.4pt)
+ -- (490pt, -520.4pt)
+ -- (75pt, -520.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -542pt) -- (490pt, -542pt)
+ -- (490pt, -542pt)
+ -- (490pt, -530.4pt)
+ -- (490pt, -530.4pt)
+ -- (75pt, -530.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -552pt) -- (490pt, -552pt)
+ -- (490pt, -552pt)
+ -- (490pt, -540.4pt)
+ -- (490pt, -540.4pt)
+ -- (75pt, -540.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -562pt) -- (490pt, -562pt)
+ -- (490pt, -562pt)
+ -- (490pt, -550.4pt)
+ -- (490pt, -550.4pt)
+ -- (75pt, -550.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -572pt) -- (490pt, -572pt)
+ -- (490pt, -572pt)
+ -- (490pt, -560.4pt)
+ -- (490pt, -560.4pt)
+ -- (75pt, -560.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -582pt) -- (490pt, -582pt)
+ -- (490pt, -582pt)
+ -- (490pt, -570.4pt)
+ -- (490pt, -570.4pt)
+ -- (75pt, -570.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -592pt) -- (490pt, -592pt)
+ -- (490pt, -592pt)
+ -- (490pt, -580.4pt)
+ -- (490pt, -580.4pt)
+ -- (75pt, -580.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -602pt) -- (490pt, -602pt)
+ -- (490pt, -602pt)
+ -- (490pt, -590.4pt)
+ -- (490pt, -590.4pt)
+ -- (75pt, -590.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -612pt) -- (490pt, -612pt)
+ -- (490pt, -612pt)
+ -- (490pt, -600.4pt)
+ -- (490pt, -600.4pt)
+ -- (75pt, -600.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -622pt) -- (490pt, -622pt)
+ -- (490pt, -622pt)
+ -- (490pt, -610.4pt)
+ -- (490pt, -610.4pt)
+ -- (75pt, -610.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -632pt) -- (490pt, -632pt)
+ -- (490pt, -632pt)
+ -- (490pt, -620.4pt)
+ -- (490pt, -620.4pt)
+ -- (75pt, -620.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -642pt) -- (490pt, -642pt)
+ -- (490pt, -642pt)
+ -- (490pt, -630.4pt)
+ -- (490pt, -630.4pt)
+ -- (75pt, -630.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -652pt) -- (490pt, -652pt)
+ -- (490pt, -652pt)
+ -- (490pt, -640.4pt)
+ -- (490pt, -640.4pt)
+ -- (75pt, -640.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -662pt) -- (490pt, -662pt)
+ -- (490pt, -662pt)
+ -- (490pt, -650.4pt)
+ -- (490pt, -650.4pt)
+ -- (75pt, -650.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -672pt) -- (490pt, -672pt)
+ -- (490pt, -672pt)
+ -- (490pt, -660.4pt)
+ -- (490pt, -660.4pt)
+ -- (75pt, -660.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -682pt) -- (490pt, -682pt)
+ -- (490pt, -682pt)
+ -- (490pt, -670.4pt)
+ -- (490pt, -670.4pt)
+ -- (75pt, -670.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -692pt) -- (490pt, -692pt)
+ -- (490pt, -692pt)
+ -- (490pt, -680.4pt)
+ -- (490pt, -680.4pt)
+ -- (75pt, -680.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -702pt) -- (490pt, -702pt)
+ -- (490pt, -702pt)
+ -- (490pt, -690.4pt)
+ -- (490pt, -690.4pt)
+ -- (75pt, -690.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -712pt) -- (490pt, -712pt)
+ -- (490pt, -712pt)
+ -- (490pt, -700.4pt)
+ -- (490pt, -700.4pt)
+ -- (75pt, -700.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -722pt) -- (490pt, -722pt)
+ -- (490pt, -722pt)
+ -- (490pt, -710.4pt)
+ -- (490pt, -710.4pt)
+ -- (75pt, -710.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -732pt) -- (490pt, -732pt)
+ -- (490pt, -732pt)
+ -- (490pt, -720.4pt)
+ -- (490pt, -720.4pt)
+ -- (75pt, -720.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -742pt) -- (490pt, -742pt)
+ -- (490pt, -742pt)
+ -- (490pt, -730.4pt)
+ -- (490pt, -730.4pt)
+ -- (75pt, -730.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -752pt) -- (490pt, -752pt)
+ -- (490pt, -752pt)
+ -- (490pt, -740.4pt)
+ -- (490pt, -740.4pt)
+ -- (75pt, -740.4pt) -- cycle
+;
+\end{scope}
+\end{tikzpicture}
+\newpage
+\begin{tikzpicture}[overlay]
+\path(0pt,0pt);
+\begin{scope}
+\clip
+(75pt, -72pt) -- (490pt, -72pt)
+ -- (490pt, -72pt)
+ -- (490pt, -60.40002pt)
+ -- (490pt, -60.40002pt)
+ -- (75pt, -60.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -82pt) -- (490pt, -82pt)
+ -- (490pt, -82pt)
+ -- (490pt, -70.40002pt)
+ -- (490pt, -70.40002pt)
+ -- (75pt, -70.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -92pt) -- (490pt, -92pt)
+ -- (490pt, -92pt)
+ -- (490pt, -80.40002pt)
+ -- (490pt, -80.40002pt)
+ -- (75pt, -80.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -102pt) -- (490pt, -102pt)
+ -- (490pt, -102pt)
+ -- (490pt, -90.40002pt)
+ -- (490pt, -90.40002pt)
+ -- (75pt, -90.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -112pt) -- (490pt, -112pt)
+ -- (490pt, -112pt)
+ -- (490pt, -100.4pt)
+ -- (490pt, -100.4pt)
+ -- (75pt, -100.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -122pt) -- (490pt, -122pt)
+ -- (490pt, -122pt)
+ -- (490pt, -110.4pt)
+ -- (490pt, -110.4pt)
+ -- (75pt, -110.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -132pt) -- (490pt, -132pt)
+ -- (490pt, -132pt)
+ -- (490pt, -120.4pt)
+ -- (490pt, -120.4pt)
+ -- (75pt, -120.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -142pt) -- (490pt, -142pt)
+ -- (490pt, -142pt)
+ -- (490pt, -130.4pt)
+ -- (490pt, -130.4pt)
+ -- (75pt, -130.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -152pt) -- (490pt, -152pt)
+ -- (490pt, -152pt)
+ -- (490pt, -140.4pt)
+ -- (490pt, -140.4pt)
+ -- (75pt, -140.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -162pt) -- (490pt, -162pt)
+ -- (490pt, -162pt)
+ -- (490pt, -150.4pt)
+ -- (490pt, -150.4pt)
+ -- (75pt, -150.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -172pt) -- (490pt, -172pt)
+ -- (490pt, -172pt)
+ -- (490pt, -160.4pt)
+ -- (490pt, -160.4pt)
+ -- (75pt, -160.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -182pt) -- (490pt, -182pt)
+ -- (490pt, -182pt)
+ -- (490pt, -170.4pt)
+ -- (490pt, -170.4pt)
+ -- (75pt, -170.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -192pt) -- (490pt, -192pt)
+ -- (490pt, -192pt)
+ -- (490pt, -180.4pt)
+ -- (490pt, -180.4pt)
+ -- (75pt, -180.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -212pt) -- (490pt, -212pt)
+ -- (490pt, -212pt)
+ -- (490pt, -188.8pt)
+ -- (490pt, -188.8pt)
+ -- (75pt, -188.8pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -222pt) -- (490pt, -222pt)
+ -- (490pt, -222pt)
+ -- (490pt, -210.4pt)
+ -- (490pt, -210.4pt)
+ -- (75pt, -210.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -232pt) -- (490pt, -232pt)
+ -- (490pt, -232pt)
+ -- (490pt, -220.4pt)
+ -- (490pt, -220.4pt)
+ -- (75pt, -220.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -242pt) -- (490pt, -242pt)
+ -- (490pt, -242pt)
+ -- (490pt, -230.4pt)
+ -- (490pt, -230.4pt)
+ -- (75pt, -230.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -252pt) -- (490pt, -252pt)
+ -- (490pt, -252pt)
+ -- (490pt, -240.4pt)
+ -- (490pt, -240.4pt)
+ -- (75pt, -240.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -262pt) -- (490pt, -262pt)
+ -- (490pt, -262pt)
+ -- (490pt, -250.4pt)
+ -- (490pt, -250.4pt)
+ -- (75pt, -250.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -272pt) -- (490pt, -272pt)
+ -- (490pt, -272pt)
+ -- (490pt, -260.4pt)
+ -- (490pt, -260.4pt)
+ -- (75pt, -260.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -282pt) -- (490pt, -282pt)
+ -- (490pt, -282pt)
+ -- (490pt, -270.4pt)
+ -- (490pt, -270.4pt)
+ -- (75pt, -270.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -292pt) -- (490pt, -292pt)
+ -- (490pt, -292pt)
+ -- (490pt, -280.4pt)
+ -- (490pt, -280.4pt)
+ -- (75pt, -280.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -312pt) -- (490pt, -312pt)
+ -- (490pt, -312pt)
+ -- (490pt, -288.8pt)
+ -- (490pt, -288.8pt)
+ -- (75pt, -288.8pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -322pt) -- (490pt, -322pt)
+ -- (490pt, -322pt)
+ -- (490pt, -310.4pt)
+ -- (490pt, -310.4pt)
+ -- (75pt, -310.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -332pt) -- (490pt, -332pt)
+ -- (490pt, -332pt)
+ -- (490pt, -320.4pt)
+ -- (490pt, -320.4pt)
+ -- (75pt, -320.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -342pt) -- (490pt, -342pt)
+ -- (490pt, -342pt)
+ -- (490pt, -330.4pt)
+ -- (490pt, -330.4pt)
+ -- (75pt, -330.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -352pt) -- (490pt, -352pt)
+ -- (490pt, -352pt)
+ -- (490pt, -340.4pt)
+ -- (490pt, -340.4pt)
+ -- (75pt, -340.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -362pt) -- (490pt, -362pt)
+ -- (490pt, -362pt)
+ -- (490pt, -350.4pt)
+ -- (490pt, -350.4pt)
+ -- (75pt, -350.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -372pt) -- (490pt, -372pt)
+ -- (490pt, -372pt)
+ -- (490pt, -360.4pt)
+ -- (490pt, -360.4pt)
+ -- (75pt, -360.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -382pt) -- (490pt, -382pt)
+ -- (490pt, -382pt)
+ -- (490pt, -370.4pt)
+ -- (490pt, -370.4pt)
+ -- (75pt, -370.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -402pt) -- (490pt, -402pt)
+ -- (490pt, -402pt)
+ -- (490pt, -378.8pt)
+ -- (490pt, -378.8pt)
+ -- (75pt, -378.8pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -412pt) -- (490pt, -412pt)
+ -- (490pt, -412pt)
+ -- (490pt, -400.4pt)
+ -- (490pt, -400.4pt)
+ -- (75pt, -400.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -422pt) -- (490pt, -422pt)
+ -- (490pt, -422pt)
+ -- (490pt, -410.4pt)
+ -- (490pt, -410.4pt)
+ -- (75pt, -410.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -432pt) -- (490pt, -432pt)
+ -- (490pt, -432pt)
+ -- (490pt, -420.4pt)
+ -- (490pt, -420.4pt)
+ -- (75pt, -420.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -442pt) -- (490pt, -442pt)
+ -- (490pt, -442pt)
+ -- (490pt, -430.4pt)
+ -- (490pt, -430.4pt)
+ -- (75pt, -430.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -452pt) -- (490pt, -452pt)
+ -- (490pt, -452pt)
+ -- (490pt, -440.4pt)
+ -- (490pt, -440.4pt)
+ -- (75pt, -440.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -462pt) -- (490pt, -462pt)
+ -- (490pt, -462pt)
+ -- (490pt, -450.4pt)
+ -- (490pt, -450.4pt)
+ -- (75pt, -450.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -472pt) -- (490pt, -472pt)
+ -- (490pt, -472pt)
+ -- (490pt, -460.4pt)
+ -- (490pt, -460.4pt)
+ -- (75pt, -460.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -482pt) -- (490pt, -482pt)
+ -- (490pt, -482pt)
+ -- (490pt, -470.4pt)
+ -- (490pt, -470.4pt)
+ -- (75pt, -470.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -492pt) -- (490pt, -492pt)
+ -- (490pt, -492pt)
+ -- (490pt, -480.4pt)
+ -- (490pt, -480.4pt)
+ -- (75pt, -480.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -502pt) -- (490pt, -502pt)
+ -- (490pt, -502pt)
+ -- (490pt, -490.4pt)
+ -- (490pt, -490.4pt)
+ -- (75pt, -490.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -512pt) -- (490pt, -512pt)
+ -- (490pt, -512pt)
+ -- (490pt, -500.4pt)
+ -- (490pt, -500.4pt)
+ -- (75pt, -500.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -522pt) -- (490pt, -522pt)
+ -- (490pt, -522pt)
+ -- (490pt, -510.4pt)
+ -- (490pt, -510.4pt)
+ -- (75pt, -510.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -532pt) -- (490pt, -532pt)
+ -- (490pt, -532pt)
+ -- (490pt, -520.4pt)
+ -- (490pt, -520.4pt)
+ -- (75pt, -520.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -542pt) -- (490pt, -542pt)
+ -- (490pt, -542pt)
+ -- (490pt, -530.4pt)
+ -- (490pt, -530.4pt)
+ -- (75pt, -530.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -552pt) -- (490pt, -552pt)
+ -- (490pt, -552pt)
+ -- (490pt, -540.4pt)
+ -- (490pt, -540.4pt)
+ -- (75pt, -540.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -562pt) -- (490pt, -562pt)
+ -- (490pt, -562pt)
+ -- (490pt, -550.4pt)
+ -- (490pt, -550.4pt)
+ -- (75pt, -550.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -572pt) -- (490pt, -572pt)
+ -- (490pt, -572pt)
+ -- (490pt, -560.4pt)
+ -- (490pt, -560.4pt)
+ -- (75pt, -560.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -582pt) -- (490pt, -582pt)
+ -- (490pt, -582pt)
+ -- (490pt, -570.4pt)
+ -- (490pt, -570.4pt)
+ -- (75pt, -570.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -592pt) -- (490pt, -592pt)
+ -- (490pt, -592pt)
+ -- (490pt, -580.4pt)
+ -- (490pt, -580.4pt)
+ -- (75pt, -580.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -602pt) -- (490pt, -602pt)
+ -- (490pt, -602pt)
+ -- (490pt, -590.4pt)
+ -- (490pt, -590.4pt)
+ -- (75pt, -590.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -612pt) -- (490pt, -612pt)
+ -- (490pt, -612pt)
+ -- (490pt, -600.4pt)
+ -- (490pt, -600.4pt)
+ -- (75pt, -600.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -622pt) -- (490pt, -622pt)
+ -- (490pt, -622pt)
+ -- (490pt, -610.4pt)
+ -- (490pt, -610.4pt)
+ -- (75pt, -610.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -632pt) -- (490pt, -632pt)
+ -- (490pt, -632pt)
+ -- (490pt, -620.4pt)
+ -- (490pt, -620.4pt)
+ -- (75pt, -620.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -642pt) -- (490pt, -642pt)
+ -- (490pt, -642pt)
+ -- (490pt, -630.4pt)
+ -- (490pt, -630.4pt)
+ -- (75pt, -630.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -652pt) -- (490pt, -652pt)
+ -- (490pt, -652pt)
+ -- (490pt, -640.4pt)
+ -- (490pt, -640.4pt)
+ -- (75pt, -640.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -662pt) -- (490pt, -662pt)
+ -- (490pt, -662pt)
+ -- (490pt, -650.4pt)
+ -- (490pt, -650.4pt)
+ -- (75pt, -650.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -672pt) -- (490pt, -672pt)
+ -- (490pt, -672pt)
+ -- (490pt, -660.4pt)
+ -- (490pt, -660.4pt)
+ -- (75pt, -660.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -682pt) -- (490pt, -682pt)
+ -- (490pt, -682pt)
+ -- (490pt, -670.4pt)
+ -- (490pt, -670.4pt)
+ -- (75pt, -670.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -692pt) -- (490pt, -692pt)
+ -- (490pt, -692pt)
+ -- (490pt, -680.4pt)
+ -- (490pt, -680.4pt)
+ -- (75pt, -680.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -702pt) -- (490pt, -702pt)
+ -- (490pt, -702pt)
+ -- (490pt, -690.4pt)
+ -- (490pt, -690.4pt)
+ -- (75pt, -690.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -712pt) -- (490pt, -712pt)
+ -- (490pt, -712pt)
+ -- (490pt, -700.4pt)
+ -- (490pt, -700.4pt)
+ -- (75pt, -700.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -722pt) -- (490pt, -722pt)
+ -- (490pt, -722pt)
+ -- (490pt, -710.4pt)
+ -- (490pt, -710.4pt)
+ -- (75pt, -710.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -732pt) -- (490pt, -732pt)
+ -- (490pt, -732pt)
+ -- (490pt, -720.4pt)
+ -- (490pt, -720.4pt)
+ -- (75pt, -720.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -742pt) -- (490pt, -742pt)
+ -- (490pt, -742pt)
+ -- (490pt, -730.4pt)
+ -- (490pt, -730.4pt)
+ -- (75pt, -730.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -752pt) -- (490pt, -752pt)
+ -- (490pt, -752pt)
+ -- (490pt, -740.4pt)
+ -- (490pt, -740.4pt)
+ -- (75pt, -740.4pt) -- cycle
+;
+\end{scope}
+\end{tikzpicture}
+\newpage
+\begin{tikzpicture}[overlay]
+\path(0pt,0pt);
+\begin{scope}
+\clip
+(75pt, -72pt) -- (490pt, -72pt)
+ -- (490pt, -72pt)
+ -- (490pt, -60.40002pt)
+ -- (490pt, -60.40002pt)
+ -- (75pt, -60.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -82pt) -- (490pt, -82pt)
+ -- (490pt, -82pt)
+ -- (490pt, -70.40002pt)
+ -- (490pt, -70.40002pt)
+ -- (75pt, -70.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -92pt) -- (490pt, -92pt)
+ -- (490pt, -92pt)
+ -- (490pt, -80.40002pt)
+ -- (490pt, -80.40002pt)
+ -- (75pt, -80.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -102pt) -- (490pt, -102pt)
+ -- (490pt, -102pt)
+ -- (490pt, -90.40002pt)
+ -- (490pt, -90.40002pt)
+ -- (75pt, -90.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -112pt) -- (490pt, -112pt)
+ -- (490pt, -112pt)
+ -- (490pt, -100.4pt)
+ -- (490pt, -100.4pt)
+ -- (75pt, -100.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -122pt) -- (490pt, -122pt)
+ -- (490pt, -122pt)
+ -- (490pt, -110.4pt)
+ -- (490pt, -110.4pt)
+ -- (75pt, -110.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -132pt) -- (490pt, -132pt)
+ -- (490pt, -132pt)
+ -- (490pt, -120.4pt)
+ -- (490pt, -120.4pt)
+ -- (75pt, -120.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -142pt) -- (490pt, -142pt)
+ -- (490pt, -142pt)
+ -- (490pt, -130.4pt)
+ -- (490pt, -130.4pt)
+ -- (75pt, -130.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -152pt) -- (490pt, -152pt)
+ -- (490pt, -152pt)
+ -- (490pt, -140.4pt)
+ -- (490pt, -140.4pt)
+ -- (75pt, -140.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -162pt) -- (490pt, -162pt)
+ -- (490pt, -162pt)
+ -- (490pt, -150.4pt)
+ -- (490pt, -150.4pt)
+ -- (75pt, -150.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -172pt) -- (490pt, -172pt)
+ -- (490pt, -172pt)
+ -- (490pt, -160.4pt)
+ -- (490pt, -160.4pt)
+ -- (75pt, -160.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -182pt) -- (490pt, -182pt)
+ -- (490pt, -182pt)
+ -- (490pt, -170.4pt)
+ -- (490pt, -170.4pt)
+ -- (75pt, -170.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -192pt) -- (490pt, -192pt)
+ -- (490pt, -192pt)
+ -- (490pt, -180.4pt)
+ -- (490pt, -180.4pt)
+ -- (75pt, -180.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -202pt) -- (490pt, -202pt)
+ -- (490pt, -202pt)
+ -- (490pt, -190.4pt)
+ -- (490pt, -190.4pt)
+ -- (75pt, -190.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -212pt) -- (490pt, -212pt)
+ -- (490pt, -212pt)
+ -- (490pt, -200.4pt)
+ -- (490pt, -200.4pt)
+ -- (75pt, -200.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -222pt) -- (490pt, -222pt)
+ -- (490pt, -222pt)
+ -- (490pt, -210.4pt)
+ -- (490pt, -210.4pt)
+ -- (75pt, -210.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -232pt) -- (490pt, -232pt)
+ -- (490pt, -232pt)
+ -- (490pt, -220.4pt)
+ -- (490pt, -220.4pt)
+ -- (75pt, -220.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -242pt) -- (490pt, -242pt)
+ -- (490pt, -242pt)
+ -- (490pt, -230.4pt)
+ -- (490pt, -230.4pt)
+ -- (75pt, -230.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -252pt) -- (490pt, -252pt)
+ -- (490pt, -252pt)
+ -- (490pt, -240.4pt)
+ -- (490pt, -240.4pt)
+ -- (75pt, -240.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -262pt) -- (490pt, -262pt)
+ -- (490pt, -262pt)
+ -- (490pt, -250.4pt)
+ -- (490pt, -250.4pt)
+ -- (75pt, -250.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -272pt) -- (490pt, -272pt)
+ -- (490pt, -272pt)
+ -- (490pt, -260.4pt)
+ -- (490pt, -260.4pt)
+ -- (75pt, -260.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -282pt) -- (490pt, -282pt)
+ -- (490pt, -282pt)
+ -- (490pt, -270.4pt)
+ -- (490pt, -270.4pt)
+ -- (75pt, -270.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -292pt) -- (490pt, -292pt)
+ -- (490pt, -292pt)
+ -- (490pt, -280.4pt)
+ -- (490pt, -280.4pt)
+ -- (75pt, -280.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -302pt) -- (490pt, -302pt)
+ -- (490pt, -302pt)
+ -- (490pt, -290.4pt)
+ -- (490pt, -290.4pt)
+ -- (75pt, -290.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -312pt) -- (490pt, -312pt)
+ -- (490pt, -312pt)
+ -- (490pt, -300.4pt)
+ -- (490pt, -300.4pt)
+ -- (75pt, -300.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -322pt) -- (490pt, -322pt)
+ -- (490pt, -322pt)
+ -- (490pt, -310.4pt)
+ -- (490pt, -310.4pt)
+ -- (75pt, -310.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -332pt) -- (490pt, -332pt)
+ -- (490pt, -332pt)
+ -- (490pt, -320.4pt)
+ -- (490pt, -320.4pt)
+ -- (75pt, -320.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -342pt) -- (490pt, -342pt)
+ -- (490pt, -342pt)
+ -- (490pt, -330.4pt)
+ -- (490pt, -330.4pt)
+ -- (75pt, -330.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -352pt) -- (490pt, -352pt)
+ -- (490pt, -352pt)
+ -- (490pt, -340.4pt)
+ -- (490pt, -340.4pt)
+ -- (75pt, -340.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -362pt) -- (490pt, -362pt)
+ -- (490pt, -362pt)
+ -- (490pt, -350.4pt)
+ -- (490pt, -350.4pt)
+ -- (75pt, -350.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -372pt) -- (490pt, -372pt)
+ -- (490pt, -372pt)
+ -- (490pt, -360.4pt)
+ -- (490pt, -360.4pt)
+ -- (75pt, -360.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -382pt) -- (490pt, -382pt)
+ -- (490pt, -382pt)
+ -- (490pt, -370.4pt)
+ -- (490pt, -370.4pt)
+ -- (75pt, -370.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -392pt) -- (490pt, -392pt)
+ -- (490pt, -392pt)
+ -- (490pt, -380.4pt)
+ -- (490pt, -380.4pt)
+ -- (75pt, -380.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -402pt) -- (490pt, -402pt)
+ -- (490pt, -402pt)
+ -- (490pt, -390.4pt)
+ -- (490pt, -390.4pt)
+ -- (75pt, -390.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -412pt) -- (490pt, -412pt)
+ -- (490pt, -412pt)
+ -- (490pt, -400.4pt)
+ -- (490pt, -400.4pt)
+ -- (75pt, -400.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -422pt) -- (490pt, -422pt)
+ -- (490pt, -422pt)
+ -- (490pt, -410.4pt)
+ -- (490pt, -410.4pt)
+ -- (75pt, -410.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -432pt) -- (490pt, -432pt)
+ -- (490pt, -432pt)
+ -- (490pt, -420.4pt)
+ -- (490pt, -420.4pt)
+ -- (75pt, -420.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -442pt) -- (490pt, -442pt)
+ -- (490pt, -442pt)
+ -- (490pt, -430.4pt)
+ -- (490pt, -430.4pt)
+ -- (75pt, -430.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -452pt) -- (490pt, -452pt)
+ -- (490pt, -452pt)
+ -- (490pt, -440.4pt)
+ -- (490pt, -440.4pt)
+ -- (75pt, -440.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -462pt) -- (490pt, -462pt)
+ -- (490pt, -462pt)
+ -- (490pt, -450.4pt)
+ -- (490pt, -450.4pt)
+ -- (75pt, -450.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -472pt) -- (490pt, -472pt)
+ -- (490pt, -472pt)
+ -- (490pt, -460.4pt)
+ -- (490pt, -460.4pt)
+ -- (75pt, -460.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -482pt) -- (490pt, -482pt)
+ -- (490pt, -482pt)
+ -- (490pt, -470.4pt)
+ -- (490pt, -470.4pt)
+ -- (75pt, -470.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -492pt) -- (490pt, -492pt)
+ -- (490pt, -492pt)
+ -- (490pt, -480.4pt)
+ -- (490pt, -480.4pt)
+ -- (75pt, -480.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -502pt) -- (490pt, -502pt)
+ -- (490pt, -502pt)
+ -- (490pt, -490.4pt)
+ -- (490pt, -490.4pt)
+ -- (75pt, -490.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -512pt) -- (490pt, -512pt)
+ -- (490pt, -512pt)
+ -- (490pt, -500.4pt)
+ -- (490pt, -500.4pt)
+ -- (75pt, -500.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -522pt) -- (490pt, -522pt)
+ -- (490pt, -522pt)
+ -- (490pt, -510.4pt)
+ -- (490pt, -510.4pt)
+ -- (75pt, -510.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -542pt) -- (490pt, -542pt)
+ -- (490pt, -542pt)
+ -- (490pt, -518.8pt)
+ -- (490pt, -518.8pt)
+ -- (75pt, -518.8pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -552pt) -- (490pt, -552pt)
+ -- (490pt, -552pt)
+ -- (490pt, -540.4pt)
+ -- (490pt, -540.4pt)
+ -- (75pt, -540.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -562pt) -- (490pt, -562pt)
+ -- (490pt, -562pt)
+ -- (490pt, -550.4pt)
+ -- (490pt, -550.4pt)
+ -- (75pt, -550.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -572pt) -- (490pt, -572pt)
+ -- (490pt, -572pt)
+ -- (490pt, -560.4pt)
+ -- (490pt, -560.4pt)
+ -- (75pt, -560.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -582pt) -- (490pt, -582pt)
+ -- (490pt, -582pt)
+ -- (490pt, -570.4pt)
+ -- (490pt, -570.4pt)
+ -- (75pt, -570.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -592pt) -- (490pt, -592pt)
+ -- (490pt, -592pt)
+ -- (490pt, -580.4pt)
+ -- (490pt, -580.4pt)
+ -- (75pt, -580.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -602pt) -- (490pt, -602pt)
+ -- (490pt, -602pt)
+ -- (490pt, -590.4pt)
+ -- (490pt, -590.4pt)
+ -- (75pt, -590.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -612pt) -- (490pt, -612pt)
+ -- (490pt, -612pt)
+ -- (490pt, -600.4pt)
+ -- (490pt, -600.4pt)
+ -- (75pt, -600.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -622pt) -- (490pt, -622pt)
+ -- (490pt, -622pt)
+ -- (490pt, -610.4pt)
+ -- (490pt, -610.4pt)
+ -- (75pt, -610.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -642pt) -- (490pt, -642pt)
+ -- (490pt, -642pt)
+ -- (490pt, -618.8pt)
+ -- (490pt, -618.8pt)
+ -- (75pt, -618.8pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -652pt) -- (490pt, -652pt)
+ -- (490pt, -652pt)
+ -- (490pt, -640.4pt)
+ -- (490pt, -640.4pt)
+ -- (75pt, -640.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -662pt) -- (490pt, -662pt)
+ -- (490pt, -662pt)
+ -- (490pt, -650.4pt)
+ -- (490pt, -650.4pt)
+ -- (75pt, -650.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -672pt) -- (490pt, -672pt)
+ -- (490pt, -672pt)
+ -- (490pt, -660.4pt)
+ -- (490pt, -660.4pt)
+ -- (75pt, -660.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -682pt) -- (490pt, -682pt)
+ -- (490pt, -682pt)
+ -- (490pt, -670.4pt)
+ -- (490pt, -670.4pt)
+ -- (75pt, -670.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -692pt) -- (490pt, -692pt)
+ -- (490pt, -692pt)
+ -- (490pt, -680.4pt)
+ -- (490pt, -680.4pt)
+ -- (75pt, -680.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -702pt) -- (490pt, -702pt)
+ -- (490pt, -702pt)
+ -- (490pt, -690.4pt)
+ -- (490pt, -690.4pt)
+ -- (75pt, -690.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -712pt) -- (490pt, -712pt)
+ -- (490pt, -712pt)
+ -- (490pt, -700.4pt)
+ -- (490pt, -700.4pt)
+ -- (75pt, -700.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -722pt) -- (490pt, -722pt)
+ -- (490pt, -722pt)
+ -- (490pt, -710.4pt)
+ -- (490pt, -710.4pt)
+ -- (75pt, -710.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -732pt) -- (490pt, -732pt)
+ -- (490pt, -732pt)
+ -- (490pt, -720.4pt)
+ -- (490pt, -720.4pt)
+ -- (75pt, -720.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -742pt) -- (490pt, -742pt)
+ -- (490pt, -742pt)
+ -- (490pt, -730.4pt)
+ -- (490pt, -730.4pt)
+ -- (75pt, -730.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -752pt) -- (490pt, -752pt)
+ -- (490pt, -752pt)
+ -- (490pt, -740.4pt)
+ -- (490pt, -740.4pt)
+ -- (75pt, -740.4pt) -- cycle
+;
+\end{scope}
+\end{tikzpicture}
+\newpage
+\begin{tikzpicture}[overlay]
+\path(0pt,0pt);
+\begin{scope}
+\clip
+(75pt, -72pt) -- (490pt, -72pt)
+ -- (490pt, -72pt)
+ -- (490pt, -60.40002pt)
+ -- (490pt, -60.40002pt)
+ -- (75pt, -60.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -82pt) -- (490pt, -82pt)
+ -- (490pt, -82pt)
+ -- (490pt, -70.40002pt)
+ -- (490pt, -70.40002pt)
+ -- (75pt, -70.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -92pt) -- (490pt, -92pt)
+ -- (490pt, -92pt)
+ -- (490pt, -80.40002pt)
+ -- (490pt, -80.40002pt)
+ -- (75pt, -80.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -102pt) -- (490pt, -102pt)
+ -- (490pt, -102pt)
+ -- (490pt, -90.40002pt)
+ -- (490pt, -90.40002pt)
+ -- (75pt, -90.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -112pt) -- (490pt, -112pt)
+ -- (490pt, -112pt)
+ -- (490pt, -100.4pt)
+ -- (490pt, -100.4pt)
+ -- (75pt, -100.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -122pt) -- (490pt, -122pt)
+ -- (490pt, -122pt)
+ -- (490pt, -110.4pt)
+ -- (490pt, -110.4pt)
+ -- (75pt, -110.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -132pt) -- (490pt, -132pt)
+ -- (490pt, -132pt)
+ -- (490pt, -120.4pt)
+ -- (490pt, -120.4pt)
+ -- (75pt, -120.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -142pt) -- (490pt, -142pt)
+ -- (490pt, -142pt)
+ -- (490pt, -130.4pt)
+ -- (490pt, -130.4pt)
+ -- (75pt, -130.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -152pt) -- (490pt, -152pt)
+ -- (490pt, -152pt)
+ -- (490pt, -140.4pt)
+ -- (490pt, -140.4pt)
+ -- (75pt, -140.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -162pt) -- (490pt, -162pt)
+ -- (490pt, -162pt)
+ -- (490pt, -150.4pt)
+ -- (490pt, -150.4pt)
+ -- (75pt, -150.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -172pt) -- (490pt, -172pt)
+ -- (490pt, -172pt)
+ -- (490pt, -160.4pt)
+ -- (490pt, -160.4pt)
+ -- (75pt, -160.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -182pt) -- (490pt, -182pt)
+ -- (490pt, -182pt)
+ -- (490pt, -170.4pt)
+ -- (490pt, -170.4pt)
+ -- (75pt, -170.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -192pt) -- (490pt, -192pt)
+ -- (490pt, -192pt)
+ -- (490pt, -180.4pt)
+ -- (490pt, -180.4pt)
+ -- (75pt, -180.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -202pt) -- (490pt, -202pt)
+ -- (490pt, -202pt)
+ -- (490pt, -190.4pt)
+ -- (490pt, -190.4pt)
+ -- (75pt, -190.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -212pt) -- (490pt, -212pt)
+ -- (490pt, -212pt)
+ -- (490pt, -200.4pt)
+ -- (490pt, -200.4pt)
+ -- (75pt, -200.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -222pt) -- (490pt, -222pt)
+ -- (490pt, -222pt)
+ -- (490pt, -210.4pt)
+ -- (490pt, -210.4pt)
+ -- (75pt, -210.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -232pt) -- (490pt, -232pt)
+ -- (490pt, -232pt)
+ -- (490pt, -220.4pt)
+ -- (490pt, -220.4pt)
+ -- (75pt, -220.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -242pt) -- (490pt, -242pt)
+ -- (490pt, -242pt)
+ -- (490pt, -230.4pt)
+ -- (490pt, -230.4pt)
+ -- (75pt, -230.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -252pt) -- (490pt, -252pt)
+ -- (490pt, -252pt)
+ -- (490pt, -240.4pt)
+ -- (490pt, -240.4pt)
+ -- (75pt, -240.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -262pt) -- (490pt, -262pt)
+ -- (490pt, -262pt)
+ -- (490pt, -250.4pt)
+ -- (490pt, -250.4pt)
+ -- (75pt, -250.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -272pt) -- (490pt, -272pt)
+ -- (490pt, -272pt)
+ -- (490pt, -260.4pt)
+ -- (490pt, -260.4pt)
+ -- (75pt, -260.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -282pt) -- (490pt, -282pt)
+ -- (490pt, -282pt)
+ -- (490pt, -270.4pt)
+ -- (490pt, -270.4pt)
+ -- (75pt, -270.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -292pt) -- (490pt, -292pt)
+ -- (490pt, -292pt)
+ -- (490pt, -280.4pt)
+ -- (490pt, -280.4pt)
+ -- (75pt, -280.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -302pt) -- (490pt, -302pt)
+ -- (490pt, -302pt)
+ -- (490pt, -290.4pt)
+ -- (490pt, -290.4pt)
+ -- (75pt, -290.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -312pt) -- (490pt, -312pt)
+ -- (490pt, -312pt)
+ -- (490pt, -300.4pt)
+ -- (490pt, -300.4pt)
+ -- (75pt, -300.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -322pt) -- (490pt, -322pt)
+ -- (490pt, -322pt)
+ -- (490pt, -310.4pt)
+ -- (490pt, -310.4pt)
+ -- (75pt, -310.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -332pt) -- (490pt, -332pt)
+ -- (490pt, -332pt)
+ -- (490pt, -320.4pt)
+ -- (490pt, -320.4pt)
+ -- (75pt, -320.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -342pt) -- (490pt, -342pt)
+ -- (490pt, -342pt)
+ -- (490pt, -330.4pt)
+ -- (490pt, -330.4pt)
+ -- (75pt, -330.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -352pt) -- (490pt, -352pt)
+ -- (490pt, -352pt)
+ -- (490pt, -340.4pt)
+ -- (490pt, -340.4pt)
+ -- (75pt, -340.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -362pt) -- (490pt, -362pt)
+ -- (490pt, -362pt)
+ -- (490pt, -350.4pt)
+ -- (490pt, -350.4pt)
+ -- (75pt, -350.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -372pt) -- (490pt, -372pt)
+ -- (490pt, -372pt)
+ -- (490pt, -360.4pt)
+ -- (490pt, -360.4pt)
+ -- (75pt, -360.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -382pt) -- (490pt, -382pt)
+ -- (490pt, -382pt)
+ -- (490pt, -370.4pt)
+ -- (490pt, -370.4pt)
+ -- (75pt, -370.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -392pt) -- (490pt, -392pt)
+ -- (490pt, -392pt)
+ -- (490pt, -380.4pt)
+ -- (490pt, -380.4pt)
+ -- (75pt, -380.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -402pt) -- (490pt, -402pt)
+ -- (490pt, -402pt)
+ -- (490pt, -390.4pt)
+ -- (490pt, -390.4pt)
+ -- (75pt, -390.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -412pt) -- (490pt, -412pt)
+ -- (490pt, -412pt)
+ -- (490pt, -400.4pt)
+ -- (490pt, -400.4pt)
+ -- (75pt, -400.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -422pt) -- (490pt, -422pt)
+ -- (490pt, -422pt)
+ -- (490pt, -410.4pt)
+ -- (490pt, -410.4pt)
+ -- (75pt, -410.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -432pt) -- (490pt, -432pt)
+ -- (490pt, -432pt)
+ -- (490pt, -420.4pt)
+ -- (490pt, -420.4pt)
+ -- (75pt, -420.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -442pt) -- (490pt, -442pt)
+ -- (490pt, -442pt)
+ -- (490pt, -430.4pt)
+ -- (490pt, -430.4pt)
+ -- (75pt, -430.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -452pt) -- (490pt, -452pt)
+ -- (490pt, -452pt)
+ -- (490pt, -440.4pt)
+ -- (490pt, -440.4pt)
+ -- (75pt, -440.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -462pt) -- (490pt, -462pt)
+ -- (490pt, -462pt)
+ -- (490pt, -450.4pt)
+ -- (490pt, -450.4pt)
+ -- (75pt, -450.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -472pt) -- (490pt, -472pt)
+ -- (490pt, -472pt)
+ -- (490pt, -460.4pt)
+ -- (490pt, -460.4pt)
+ -- (75pt, -460.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -482pt) -- (490pt, -482pt)
+ -- (490pt, -482pt)
+ -- (490pt, -470.4pt)
+ -- (490pt, -470.4pt)
+ -- (75pt, -470.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -492pt) -- (490pt, -492pt)
+ -- (490pt, -492pt)
+ -- (490pt, -480.4pt)
+ -- (490pt, -480.4pt)
+ -- (75pt, -480.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -502pt) -- (490pt, -502pt)
+ -- (490pt, -502pt)
+ -- (490pt, -490.4pt)
+ -- (490pt, -490.4pt)
+ -- (75pt, -490.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -512pt) -- (490pt, -512pt)
+ -- (490pt, -512pt)
+ -- (490pt, -500.4pt)
+ -- (490pt, -500.4pt)
+ -- (75pt, -500.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -522pt) -- (490pt, -522pt)
+ -- (490pt, -522pt)
+ -- (490pt, -510.4pt)
+ -- (490pt, -510.4pt)
+ -- (75pt, -510.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -532pt) -- (490pt, -532pt)
+ -- (490pt, -532pt)
+ -- (490pt, -520.4pt)
+ -- (490pt, -520.4pt)
+ -- (75pt, -520.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -542pt) -- (490pt, -542pt)
+ -- (490pt, -542pt)
+ -- (490pt, -530.4pt)
+ -- (490pt, -530.4pt)
+ -- (75pt, -530.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -552pt) -- (490pt, -552pt)
+ -- (490pt, -552pt)
+ -- (490pt, -540.4pt)
+ -- (490pt, -540.4pt)
+ -- (75pt, -540.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -562pt) -- (490pt, -562pt)
+ -- (490pt, -562pt)
+ -- (490pt, -550.4pt)
+ -- (490pt, -550.4pt)
+ -- (75pt, -550.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -572pt) -- (490pt, -572pt)
+ -- (490pt, -572pt)
+ -- (490pt, -560.4pt)
+ -- (490pt, -560.4pt)
+ -- (75pt, -560.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -582pt) -- (490pt, -582pt)
+ -- (490pt, -582pt)
+ -- (490pt, -570.4pt)
+ -- (490pt, -570.4pt)
+ -- (75pt, -570.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -592pt) -- (490pt, -592pt)
+ -- (490pt, -592pt)
+ -- (490pt, -580.4pt)
+ -- (490pt, -580.4pt)
+ -- (75pt, -580.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -602pt) -- (490pt, -602pt)
+ -- (490pt, -602pt)
+ -- (490pt, -590.4pt)
+ -- (490pt, -590.4pt)
+ -- (75pt, -590.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -612pt) -- (490pt, -612pt)
+ -- (490pt, -612pt)
+ -- (490pt, -600.4pt)
+ -- (490pt, -600.4pt)
+ -- (75pt, -600.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -622pt) -- (490pt, -622pt)
+ -- (490pt, -622pt)
+ -- (490pt, -610.4pt)
+ -- (490pt, -610.4pt)
+ -- (75pt, -610.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -632pt) -- (490pt, -632pt)
+ -- (490pt, -632pt)
+ -- (490pt, -620.4pt)
+ -- (490pt, -620.4pt)
+ -- (75pt, -620.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -642pt) -- (490pt, -642pt)
+ -- (490pt, -642pt)
+ -- (490pt, -630.4pt)
+ -- (490pt, -630.4pt)
+ -- (75pt, -630.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -652pt) -- (490pt, -652pt)
+ -- (490pt, -652pt)
+ -- (490pt, -640.4pt)
+ -- (490pt, -640.4pt)
+ -- (75pt, -640.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -662pt) -- (490pt, -662pt)
+ -- (490pt, -662pt)
+ -- (490pt, -650.4pt)
+ -- (490pt, -650.4pt)
+ -- (75pt, -650.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -672pt) -- (490pt, -672pt)
+ -- (490pt, -672pt)
+ -- (490pt, -660.4pt)
+ -- (490pt, -660.4pt)
+ -- (75pt, -660.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -682pt) -- (490pt, -682pt)
+ -- (490pt, -682pt)
+ -- (490pt, -670.4pt)
+ -- (490pt, -670.4pt)
+ -- (75pt, -670.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -692pt) -- (490pt, -692pt)
+ -- (490pt, -692pt)
+ -- (490pt, -680.4pt)
+ -- (490pt, -680.4pt)
+ -- (75pt, -680.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -702pt) -- (490pt, -702pt)
+ -- (490pt, -702pt)
+ -- (490pt, -690.4pt)
+ -- (490pt, -690.4pt)
+ -- (75pt, -690.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -712pt) -- (490pt, -712pt)
+ -- (490pt, -712pt)
+ -- (490pt, -700.4pt)
+ -- (490pt, -700.4pt)
+ -- (75pt, -700.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -722pt) -- (490pt, -722pt)
+ -- (490pt, -722pt)
+ -- (490pt, -710.4pt)
+ -- (490pt, -710.4pt)
+ -- (75pt, -710.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -732pt) -- (490pt, -732pt)
+ -- (490pt, -732pt)
+ -- (490pt, -720.4pt)
+ -- (490pt, -720.4pt)
+ -- (75pt, -720.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -742pt) -- (490pt, -742pt)
+ -- (490pt, -742pt)
+ -- (490pt, -730.4pt)
+ -- (490pt, -730.4pt)
+ -- (75pt, -730.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -752pt) -- (490pt, -752pt)
+ -- (490pt, -752pt)
+ -- (490pt, -740.4pt)
+ -- (490pt, -740.4pt)
+ -- (75pt, -740.4pt) -- cycle
+;
+\end{scope}
+\end{tikzpicture}
+\newpage
+\begin{tikzpicture}[overlay]
+\path(0pt,0pt);
+\begin{scope}
+\clip
+(75pt, -82pt) -- (490pt, -82pt)
+ -- (490pt, -82pt)
+ -- (490pt, -58.79999pt)
+ -- (490pt, -58.79999pt)
+ -- (75pt, -58.79999pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -92pt) -- (490pt, -92pt)
+ -- (490pt, -92pt)
+ -- (490pt, -80.40002pt)
+ -- (490pt, -80.40002pt)
+ -- (75pt, -80.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -102pt) -- (490pt, -102pt)
+ -- (490pt, -102pt)
+ -- (490pt, -90.40002pt)
+ -- (490pt, -90.40002pt)
+ -- (75pt, -90.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -112pt) -- (490pt, -112pt)
+ -- (490pt, -112pt)
+ -- (490pt, -100.4pt)
+ -- (490pt, -100.4pt)
+ -- (75pt, -100.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -122pt) -- (490pt, -122pt)
+ -- (490pt, -122pt)
+ -- (490pt, -110.4pt)
+ -- (490pt, -110.4pt)
+ -- (75pt, -110.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -132pt) -- (490pt, -132pt)
+ -- (490pt, -132pt)
+ -- (490pt, -120.4pt)
+ -- (490pt, -120.4pt)
+ -- (75pt, -120.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -142pt) -- (490pt, -142pt)
+ -- (490pt, -142pt)
+ -- (490pt, -130.4pt)
+ -- (490pt, -130.4pt)
+ -- (75pt, -130.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -152pt) -- (490pt, -152pt)
+ -- (490pt, -152pt)
+ -- (490pt, -140.4pt)
+ -- (490pt, -140.4pt)
+ -- (75pt, -140.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -162pt) -- (490pt, -162pt)
+ -- (490pt, -162pt)
+ -- (490pt, -150.4pt)
+ -- (490pt, -150.4pt)
+ -- (75pt, -150.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -182pt) -- (490pt, -182pt)
+ -- (490pt, -182pt)
+ -- (490pt, -158.8pt)
+ -- (490pt, -158.8pt)
+ -- (75pt, -158.8pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -192pt) -- (490pt, -192pt)
+ -- (490pt, -192pt)
+ -- (490pt, -180.4pt)
+ -- (490pt, -180.4pt)
+ -- (75pt, -180.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -202pt) -- (490pt, -202pt)
+ -- (490pt, -202pt)
+ -- (490pt, -190.4pt)
+ -- (490pt, -190.4pt)
+ -- (75pt, -190.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -212pt) -- (490pt, -212pt)
+ -- (490pt, -212pt)
+ -- (490pt, -200.4pt)
+ -- (490pt, -200.4pt)
+ -- (75pt, -200.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -222pt) -- (490pt, -222pt)
+ -- (490pt, -222pt)
+ -- (490pt, -210.4pt)
+ -- (490pt, -210.4pt)
+ -- (75pt, -210.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -232pt) -- (490pt, -232pt)
+ -- (490pt, -232pt)
+ -- (490pt, -220.4pt)
+ -- (490pt, -220.4pt)
+ -- (75pt, -220.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -242pt) -- (490pt, -242pt)
+ -- (490pt, -242pt)
+ -- (490pt, -230.4pt)
+ -- (490pt, -230.4pt)
+ -- (75pt, -230.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -252pt) -- (490pt, -252pt)
+ -- (490pt, -252pt)
+ -- (490pt, -240.4pt)
+ -- (490pt, -240.4pt)
+ -- (75pt, -240.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -272pt) -- (490pt, -272pt)
+ -- (490pt, -272pt)
+ -- (490pt, -248.8pt)
+ -- (490pt, -248.8pt)
+ -- (75pt, -248.8pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -282pt) -- (490pt, -282pt)
+ -- (490pt, -282pt)
+ -- (490pt, -270.4pt)
+ -- (490pt, -270.4pt)
+ -- (75pt, -270.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -292pt) -- (490pt, -292pt)
+ -- (490pt, -292pt)
+ -- (490pt, -280.4pt)
+ -- (490pt, -280.4pt)
+ -- (75pt, -280.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -302pt) -- (490pt, -302pt)
+ -- (490pt, -302pt)
+ -- (490pt, -290.4pt)
+ -- (490pt, -290.4pt)
+ -- (75pt, -290.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -312pt) -- (490pt, -312pt)
+ -- (490pt, -312pt)
+ -- (490pt, -300.4pt)
+ -- (490pt, -300.4pt)
+ -- (75pt, -300.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -322pt) -- (490pt, -322pt)
+ -- (490pt, -322pt)
+ -- (490pt, -310.4pt)
+ -- (490pt, -310.4pt)
+ -- (75pt, -310.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -332pt) -- (490pt, -332pt)
+ -- (490pt, -332pt)
+ -- (490pt, -320.4pt)
+ -- (490pt, -320.4pt)
+ -- (75pt, -320.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -342pt) -- (490pt, -342pt)
+ -- (490pt, -342pt)
+ -- (490pt, -330.4pt)
+ -- (490pt, -330.4pt)
+ -- (75pt, -330.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -352pt) -- (490pt, -352pt)
+ -- (490pt, -352pt)
+ -- (490pt, -340.4pt)
+ -- (490pt, -340.4pt)
+ -- (75pt, -340.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -362pt) -- (490pt, -362pt)
+ -- (490pt, -362pt)
+ -- (490pt, -350.4pt)
+ -- (490pt, -350.4pt)
+ -- (75pt, -350.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -372pt) -- (490pt, -372pt)
+ -- (490pt, -372pt)
+ -- (490pt, -360.4pt)
+ -- (490pt, -360.4pt)
+ -- (75pt, -360.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -382pt) -- (490pt, -382pt)
+ -- (490pt, -382pt)
+ -- (490pt, -370.4pt)
+ -- (490pt, -370.4pt)
+ -- (75pt, -370.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -392pt) -- (490pt, -392pt)
+ -- (490pt, -392pt)
+ -- (490pt, -380.4pt)
+ -- (490pt, -380.4pt)
+ -- (75pt, -380.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -402pt) -- (490pt, -402pt)
+ -- (490pt, -402pt)
+ -- (490pt, -390.4pt)
+ -- (490pt, -390.4pt)
+ -- (75pt, -390.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -412pt) -- (490pt, -412pt)
+ -- (490pt, -412pt)
+ -- (490pt, -400.4pt)
+ -- (490pt, -400.4pt)
+ -- (75pt, -400.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -422pt) -- (490pt, -422pt)
+ -- (490pt, -422pt)
+ -- (490pt, -410.4pt)
+ -- (490pt, -410.4pt)
+ -- (75pt, -410.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -432pt) -- (490pt, -432pt)
+ -- (490pt, -432pt)
+ -- (490pt, -420.4pt)
+ -- (490pt, -420.4pt)
+ -- (75pt, -420.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -442pt) -- (490pt, -442pt)
+ -- (490pt, -442pt)
+ -- (490pt, -430.4pt)
+ -- (490pt, -430.4pt)
+ -- (75pt, -430.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -452pt) -- (490pt, -452pt)
+ -- (490pt, -452pt)
+ -- (490pt, -440.4pt)
+ -- (490pt, -440.4pt)
+ -- (75pt, -440.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -462pt) -- (490pt, -462pt)
+ -- (490pt, -462pt)
+ -- (490pt, -450.4pt)
+ -- (490pt, -450.4pt)
+ -- (75pt, -450.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -472pt) -- (490pt, -472pt)
+ -- (490pt, -472pt)
+ -- (490pt, -460.4pt)
+ -- (490pt, -460.4pt)
+ -- (75pt, -460.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -482pt) -- (490pt, -482pt)
+ -- (490pt, -482pt)
+ -- (490pt, -470.4pt)
+ -- (490pt, -470.4pt)
+ -- (75pt, -470.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -492pt) -- (490pt, -492pt)
+ -- (490pt, -492pt)
+ -- (490pt, -480.4pt)
+ -- (490pt, -480.4pt)
+ -- (75pt, -480.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -502pt) -- (490pt, -502pt)
+ -- (490pt, -502pt)
+ -- (490pt, -490.4pt)
+ -- (490pt, -490.4pt)
+ -- (75pt, -490.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -512pt) -- (490pt, -512pt)
+ -- (490pt, -512pt)
+ -- (490pt, -500.4pt)
+ -- (490pt, -500.4pt)
+ -- (75pt, -500.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -522pt) -- (490pt, -522pt)
+ -- (490pt, -522pt)
+ -- (490pt, -510.4pt)
+ -- (490pt, -510.4pt)
+ -- (75pt, -510.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -532pt) -- (490pt, -532pt)
+ -- (490pt, -532pt)
+ -- (490pt, -520.4pt)
+ -- (490pt, -520.4pt)
+ -- (75pt, -520.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -542pt) -- (490pt, -542pt)
+ -- (490pt, -542pt)
+ -- (490pt, -530.4pt)
+ -- (490pt, -530.4pt)
+ -- (75pt, -530.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -552pt) -- (490pt, -552pt)
+ -- (490pt, -552pt)
+ -- (490pt, -540.4pt)
+ -- (490pt, -540.4pt)
+ -- (75pt, -540.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -562pt) -- (490pt, -562pt)
+ -- (490pt, -562pt)
+ -- (490pt, -550.4pt)
+ -- (490pt, -550.4pt)
+ -- (75pt, -550.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -572pt) -- (490pt, -572pt)
+ -- (490pt, -572pt)
+ -- (490pt, -560.4pt)
+ -- (490pt, -560.4pt)
+ -- (75pt, -560.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -582pt) -- (490pt, -582pt)
+ -- (490pt, -582pt)
+ -- (490pt, -570.4pt)
+ -- (490pt, -570.4pt)
+ -- (75pt, -570.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -592pt) -- (490pt, -592pt)
+ -- (490pt, -592pt)
+ -- (490pt, -580.4pt)
+ -- (490pt, -580.4pt)
+ -- (75pt, -580.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -602pt) -- (490pt, -602pt)
+ -- (490pt, -602pt)
+ -- (490pt, -590.4pt)
+ -- (490pt, -590.4pt)
+ -- (75pt, -590.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -612pt) -- (490pt, -612pt)
+ -- (490pt, -612pt)
+ -- (490pt, -600.4pt)
+ -- (490pt, -600.4pt)
+ -- (75pt, -600.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -622pt) -- (490pt, -622pt)
+ -- (490pt, -622pt)
+ -- (490pt, -610.4pt)
+ -- (490pt, -610.4pt)
+ -- (75pt, -610.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -632pt) -- (490pt, -632pt)
+ -- (490pt, -632pt)
+ -- (490pt, -620.4pt)
+ -- (490pt, -620.4pt)
+ -- (75pt, -620.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -642pt) -- (490pt, -642pt)
+ -- (490pt, -642pt)
+ -- (490pt, -630.4pt)
+ -- (490pt, -630.4pt)
+ -- (75pt, -630.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -652pt) -- (490pt, -652pt)
+ -- (490pt, -652pt)
+ -- (490pt, -640.4pt)
+ -- (490pt, -640.4pt)
+ -- (75pt, -640.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -662pt) -- (490pt, -662pt)
+ -- (490pt, -662pt)
+ -- (490pt, -650.4pt)
+ -- (490pt, -650.4pt)
+ -- (75pt, -650.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -672pt) -- (490pt, -672pt)
+ -- (490pt, -672pt)
+ -- (490pt, -660.4pt)
+ -- (490pt, -660.4pt)
+ -- (75pt, -660.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -682pt) -- (490pt, -682pt)
+ -- (490pt, -682pt)
+ -- (490pt, -670.4pt)
+ -- (490pt, -670.4pt)
+ -- (75pt, -670.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -692pt) -- (490pt, -692pt)
+ -- (490pt, -692pt)
+ -- (490pt, -680.4pt)
+ -- (490pt, -680.4pt)
+ -- (75pt, -680.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -702pt) -- (490pt, -702pt)
+ -- (490pt, -702pt)
+ -- (490pt, -690.4pt)
+ -- (490pt, -690.4pt)
+ -- (75pt, -690.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -712pt) -- (490pt, -712pt)
+ -- (490pt, -712pt)
+ -- (490pt, -700.4pt)
+ -- (490pt, -700.4pt)
+ -- (75pt, -700.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -722pt) -- (490pt, -722pt)
+ -- (490pt, -722pt)
+ -- (490pt, -710.4pt)
+ -- (490pt, -710.4pt)
+ -- (75pt, -710.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -732pt) -- (490pt, -732pt)
+ -- (490pt, -732pt)
+ -- (490pt, -720.4pt)
+ -- (490pt, -720.4pt)
+ -- (75pt, -720.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -742pt) -- (490pt, -742pt)
+ -- (490pt, -742pt)
+ -- (490pt, -730.4pt)
+ -- (490pt, -730.4pt)
+ -- (75pt, -730.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -752pt) -- (490pt, -752pt)
+ -- (490pt, -752pt)
+ -- (490pt, -740.4pt)
+ -- (490pt, -740.4pt)
+ -- (75pt, -740.4pt) -- cycle
+;
+\end{scope}
+\end{tikzpicture}
+\newpage
+\begin{tikzpicture}[overlay]
+\path(0pt,0pt);
+\begin{scope}
+\clip
+(75pt, -72pt) -- (490pt, -72pt)
+ -- (490pt, -72pt)
+ -- (490pt, -60.40002pt)
+ -- (490pt, -60.40002pt)
+ -- (75pt, -60.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -82pt) -- (490pt, -82pt)
+ -- (490pt, -82pt)
+ -- (490pt, -70.40002pt)
+ -- (490pt, -70.40002pt)
+ -- (75pt, -70.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -92pt) -- (490pt, -92pt)
+ -- (490pt, -92pt)
+ -- (490pt, -80.40002pt)
+ -- (490pt, -80.40002pt)
+ -- (75pt, -80.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -102pt) -- (490pt, -102pt)
+ -- (490pt, -102pt)
+ -- (490pt, -90.40002pt)
+ -- (490pt, -90.40002pt)
+ -- (75pt, -90.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -112pt) -- (490pt, -112pt)
+ -- (490pt, -112pt)
+ -- (490pt, -100.4pt)
+ -- (490pt, -100.4pt)
+ -- (75pt, -100.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -122pt) -- (490pt, -122pt)
+ -- (490pt, -122pt)
+ -- (490pt, -110.4pt)
+ -- (490pt, -110.4pt)
+ -- (75pt, -110.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -132pt) -- (490pt, -132pt)
+ -- (490pt, -132pt)
+ -- (490pt, -120.4pt)
+ -- (490pt, -120.4pt)
+ -- (75pt, -120.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -142pt) -- (490pt, -142pt)
+ -- (490pt, -142pt)
+ -- (490pt, -130.4pt)
+ -- (490pt, -130.4pt)
+ -- (75pt, -130.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -152pt) -- (490pt, -152pt)
+ -- (490pt, -152pt)
+ -- (490pt, -140.4pt)
+ -- (490pt, -140.4pt)
+ -- (75pt, -140.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -162pt) -- (490pt, -162pt)
+ -- (490pt, -162pt)
+ -- (490pt, -150.4pt)
+ -- (490pt, -150.4pt)
+ -- (75pt, -150.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -172pt) -- (490pt, -172pt)
+ -- (490pt, -172pt)
+ -- (490pt, -160.4pt)
+ -- (490pt, -160.4pt)
+ -- (75pt, -160.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -182pt) -- (490pt, -182pt)
+ -- (490pt, -182pt)
+ -- (490pt, -170.4pt)
+ -- (490pt, -170.4pt)
+ -- (75pt, -170.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -192pt) -- (490pt, -192pt)
+ -- (490pt, -192pt)
+ -- (490pt, -180.4pt)
+ -- (490pt, -180.4pt)
+ -- (75pt, -180.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -202pt) -- (490pt, -202pt)
+ -- (490pt, -202pt)
+ -- (490pt, -190.4pt)
+ -- (490pt, -190.4pt)
+ -- (75pt, -190.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -212pt) -- (490pt, -212pt)
+ -- (490pt, -212pt)
+ -- (490pt, -200.4pt)
+ -- (490pt, -200.4pt)
+ -- (75pt, -200.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -222pt) -- (490pt, -222pt)
+ -- (490pt, -222pt)
+ -- (490pt, -210.4pt)
+ -- (490pt, -210.4pt)
+ -- (75pt, -210.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -232pt) -- (490pt, -232pt)
+ -- (490pt, -232pt)
+ -- (490pt, -220.4pt)
+ -- (490pt, -220.4pt)
+ -- (75pt, -220.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -242pt) -- (490pt, -242pt)
+ -- (490pt, -242pt)
+ -- (490pt, -230.4pt)
+ -- (490pt, -230.4pt)
+ -- (75pt, -230.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -252pt) -- (490pt, -252pt)
+ -- (490pt, -252pt)
+ -- (490pt, -240.4pt)
+ -- (490pt, -240.4pt)
+ -- (75pt, -240.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -262pt) -- (490pt, -262pt)
+ -- (490pt, -262pt)
+ -- (490pt, -250.4pt)
+ -- (490pt, -250.4pt)
+ -- (75pt, -250.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -272pt) -- (490pt, -272pt)
+ -- (490pt, -272pt)
+ -- (490pt, -260.4pt)
+ -- (490pt, -260.4pt)
+ -- (75pt, -260.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -282pt) -- (490pt, -282pt)
+ -- (490pt, -282pt)
+ -- (490pt, -270.4pt)
+ -- (490pt, -270.4pt)
+ -- (75pt, -270.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -302pt) -- (490pt, -302pt)
+ -- (490pt, -302pt)
+ -- (490pt, -278.8pt)
+ -- (490pt, -278.8pt)
+ -- (75pt, -278.8pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -312pt) -- (490pt, -312pt)
+ -- (490pt, -312pt)
+ -- (490pt, -300.4pt)
+ -- (490pt, -300.4pt)
+ -- (75pt, -300.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -322pt) -- (490pt, -322pt)
+ -- (490pt, -322pt)
+ -- (490pt, -310.4pt)
+ -- (490pt, -310.4pt)
+ -- (75pt, -310.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -332pt) -- (490pt, -332pt)
+ -- (490pt, -332pt)
+ -- (490pt, -320.4pt)
+ -- (490pt, -320.4pt)
+ -- (75pt, -320.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -342pt) -- (490pt, -342pt)
+ -- (490pt, -342pt)
+ -- (490pt, -330.4pt)
+ -- (490pt, -330.4pt)
+ -- (75pt, -330.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -352pt) -- (490pt, -352pt)
+ -- (490pt, -352pt)
+ -- (490pt, -340.4pt)
+ -- (490pt, -340.4pt)
+ -- (75pt, -340.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -362pt) -- (490pt, -362pt)
+ -- (490pt, -362pt)
+ -- (490pt, -350.4pt)
+ -- (490pt, -350.4pt)
+ -- (75pt, -350.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -372pt) -- (490pt, -372pt)
+ -- (490pt, -372pt)
+ -- (490pt, -360.4pt)
+ -- (490pt, -360.4pt)
+ -- (75pt, -360.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -382pt) -- (490pt, -382pt)
+ -- (490pt, -382pt)
+ -- (490pt, -370.4pt)
+ -- (490pt, -370.4pt)
+ -- (75pt, -370.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -402pt) -- (490pt, -402pt)
+ -- (490pt, -402pt)
+ -- (490pt, -378.8pt)
+ -- (490pt, -378.8pt)
+ -- (75pt, -378.8pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -412pt) -- (490pt, -412pt)
+ -- (490pt, -412pt)
+ -- (490pt, -400.4pt)
+ -- (490pt, -400.4pt)
+ -- (75pt, -400.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -422pt) -- (490pt, -422pt)
+ -- (490pt, -422pt)
+ -- (490pt, -410.4pt)
+ -- (490pt, -410.4pt)
+ -- (75pt, -410.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -432pt) -- (490pt, -432pt)
+ -- (490pt, -432pt)
+ -- (490pt, -420.4pt)
+ -- (490pt, -420.4pt)
+ -- (75pt, -420.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -442pt) -- (490pt, -442pt)
+ -- (490pt, -442pt)
+ -- (490pt, -430.4pt)
+ -- (490pt, -430.4pt)
+ -- (75pt, -430.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -452pt) -- (490pt, -452pt)
+ -- (490pt, -452pt)
+ -- (490pt, -440.4pt)
+ -- (490pt, -440.4pt)
+ -- (75pt, -440.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -462pt) -- (490pt, -462pt)
+ -- (490pt, -462pt)
+ -- (490pt, -450.4pt)
+ -- (490pt, -450.4pt)
+ -- (75pt, -450.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -472pt) -- (490pt, -472pt)
+ -- (490pt, -472pt)
+ -- (490pt, -460.4pt)
+ -- (490pt, -460.4pt)
+ -- (75pt, -460.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -482pt) -- (490pt, -482pt)
+ -- (490pt, -482pt)
+ -- (490pt, -470.4pt)
+ -- (490pt, -470.4pt)
+ -- (75pt, -470.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -492pt) -- (490pt, -492pt)
+ -- (490pt, -492pt)
+ -- (490pt, -480.4pt)
+ -- (490pt, -480.4pt)
+ -- (75pt, -480.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -502pt) -- (490pt, -502pt)
+ -- (490pt, -502pt)
+ -- (490pt, -490.4pt)
+ -- (490pt, -490.4pt)
+ -- (75pt, -490.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -512pt) -- (490pt, -512pt)
+ -- (490pt, -512pt)
+ -- (490pt, -500.4pt)
+ -- (490pt, -500.4pt)
+ -- (75pt, -500.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -522pt) -- (490pt, -522pt)
+ -- (490pt, -522pt)
+ -- (490pt, -510.4pt)
+ -- (490pt, -510.4pt)
+ -- (75pt, -510.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -532pt) -- (490pt, -532pt)
+ -- (490pt, -532pt)
+ -- (490pt, -520.4pt)
+ -- (490pt, -520.4pt)
+ -- (75pt, -520.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -542pt) -- (490pt, -542pt)
+ -- (490pt, -542pt)
+ -- (490pt, -530.4pt)
+ -- (490pt, -530.4pt)
+ -- (75pt, -530.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -552pt) -- (490pt, -552pt)
+ -- (490pt, -552pt)
+ -- (490pt, -540.4pt)
+ -- (490pt, -540.4pt)
+ -- (75pt, -540.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -562pt) -- (490pt, -562pt)
+ -- (490pt, -562pt)
+ -- (490pt, -550.4pt)
+ -- (490pt, -550.4pt)
+ -- (75pt, -550.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -572pt) -- (490pt, -572pt)
+ -- (490pt, -572pt)
+ -- (490pt, -560.4pt)
+ -- (490pt, -560.4pt)
+ -- (75pt, -560.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -582pt) -- (490pt, -582pt)
+ -- (490pt, -582pt)
+ -- (490pt, -570.4pt)
+ -- (490pt, -570.4pt)
+ -- (75pt, -570.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -592pt) -- (490pt, -592pt)
+ -- (490pt, -592pt)
+ -- (490pt, -580.4pt)
+ -- (490pt, -580.4pt)
+ -- (75pt, -580.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -602pt) -- (490pt, -602pt)
+ -- (490pt, -602pt)
+ -- (490pt, -590.4pt)
+ -- (490pt, -590.4pt)
+ -- (75pt, -590.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -612pt) -- (490pt, -612pt)
+ -- (490pt, -612pt)
+ -- (490pt, -600.4pt)
+ -- (490pt, -600.4pt)
+ -- (75pt, -600.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -622pt) -- (490pt, -622pt)
+ -- (490pt, -622pt)
+ -- (490pt, -610.4pt)
+ -- (490pt, -610.4pt)
+ -- (75pt, -610.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -632pt) -- (490pt, -632pt)
+ -- (490pt, -632pt)
+ -- (490pt, -620.4pt)
+ -- (490pt, -620.4pt)
+ -- (75pt, -620.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -642pt) -- (490pt, -642pt)
+ -- (490pt, -642pt)
+ -- (490pt, -630.4pt)
+ -- (490pt, -630.4pt)
+ -- (75pt, -630.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -652pt) -- (490pt, -652pt)
+ -- (490pt, -652pt)
+ -- (490pt, -640.4pt)
+ -- (490pt, -640.4pt)
+ -- (75pt, -640.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -662pt) -- (490pt, -662pt)
+ -- (490pt, -662pt)
+ -- (490pt, -650.4pt)
+ -- (490pt, -650.4pt)
+ -- (75pt, -650.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -672pt) -- (490pt, -672pt)
+ -- (490pt, -672pt)
+ -- (490pt, -660.4pt)
+ -- (490pt, -660.4pt)
+ -- (75pt, -660.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -682pt) -- (490pt, -682pt)
+ -- (490pt, -682pt)
+ -- (490pt, -670.4pt)
+ -- (490pt, -670.4pt)
+ -- (75pt, -670.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -692pt) -- (490pt, -692pt)
+ -- (490pt, -692pt)
+ -- (490pt, -680.4pt)
+ -- (490pt, -680.4pt)
+ -- (75pt, -680.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -702pt) -- (490pt, -702pt)
+ -- (490pt, -702pt)
+ -- (490pt, -690.4pt)
+ -- (490pt, -690.4pt)
+ -- (75pt, -690.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -712pt) -- (490pt, -712pt)
+ -- (490pt, -712pt)
+ -- (490pt, -700.4pt)
+ -- (490pt, -700.4pt)
+ -- (75pt, -700.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -722pt) -- (490pt, -722pt)
+ -- (490pt, -722pt)
+ -- (490pt, -710.4pt)
+ -- (490pt, -710.4pt)
+ -- (75pt, -710.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -732pt) -- (490pt, -732pt)
+ -- (490pt, -732pt)
+ -- (490pt, -720.4pt)
+ -- (490pt, -720.4pt)
+ -- (75pt, -720.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -742pt) -- (490pt, -742pt)
+ -- (490pt, -742pt)
+ -- (490pt, -730.4pt)
+ -- (490pt, -730.4pt)
+ -- (75pt, -730.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -752pt) -- (490pt, -752pt)
+ -- (490pt, -752pt)
+ -- (490pt, -740.4pt)
+ -- (490pt, -740.4pt)
+ -- (75pt, -740.4pt) -- cycle
+;
+\end{scope}
+\end{tikzpicture}
+\newpage
+\begin{tikzpicture}[overlay]
+\path(0pt,0pt);
+\begin{scope}
+\clip
+(75pt, -72pt) -- (490pt, -72pt)
+ -- (490pt, -72pt)
+ -- (490pt, -60.40002pt)
+ -- (490pt, -60.40002pt)
+ -- (75pt, -60.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -82pt) -- (490pt, -82pt)
+ -- (490pt, -82pt)
+ -- (490pt, -70.40002pt)
+ -- (490pt, -70.40002pt)
+ -- (75pt, -70.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -92pt) -- (490pt, -92pt)
+ -- (490pt, -92pt)
+ -- (490pt, -80.40002pt)
+ -- (490pt, -80.40002pt)
+ -- (75pt, -80.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -102pt) -- (490pt, -102pt)
+ -- (490pt, -102pt)
+ -- (490pt, -90.40002pt)
+ -- (490pt, -90.40002pt)
+ -- (75pt, -90.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -112pt) -- (490pt, -112pt)
+ -- (490pt, -112pt)
+ -- (490pt, -100.4pt)
+ -- (490pt, -100.4pt)
+ -- (75pt, -100.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -122pt) -- (490pt, -122pt)
+ -- (490pt, -122pt)
+ -- (490pt, -110.4pt)
+ -- (490pt, -110.4pt)
+ -- (75pt, -110.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -132pt) -- (490pt, -132pt)
+ -- (490pt, -132pt)
+ -- (490pt, -120.4pt)
+ -- (490pt, -120.4pt)
+ -- (75pt, -120.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -142pt) -- (490pt, -142pt)
+ -- (490pt, -142pt)
+ -- (490pt, -130.4pt)
+ -- (490pt, -130.4pt)
+ -- (75pt, -130.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -152pt) -- (490pt, -152pt)
+ -- (490pt, -152pt)
+ -- (490pt, -140.4pt)
+ -- (490pt, -140.4pt)
+ -- (75pt, -140.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -162pt) -- (490pt, -162pt)
+ -- (490pt, -162pt)
+ -- (490pt, -150.4pt)
+ -- (490pt, -150.4pt)
+ -- (75pt, -150.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -172pt) -- (490pt, -172pt)
+ -- (490pt, -172pt)
+ -- (490pt, -160.4pt)
+ -- (490pt, -160.4pt)
+ -- (75pt, -160.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -182pt) -- (490pt, -182pt)
+ -- (490pt, -182pt)
+ -- (490pt, -170.4pt)
+ -- (490pt, -170.4pt)
+ -- (75pt, -170.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -192pt) -- (490pt, -192pt)
+ -- (490pt, -192pt)
+ -- (490pt, -180.4pt)
+ -- (490pt, -180.4pt)
+ -- (75pt, -180.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -202pt) -- (490pt, -202pt)
+ -- (490pt, -202pt)
+ -- (490pt, -190.4pt)
+ -- (490pt, -190.4pt)
+ -- (75pt, -190.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -212pt) -- (490pt, -212pt)
+ -- (490pt, -212pt)
+ -- (490pt, -200.4pt)
+ -- (490pt, -200.4pt)
+ -- (75pt, -200.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -222pt) -- (490pt, -222pt)
+ -- (490pt, -222pt)
+ -- (490pt, -210.4pt)
+ -- (490pt, -210.4pt)
+ -- (75pt, -210.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -232pt) -- (490pt, -232pt)
+ -- (490pt, -232pt)
+ -- (490pt, -220.4pt)
+ -- (490pt, -220.4pt)
+ -- (75pt, -220.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -242pt) -- (490pt, -242pt)
+ -- (490pt, -242pt)
+ -- (490pt, -230.4pt)
+ -- (490pt, -230.4pt)
+ -- (75pt, -230.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -252pt) -- (490pt, -252pt)
+ -- (490pt, -252pt)
+ -- (490pt, -240.4pt)
+ -- (490pt, -240.4pt)
+ -- (75pt, -240.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -262pt) -- (490pt, -262pt)
+ -- (490pt, -262pt)
+ -- (490pt, -250.4pt)
+ -- (490pt, -250.4pt)
+ -- (75pt, -250.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -272pt) -- (490pt, -272pt)
+ -- (490pt, -272pt)
+ -- (490pt, -260.4pt)
+ -- (490pt, -260.4pt)
+ -- (75pt, -260.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -282pt) -- (490pt, -282pt)
+ -- (490pt, -282pt)
+ -- (490pt, -270.4pt)
+ -- (490pt, -270.4pt)
+ -- (75pt, -270.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -292pt) -- (490pt, -292pt)
+ -- (490pt, -292pt)
+ -- (490pt, -280.4pt)
+ -- (490pt, -280.4pt)
+ -- (75pt, -280.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -302pt) -- (490pt, -302pt)
+ -- (490pt, -302pt)
+ -- (490pt, -290.4pt)
+ -- (490pt, -290.4pt)
+ -- (75pt, -290.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -312pt) -- (490pt, -312pt)
+ -- (490pt, -312pt)
+ -- (490pt, -300.4pt)
+ -- (490pt, -300.4pt)
+ -- (75pt, -300.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -322pt) -- (490pt, -322pt)
+ -- (490pt, -322pt)
+ -- (490pt, -310.4pt)
+ -- (490pt, -310.4pt)
+ -- (75pt, -310.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -332pt) -- (490pt, -332pt)
+ -- (490pt, -332pt)
+ -- (490pt, -320.4pt)
+ -- (490pt, -320.4pt)
+ -- (75pt, -320.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -342pt) -- (490pt, -342pt)
+ -- (490pt, -342pt)
+ -- (490pt, -330.4pt)
+ -- (490pt, -330.4pt)
+ -- (75pt, -330.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -352pt) -- (490pt, -352pt)
+ -- (490pt, -352pt)
+ -- (490pt, -340.4pt)
+ -- (490pt, -340.4pt)
+ -- (75pt, -340.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -362pt) -- (490pt, -362pt)
+ -- (490pt, -362pt)
+ -- (490pt, -350.4pt)
+ -- (490pt, -350.4pt)
+ -- (75pt, -350.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -372pt) -- (490pt, -372pt)
+ -- (490pt, -372pt)
+ -- (490pt, -360.4pt)
+ -- (490pt, -360.4pt)
+ -- (75pt, -360.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -382pt) -- (490pt, -382pt)
+ -- (490pt, -382pt)
+ -- (490pt, -370.4pt)
+ -- (490pt, -370.4pt)
+ -- (75pt, -370.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -392pt) -- (490pt, -392pt)
+ -- (490pt, -392pt)
+ -- (490pt, -380.4pt)
+ -- (490pt, -380.4pt)
+ -- (75pt, -380.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -402pt) -- (490pt, -402pt)
+ -- (490pt, -402pt)
+ -- (490pt, -390.4pt)
+ -- (490pt, -390.4pt)
+ -- (75pt, -390.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -412pt) -- (490pt, -412pt)
+ -- (490pt, -412pt)
+ -- (490pt, -400.4pt)
+ -- (490pt, -400.4pt)
+ -- (75pt, -400.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -422pt) -- (490pt, -422pt)
+ -- (490pt, -422pt)
+ -- (490pt, -410.4pt)
+ -- (490pt, -410.4pt)
+ -- (75pt, -410.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -432pt) -- (490pt, -432pt)
+ -- (490pt, -432pt)
+ -- (490pt, -420.4pt)
+ -- (490pt, -420.4pt)
+ -- (75pt, -420.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -442pt) -- (490pt, -442pt)
+ -- (490pt, -442pt)
+ -- (490pt, -430.4pt)
+ -- (490pt, -430.4pt)
+ -- (75pt, -430.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -452pt) -- (490pt, -452pt)
+ -- (490pt, -452pt)
+ -- (490pt, -440.4pt)
+ -- (490pt, -440.4pt)
+ -- (75pt, -440.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -472pt) -- (490pt, -472pt)
+ -- (490pt, -472pt)
+ -- (490pt, -448.8pt)
+ -- (490pt, -448.8pt)
+ -- (75pt, -448.8pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -482pt) -- (490pt, -482pt)
+ -- (490pt, -482pt)
+ -- (490pt, -470.4pt)
+ -- (490pt, -470.4pt)
+ -- (75pt, -470.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -492pt) -- (490pt, -492pt)
+ -- (490pt, -492pt)
+ -- (490pt, -480.4pt)
+ -- (490pt, -480.4pt)
+ -- (75pt, -480.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -502pt) -- (490pt, -502pt)
+ -- (490pt, -502pt)
+ -- (490pt, -490.4pt)
+ -- (490pt, -490.4pt)
+ -- (75pt, -490.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -512pt) -- (490pt, -512pt)
+ -- (490pt, -512pt)
+ -- (490pt, -500.4pt)
+ -- (490pt, -500.4pt)
+ -- (75pt, -500.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -522pt) -- (490pt, -522pt)
+ -- (490pt, -522pt)
+ -- (490pt, -510.4pt)
+ -- (490pt, -510.4pt)
+ -- (75pt, -510.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -532pt) -- (490pt, -532pt)
+ -- (490pt, -532pt)
+ -- (490pt, -520.4pt)
+ -- (490pt, -520.4pt)
+ -- (75pt, -520.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -542pt) -- (490pt, -542pt)
+ -- (490pt, -542pt)
+ -- (490pt, -530.4pt)
+ -- (490pt, -530.4pt)
+ -- (75pt, -530.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -552pt) -- (490pt, -552pt)
+ -- (490pt, -552pt)
+ -- (490pt, -540.4pt)
+ -- (490pt, -540.4pt)
+ -- (75pt, -540.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -572pt) -- (490pt, -572pt)
+ -- (490pt, -572pt)
+ -- (490pt, -548.8pt)
+ -- (490pt, -548.8pt)
+ -- (75pt, -548.8pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -582pt) -- (490pt, -582pt)
+ -- (490pt, -582pt)
+ -- (490pt, -570.4pt)
+ -- (490pt, -570.4pt)
+ -- (75pt, -570.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -592pt) -- (490pt, -592pt)
+ -- (490pt, -592pt)
+ -- (490pt, -580.4pt)
+ -- (490pt, -580.4pt)
+ -- (75pt, -580.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -602pt) -- (490pt, -602pt)
+ -- (490pt, -602pt)
+ -- (490pt, -590.4pt)
+ -- (490pt, -590.4pt)
+ -- (75pt, -590.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -612pt) -- (490pt, -612pt)
+ -- (490pt, -612pt)
+ -- (490pt, -600.4pt)
+ -- (490pt, -600.4pt)
+ -- (75pt, -600.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -622pt) -- (490pt, -622pt)
+ -- (490pt, -622pt)
+ -- (490pt, -610.4pt)
+ -- (490pt, -610.4pt)
+ -- (75pt, -610.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -632pt) -- (490pt, -632pt)
+ -- (490pt, -632pt)
+ -- (490pt, -620.4pt)
+ -- (490pt, -620.4pt)
+ -- (75pt, -620.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -642pt) -- (490pt, -642pt)
+ -- (490pt, -642pt)
+ -- (490pt, -630.4pt)
+ -- (490pt, -630.4pt)
+ -- (75pt, -630.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -662pt) -- (490pt, -662pt)
+ -- (490pt, -662pt)
+ -- (490pt, -638.8pt)
+ -- (490pt, -638.8pt)
+ -- (75pt, -638.8pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -672pt) -- (490pt, -672pt)
+ -- (490pt, -672pt)
+ -- (490pt, -660.4pt)
+ -- (490pt, -660.4pt)
+ -- (75pt, -660.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -682pt) -- (490pt, -682pt)
+ -- (490pt, -682pt)
+ -- (490pt, -670.4pt)
+ -- (490pt, -670.4pt)
+ -- (75pt, -670.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -692pt) -- (490pt, -692pt)
+ -- (490pt, -692pt)
+ -- (490pt, -680.4pt)
+ -- (490pt, -680.4pt)
+ -- (75pt, -680.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -702pt) -- (490pt, -702pt)
+ -- (490pt, -702pt)
+ -- (490pt, -690.4pt)
+ -- (490pt, -690.4pt)
+ -- (75pt, -690.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -712pt) -- (490pt, -712pt)
+ -- (490pt, -712pt)
+ -- (490pt, -700.4pt)
+ -- (490pt, -700.4pt)
+ -- (75pt, -700.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -722pt) -- (490pt, -722pt)
+ -- (490pt, -722pt)
+ -- (490pt, -710.4pt)
+ -- (490pt, -710.4pt)
+ -- (75pt, -710.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -732pt) -- (490pt, -732pt)
+ -- (490pt, -732pt)
+ -- (490pt, -720.4pt)
+ -- (490pt, -720.4pt)
+ -- (75pt, -720.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -742pt) -- (490pt, -742pt)
+ -- (490pt, -742pt)
+ -- (490pt, -730.4pt)
+ -- (490pt, -730.4pt)
+ -- (75pt, -730.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -752pt) -- (490pt, -752pt)
+ -- (490pt, -752pt)
+ -- (490pt, -740.4pt)
+ -- (490pt, -740.4pt)
+ -- (75pt, -740.4pt) -- cycle
+;
+\end{scope}
+\end{tikzpicture}
+\newpage
+\begin{tikzpicture}[overlay]
+\path(0pt,0pt);
+\begin{scope}
+\clip
+(75pt, -72pt) -- (490pt, -72pt)
+ -- (490pt, -72pt)
+ -- (490pt, -60.40002pt)
+ -- (490pt, -60.40002pt)
+ -- (75pt, -60.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -82pt) -- (490pt, -82pt)
+ -- (490pt, -82pt)
+ -- (490pt, -70.40002pt)
+ -- (490pt, -70.40002pt)
+ -- (75pt, -70.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -92pt) -- (490pt, -92pt)
+ -- (490pt, -92pt)
+ -- (490pt, -80.40002pt)
+ -- (490pt, -80.40002pt)
+ -- (75pt, -80.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -102pt) -- (490pt, -102pt)
+ -- (490pt, -102pt)
+ -- (490pt, -90.40002pt)
+ -- (490pt, -90.40002pt)
+ -- (75pt, -90.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -112pt) -- (490pt, -112pt)
+ -- (490pt, -112pt)
+ -- (490pt, -100.4pt)
+ -- (490pt, -100.4pt)
+ -- (75pt, -100.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -122pt) -- (490pt, -122pt)
+ -- (490pt, -122pt)
+ -- (490pt, -110.4pt)
+ -- (490pt, -110.4pt)
+ -- (75pt, -110.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -132pt) -- (490pt, -132pt)
+ -- (490pt, -132pt)
+ -- (490pt, -120.4pt)
+ -- (490pt, -120.4pt)
+ -- (75pt, -120.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -142pt) -- (490pt, -142pt)
+ -- (490pt, -142pt)
+ -- (490pt, -130.4pt)
+ -- (490pt, -130.4pt)
+ -- (75pt, -130.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -152pt) -- (490pt, -152pt)
+ -- (490pt, -152pt)
+ -- (490pt, -140.4pt)
+ -- (490pt, -140.4pt)
+ -- (75pt, -140.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -162pt) -- (490pt, -162pt)
+ -- (490pt, -162pt)
+ -- (490pt, -150.4pt)
+ -- (490pt, -150.4pt)
+ -- (75pt, -150.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -172pt) -- (490pt, -172pt)
+ -- (490pt, -172pt)
+ -- (490pt, -160.4pt)
+ -- (490pt, -160.4pt)
+ -- (75pt, -160.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -182pt) -- (490pt, -182pt)
+ -- (490pt, -182pt)
+ -- (490pt, -170.4pt)
+ -- (490pt, -170.4pt)
+ -- (75pt, -170.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -192pt) -- (490pt, -192pt)
+ -- (490pt, -192pt)
+ -- (490pt, -180.4pt)
+ -- (490pt, -180.4pt)
+ -- (75pt, -180.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -202pt) -- (490pt, -202pt)
+ -- (490pt, -202pt)
+ -- (490pt, -190.4pt)
+ -- (490pt, -190.4pt)
+ -- (75pt, -190.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -212pt) -- (490pt, -212pt)
+ -- (490pt, -212pt)
+ -- (490pt, -200.4pt)
+ -- (490pt, -200.4pt)
+ -- (75pt, -200.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -222pt) -- (490pt, -222pt)
+ -- (490pt, -222pt)
+ -- (490pt, -210.4pt)
+ -- (490pt, -210.4pt)
+ -- (75pt, -210.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -232pt) -- (490pt, -232pt)
+ -- (490pt, -232pt)
+ -- (490pt, -220.4pt)
+ -- (490pt, -220.4pt)
+ -- (75pt, -220.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -242pt) -- (490pt, -242pt)
+ -- (490pt, -242pt)
+ -- (490pt, -230.4pt)
+ -- (490pt, -230.4pt)
+ -- (75pt, -230.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -252pt) -- (490pt, -252pt)
+ -- (490pt, -252pt)
+ -- (490pt, -240.4pt)
+ -- (490pt, -240.4pt)
+ -- (75pt, -240.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -262pt) -- (490pt, -262pt)
+ -- (490pt, -262pt)
+ -- (490pt, -250.4pt)
+ -- (490pt, -250.4pt)
+ -- (75pt, -250.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -272pt) -- (490pt, -272pt)
+ -- (490pt, -272pt)
+ -- (490pt, -260.4pt)
+ -- (490pt, -260.4pt)
+ -- (75pt, -260.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -282pt) -- (490pt, -282pt)
+ -- (490pt, -282pt)
+ -- (490pt, -270.4pt)
+ -- (490pt, -270.4pt)
+ -- (75pt, -270.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -292pt) -- (490pt, -292pt)
+ -- (490pt, -292pt)
+ -- (490pt, -280.4pt)
+ -- (490pt, -280.4pt)
+ -- (75pt, -280.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -302pt) -- (490pt, -302pt)
+ -- (490pt, -302pt)
+ -- (490pt, -290.4pt)
+ -- (490pt, -290.4pt)
+ -- (75pt, -290.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -312pt) -- (490pt, -312pt)
+ -- (490pt, -312pt)
+ -- (490pt, -300.4pt)
+ -- (490pt, -300.4pt)
+ -- (75pt, -300.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -322pt) -- (490pt, -322pt)
+ -- (490pt, -322pt)
+ -- (490pt, -310.4pt)
+ -- (490pt, -310.4pt)
+ -- (75pt, -310.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -332pt) -- (490pt, -332pt)
+ -- (490pt, -332pt)
+ -- (490pt, -320.4pt)
+ -- (490pt, -320.4pt)
+ -- (75pt, -320.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -342pt) -- (490pt, -342pt)
+ -- (490pt, -342pt)
+ -- (490pt, -330.4pt)
+ -- (490pt, -330.4pt)
+ -- (75pt, -330.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -352pt) -- (490pt, -352pt)
+ -- (490pt, -352pt)
+ -- (490pt, -340.4pt)
+ -- (490pt, -340.4pt)
+ -- (75pt, -340.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -362pt) -- (490pt, -362pt)
+ -- (490pt, -362pt)
+ -- (490pt, -350.4pt)
+ -- (490pt, -350.4pt)
+ -- (75pt, -350.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -372pt) -- (490pt, -372pt)
+ -- (490pt, -372pt)
+ -- (490pt, -360.4pt)
+ -- (490pt, -360.4pt)
+ -- (75pt, -360.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -382pt) -- (490pt, -382pt)
+ -- (490pt, -382pt)
+ -- (490pt, -370.4pt)
+ -- (490pt, -370.4pt)
+ -- (75pt, -370.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -392pt) -- (490pt, -392pt)
+ -- (490pt, -392pt)
+ -- (490pt, -380.4pt)
+ -- (490pt, -380.4pt)
+ -- (75pt, -380.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -402pt) -- (490pt, -402pt)
+ -- (490pt, -402pt)
+ -- (490pt, -390.4pt)
+ -- (490pt, -390.4pt)
+ -- (75pt, -390.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -412pt) -- (490pt, -412pt)
+ -- (490pt, -412pt)
+ -- (490pt, -400.4pt)
+ -- (490pt, -400.4pt)
+ -- (75pt, -400.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -422pt) -- (490pt, -422pt)
+ -- (490pt, -422pt)
+ -- (490pt, -410.4pt)
+ -- (490pt, -410.4pt)
+ -- (75pt, -410.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -432pt) -- (490pt, -432pt)
+ -- (490pt, -432pt)
+ -- (490pt, -420.4pt)
+ -- (490pt, -420.4pt)
+ -- (75pt, -420.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -442pt) -- (490pt, -442pt)
+ -- (490pt, -442pt)
+ -- (490pt, -430.4pt)
+ -- (490pt, -430.4pt)
+ -- (75pt, -430.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -452pt) -- (490pt, -452pt)
+ -- (490pt, -452pt)
+ -- (490pt, -440.4pt)
+ -- (490pt, -440.4pt)
+ -- (75pt, -440.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -462pt) -- (490pt, -462pt)
+ -- (490pt, -462pt)
+ -- (490pt, -450.4pt)
+ -- (490pt, -450.4pt)
+ -- (75pt, -450.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -472pt) -- (490pt, -472pt)
+ -- (490pt, -472pt)
+ -- (490pt, -460.4pt)
+ -- (490pt, -460.4pt)
+ -- (75pt, -460.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -482pt) -- (490pt, -482pt)
+ -- (490pt, -482pt)
+ -- (490pt, -470.4pt)
+ -- (490pt, -470.4pt)
+ -- (75pt, -470.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -492pt) -- (490pt, -492pt)
+ -- (490pt, -492pt)
+ -- (490pt, -480.4pt)
+ -- (490pt, -480.4pt)
+ -- (75pt, -480.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -502pt) -- (490pt, -502pt)
+ -- (490pt, -502pt)
+ -- (490pt, -490.4pt)
+ -- (490pt, -490.4pt)
+ -- (75pt, -490.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -512pt) -- (490pt, -512pt)
+ -- (490pt, -512pt)
+ -- (490pt, -500.4pt)
+ -- (490pt, -500.4pt)
+ -- (75pt, -500.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -522pt) -- (490pt, -522pt)
+ -- (490pt, -522pt)
+ -- (490pt, -510.4pt)
+ -- (490pt, -510.4pt)
+ -- (75pt, -510.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -532pt) -- (490pt, -532pt)
+ -- (490pt, -532pt)
+ -- (490pt, -520.4pt)
+ -- (490pt, -520.4pt)
+ -- (75pt, -520.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -542pt) -- (490pt, -542pt)
+ -- (490pt, -542pt)
+ -- (490pt, -530.4pt)
+ -- (490pt, -530.4pt)
+ -- (75pt, -530.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -552pt) -- (490pt, -552pt)
+ -- (490pt, -552pt)
+ -- (490pt, -540.4pt)
+ -- (490pt, -540.4pt)
+ -- (75pt, -540.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -562pt) -- (490pt, -562pt)
+ -- (490pt, -562pt)
+ -- (490pt, -550.4pt)
+ -- (490pt, -550.4pt)
+ -- (75pt, -550.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -572pt) -- (490pt, -572pt)
+ -- (490pt, -572pt)
+ -- (490pt, -560.4pt)
+ -- (490pt, -560.4pt)
+ -- (75pt, -560.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -582pt) -- (490pt, -582pt)
+ -- (490pt, -582pt)
+ -- (490pt, -570.4pt)
+ -- (490pt, -570.4pt)
+ -- (75pt, -570.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -592pt) -- (490pt, -592pt)
+ -- (490pt, -592pt)
+ -- (490pt, -580.4pt)
+ -- (490pt, -580.4pt)
+ -- (75pt, -580.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -602pt) -- (490pt, -602pt)
+ -- (490pt, -602pt)
+ -- (490pt, -590.4pt)
+ -- (490pt, -590.4pt)
+ -- (75pt, -590.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -612pt) -- (490pt, -612pt)
+ -- (490pt, -612pt)
+ -- (490pt, -600.4pt)
+ -- (490pt, -600.4pt)
+ -- (75pt, -600.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -622pt) -- (490pt, -622pt)
+ -- (490pt, -622pt)
+ -- (490pt, -610.4pt)
+ -- (490pt, -610.4pt)
+ -- (75pt, -610.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -632pt) -- (490pt, -632pt)
+ -- (490pt, -632pt)
+ -- (490pt, -620.4pt)
+ -- (490pt, -620.4pt)
+ -- (75pt, -620.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -642pt) -- (490pt, -642pt)
+ -- (490pt, -642pt)
+ -- (490pt, -630.4pt)
+ -- (490pt, -630.4pt)
+ -- (75pt, -630.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -662pt) -- (490pt, -662pt)
+ -- (490pt, -662pt)
+ -- (490pt, -638.8pt)
+ -- (490pt, -638.8pt)
+ -- (75pt, -638.8pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -672pt) -- (490pt, -672pt)
+ -- (490pt, -672pt)
+ -- (490pt, -660.4pt)
+ -- (490pt, -660.4pt)
+ -- (75pt, -660.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -682pt) -- (490pt, -682pt)
+ -- (490pt, -682pt)
+ -- (490pt, -670.4pt)
+ -- (490pt, -670.4pt)
+ -- (75pt, -670.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -692pt) -- (490pt, -692pt)
+ -- (490pt, -692pt)
+ -- (490pt, -680.4pt)
+ -- (490pt, -680.4pt)
+ -- (75pt, -680.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -702pt) -- (490pt, -702pt)
+ -- (490pt, -702pt)
+ -- (490pt, -690.4pt)
+ -- (490pt, -690.4pt)
+ -- (75pt, -690.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -712pt) -- (490pt, -712pt)
+ -- (490pt, -712pt)
+ -- (490pt, -700.4pt)
+ -- (490pt, -700.4pt)
+ -- (75pt, -700.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -722pt) -- (490pt, -722pt)
+ -- (490pt, -722pt)
+ -- (490pt, -710.4pt)
+ -- (490pt, -710.4pt)
+ -- (75pt, -710.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -732pt) -- (490pt, -732pt)
+ -- (490pt, -732pt)
+ -- (490pt, -720.4pt)
+ -- (490pt, -720.4pt)
+ -- (75pt, -720.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -742pt) -- (490pt, -742pt)
+ -- (490pt, -742pt)
+ -- (490pt, -730.4pt)
+ -- (490pt, -730.4pt)
+ -- (75pt, -730.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -752pt) -- (490pt, -752pt)
+ -- (490pt, -752pt)
+ -- (490pt, -740.4pt)
+ -- (490pt, -740.4pt)
+ -- (75pt, -740.4pt) -- cycle
+;
+\end{scope}
+\end{tikzpicture}
+\newpage
+\begin{tikzpicture}[overlay]
+\path(0pt,0pt);
+\begin{scope}
+\clip
+(75pt, -72pt) -- (490pt, -72pt)
+ -- (490pt, -72pt)
+ -- (490pt, -60.40002pt)
+ -- (490pt, -60.40002pt)
+ -- (75pt, -60.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -92pt) -- (490pt, -92pt)
+ -- (490pt, -92pt)
+ -- (490pt, -68.79999pt)
+ -- (490pt, -68.79999pt)
+ -- (75pt, -68.79999pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -102pt) -- (490pt, -102pt)
+ -- (490pt, -102pt)
+ -- (490pt, -90.40002pt)
+ -- (490pt, -90.40002pt)
+ -- (75pt, -90.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -112pt) -- (490pt, -112pt)
+ -- (490pt, -112pt)
+ -- (490pt, -100.4pt)
+ -- (490pt, -100.4pt)
+ -- (75pt, -100.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -122pt) -- (490pt, -122pt)
+ -- (490pt, -122pt)
+ -- (490pt, -110.4pt)
+ -- (490pt, -110.4pt)
+ -- (75pt, -110.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -132pt) -- (490pt, -132pt)
+ -- (490pt, -132pt)
+ -- (490pt, -120.4pt)
+ -- (490pt, -120.4pt)
+ -- (75pt, -120.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -142pt) -- (490pt, -142pt)
+ -- (490pt, -142pt)
+ -- (490pt, -130.4pt)
+ -- (490pt, -130.4pt)
+ -- (75pt, -130.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -152pt) -- (490pt, -152pt)
+ -- (490pt, -152pt)
+ -- (490pt, -140.4pt)
+ -- (490pt, -140.4pt)
+ -- (75pt, -140.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -162pt) -- (490pt, -162pt)
+ -- (490pt, -162pt)
+ -- (490pt, -150.4pt)
+ -- (490pt, -150.4pt)
+ -- (75pt, -150.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -172pt) -- (490pt, -172pt)
+ -- (490pt, -172pt)
+ -- (490pt, -160.4pt)
+ -- (490pt, -160.4pt)
+ -- (75pt, -160.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -182pt) -- (490pt, -182pt)
+ -- (490pt, -182pt)
+ -- (490pt, -170.4pt)
+ -- (490pt, -170.4pt)
+ -- (75pt, -170.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -192pt) -- (490pt, -192pt)
+ -- (490pt, -192pt)
+ -- (490pt, -180.4pt)
+ -- (490pt, -180.4pt)
+ -- (75pt, -180.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -202pt) -- (490pt, -202pt)
+ -- (490pt, -202pt)
+ -- (490pt, -190.4pt)
+ -- (490pt, -190.4pt)
+ -- (75pt, -190.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -212pt) -- (490pt, -212pt)
+ -- (490pt, -212pt)
+ -- (490pt, -200.4pt)
+ -- (490pt, -200.4pt)
+ -- (75pt, -200.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -222pt) -- (490pt, -222pt)
+ -- (490pt, -222pt)
+ -- (490pt, -210.4pt)
+ -- (490pt, -210.4pt)
+ -- (75pt, -210.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -232pt) -- (490pt, -232pt)
+ -- (490pt, -232pt)
+ -- (490pt, -220.4pt)
+ -- (490pt, -220.4pt)
+ -- (75pt, -220.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -242pt) -- (490pt, -242pt)
+ -- (490pt, -242pt)
+ -- (490pt, -230.4pt)
+ -- (490pt, -230.4pt)
+ -- (75pt, -230.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -252pt) -- (490pt, -252pt)
+ -- (490pt, -252pt)
+ -- (490pt, -240.4pt)
+ -- (490pt, -240.4pt)
+ -- (75pt, -240.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -262pt) -- (490pt, -262pt)
+ -- (490pt, -262pt)
+ -- (490pt, -250.4pt)
+ -- (490pt, -250.4pt)
+ -- (75pt, -250.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -272pt) -- (490pt, -272pt)
+ -- (490pt, -272pt)
+ -- (490pt, -260.4pt)
+ -- (490pt, -260.4pt)
+ -- (75pt, -260.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -282pt) -- (490pt, -282pt)
+ -- (490pt, -282pt)
+ -- (490pt, -270.4pt)
+ -- (490pt, -270.4pt)
+ -- (75pt, -270.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -292pt) -- (490pt, -292pt)
+ -- (490pt, -292pt)
+ -- (490pt, -280.4pt)
+ -- (490pt, -280.4pt)
+ -- (75pt, -280.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -302pt) -- (490pt, -302pt)
+ -- (490pt, -302pt)
+ -- (490pt, -290.4pt)
+ -- (490pt, -290.4pt)
+ -- (75pt, -290.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -312pt) -- (490pt, -312pt)
+ -- (490pt, -312pt)
+ -- (490pt, -300.4pt)
+ -- (490pt, -300.4pt)
+ -- (75pt, -300.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -322pt) -- (490pt, -322pt)
+ -- (490pt, -322pt)
+ -- (490pt, -310.4pt)
+ -- (490pt, -310.4pt)
+ -- (75pt, -310.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -332pt) -- (490pt, -332pt)
+ -- (490pt, -332pt)
+ -- (490pt, -320.4pt)
+ -- (490pt, -320.4pt)
+ -- (75pt, -320.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -342pt) -- (490pt, -342pt)
+ -- (490pt, -342pt)
+ -- (490pt, -330.4pt)
+ -- (490pt, -330.4pt)
+ -- (75pt, -330.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -352pt) -- (490pt, -352pt)
+ -- (490pt, -352pt)
+ -- (490pt, -340.4pt)
+ -- (490pt, -340.4pt)
+ -- (75pt, -340.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -362pt) -- (490pt, -362pt)
+ -- (490pt, -362pt)
+ -- (490pt, -350.4pt)
+ -- (490pt, -350.4pt)
+ -- (75pt, -350.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -372pt) -- (490pt, -372pt)
+ -- (490pt, -372pt)
+ -- (490pt, -360.4pt)
+ -- (490pt, -360.4pt)
+ -- (75pt, -360.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -382pt) -- (490pt, -382pt)
+ -- (490pt, -382pt)
+ -- (490pt, -370.4pt)
+ -- (490pt, -370.4pt)
+ -- (75pt, -370.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -392pt) -- (490pt, -392pt)
+ -- (490pt, -392pt)
+ -- (490pt, -380.4pt)
+ -- (490pt, -380.4pt)
+ -- (75pt, -380.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -402pt) -- (490pt, -402pt)
+ -- (490pt, -402pt)
+ -- (490pt, -390.4pt)
+ -- (490pt, -390.4pt)
+ -- (75pt, -390.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -412pt) -- (490pt, -412pt)
+ -- (490pt, -412pt)
+ -- (490pt, -400.4pt)
+ -- (490pt, -400.4pt)
+ -- (75pt, -400.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -422pt) -- (490pt, -422pt)
+ -- (490pt, -422pt)
+ -- (490pt, -410.4pt)
+ -- (490pt, -410.4pt)
+ -- (75pt, -410.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -432pt) -- (490pt, -432pt)
+ -- (490pt, -432pt)
+ -- (490pt, -420.4pt)
+ -- (490pt, -420.4pt)
+ -- (75pt, -420.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -442pt) -- (490pt, -442pt)
+ -- (490pt, -442pt)
+ -- (490pt, -430.4pt)
+ -- (490pt, -430.4pt)
+ -- (75pt, -430.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -452pt) -- (490pt, -452pt)
+ -- (490pt, -452pt)
+ -- (490pt, -440.4pt)
+ -- (490pt, -440.4pt)
+ -- (75pt, -440.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -462pt) -- (490pt, -462pt)
+ -- (490pt, -462pt)
+ -- (490pt, -450.4pt)
+ -- (490pt, -450.4pt)
+ -- (75pt, -450.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -472pt) -- (490pt, -472pt)
+ -- (490pt, -472pt)
+ -- (490pt, -460.4pt)
+ -- (490pt, -460.4pt)
+ -- (75pt, -460.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -482pt) -- (490pt, -482pt)
+ -- (490pt, -482pt)
+ -- (490pt, -470.4pt)
+ -- (490pt, -470.4pt)
+ -- (75pt, -470.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -492pt) -- (490pt, -492pt)
+ -- (490pt, -492pt)
+ -- (490pt, -480.4pt)
+ -- (490pt, -480.4pt)
+ -- (75pt, -480.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -502pt) -- (490pt, -502pt)
+ -- (490pt, -502pt)
+ -- (490pt, -490.4pt)
+ -- (490pt, -490.4pt)
+ -- (75pt, -490.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -512pt) -- (490pt, -512pt)
+ -- (490pt, -512pt)
+ -- (490pt, -500.4pt)
+ -- (490pt, -500.4pt)
+ -- (75pt, -500.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -522pt) -- (490pt, -522pt)
+ -- (490pt, -522pt)
+ -- (490pt, -510.4pt)
+ -- (490pt, -510.4pt)
+ -- (75pt, -510.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -532pt) -- (490pt, -532pt)
+ -- (490pt, -532pt)
+ -- (490pt, -520.4pt)
+ -- (490pt, -520.4pt)
+ -- (75pt, -520.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -542pt) -- (490pt, -542pt)
+ -- (490pt, -542pt)
+ -- (490pt, -530.4pt)
+ -- (490pt, -530.4pt)
+ -- (75pt, -530.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -552pt) -- (490pt, -552pt)
+ -- (490pt, -552pt)
+ -- (490pt, -540.4pt)
+ -- (490pt, -540.4pt)
+ -- (75pt, -540.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -562pt) -- (490pt, -562pt)
+ -- (490pt, -562pt)
+ -- (490pt, -550.4pt)
+ -- (490pt, -550.4pt)
+ -- (75pt, -550.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -572pt) -- (490pt, -572pt)
+ -- (490pt, -572pt)
+ -- (490pt, -560.4pt)
+ -- (490pt, -560.4pt)
+ -- (75pt, -560.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -582pt) -- (490pt, -582pt)
+ -- (490pt, -582pt)
+ -- (490pt, -570.4pt)
+ -- (490pt, -570.4pt)
+ -- (75pt, -570.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -592pt) -- (490pt, -592pt)
+ -- (490pt, -592pt)
+ -- (490pt, -580.4pt)
+ -- (490pt, -580.4pt)
+ -- (75pt, -580.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -602pt) -- (490pt, -602pt)
+ -- (490pt, -602pt)
+ -- (490pt, -590.4pt)
+ -- (490pt, -590.4pt)
+ -- (75pt, -590.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -612pt) -- (490pt, -612pt)
+ -- (490pt, -612pt)
+ -- (490pt, -600.4pt)
+ -- (490pt, -600.4pt)
+ -- (75pt, -600.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -622pt) -- (490pt, -622pt)
+ -- (490pt, -622pt)
+ -- (490pt, -610.4pt)
+ -- (490pt, -610.4pt)
+ -- (75pt, -610.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -632pt) -- (490pt, -632pt)
+ -- (490pt, -632pt)
+ -- (490pt, -620.4pt)
+ -- (490pt, -620.4pt)
+ -- (75pt, -620.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -642pt) -- (490pt, -642pt)
+ -- (490pt, -642pt)
+ -- (490pt, -630.4pt)
+ -- (490pt, -630.4pt)
+ -- (75pt, -630.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -652pt) -- (490pt, -652pt)
+ -- (490pt, -652pt)
+ -- (490pt, -640.4pt)
+ -- (490pt, -640.4pt)
+ -- (75pt, -640.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -662pt) -- (490pt, -662pt)
+ -- (490pt, -662pt)
+ -- (490pt, -650.4pt)
+ -- (490pt, -650.4pt)
+ -- (75pt, -650.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -672pt) -- (490pt, -672pt)
+ -- (490pt, -672pt)
+ -- (490pt, -660.4pt)
+ -- (490pt, -660.4pt)
+ -- (75pt, -660.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -682pt) -- (490pt, -682pt)
+ -- (490pt, -682pt)
+ -- (490pt, -670.4pt)
+ -- (490pt, -670.4pt)
+ -- (75pt, -670.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -692pt) -- (490pt, -692pt)
+ -- (490pt, -692pt)
+ -- (490pt, -680.4pt)
+ -- (490pt, -680.4pt)
+ -- (75pt, -680.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -702pt) -- (490pt, -702pt)
+ -- (490pt, -702pt)
+ -- (490pt, -690.4pt)
+ -- (490pt, -690.4pt)
+ -- (75pt, -690.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -712pt) -- (490pt, -712pt)
+ -- (490pt, -712pt)
+ -- (490pt, -700.4pt)
+ -- (490pt, -700.4pt)
+ -- (75pt, -700.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -722pt) -- (490pt, -722pt)
+ -- (490pt, -722pt)
+ -- (490pt, -710.4pt)
+ -- (490pt, -710.4pt)
+ -- (75pt, -710.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -732pt) -- (490pt, -732pt)
+ -- (490pt, -732pt)
+ -- (490pt, -720.4pt)
+ -- (490pt, -720.4pt)
+ -- (75pt, -720.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -742pt) -- (490pt, -742pt)
+ -- (490pt, -742pt)
+ -- (490pt, -730.4pt)
+ -- (490pt, -730.4pt)
+ -- (75pt, -730.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -752pt) -- (490pt, -752pt)
+ -- (490pt, -752pt)
+ -- (490pt, -740.4pt)
+ -- (490pt, -740.4pt)
+ -- (75pt, -740.4pt) -- cycle
+;
+\end{scope}
+\end{tikzpicture}
+\newpage
+\begin{tikzpicture}[overlay]
+\path(0pt,0pt);
+\begin{scope}
+\clip
+(75pt, -72pt) -- (490pt, -72pt)
+ -- (490pt, -72pt)
+ -- (490pt, -60.40002pt)
+ -- (490pt, -60.40002pt)
+ -- (75pt, -60.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -82pt) -- (490pt, -82pt)
+ -- (490pt, -82pt)
+ -- (490pt, -70.40002pt)
+ -- (490pt, -70.40002pt)
+ -- (75pt, -70.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -102pt) -- (490pt, -102pt)
+ -- (490pt, -102pt)
+ -- (490pt, -78.79999pt)
+ -- (490pt, -78.79999pt)
+ -- (75pt, -78.79999pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -112pt) -- (490pt, -112pt)
+ -- (490pt, -112pt)
+ -- (490pt, -100.4pt)
+ -- (490pt, -100.4pt)
+ -- (75pt, -100.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -122pt) -- (490pt, -122pt)
+ -- (490pt, -122pt)
+ -- (490pt, -110.4pt)
+ -- (490pt, -110.4pt)
+ -- (75pt, -110.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -132pt) -- (490pt, -132pt)
+ -- (490pt, -132pt)
+ -- (490pt, -120.4pt)
+ -- (490pt, -120.4pt)
+ -- (75pt, -120.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -142pt) -- (490pt, -142pt)
+ -- (490pt, -142pt)
+ -- (490pt, -130.4pt)
+ -- (490pt, -130.4pt)
+ -- (75pt, -130.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -152pt) -- (490pt, -152pt)
+ -- (490pt, -152pt)
+ -- (490pt, -140.4pt)
+ -- (490pt, -140.4pt)
+ -- (75pt, -140.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -162pt) -- (490pt, -162pt)
+ -- (490pt, -162pt)
+ -- (490pt, -150.4pt)
+ -- (490pt, -150.4pt)
+ -- (75pt, -150.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -182pt) -- (490pt, -182pt)
+ -- (490pt, -182pt)
+ -- (490pt, -158.8pt)
+ -- (490pt, -158.8pt)
+ -- (75pt, -158.8pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -192pt) -- (490pt, -192pt)
+ -- (490pt, -192pt)
+ -- (490pt, -180.4pt)
+ -- (490pt, -180.4pt)
+ -- (75pt, -180.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -202pt) -- (490pt, -202pt)
+ -- (490pt, -202pt)
+ -- (490pt, -190.4pt)
+ -- (490pt, -190.4pt)
+ -- (75pt, -190.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -212pt) -- (490pt, -212pt)
+ -- (490pt, -212pt)
+ -- (490pt, -200.4pt)
+ -- (490pt, -200.4pt)
+ -- (75pt, -200.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -222pt) -- (490pt, -222pt)
+ -- (490pt, -222pt)
+ -- (490pt, -210.4pt)
+ -- (490pt, -210.4pt)
+ -- (75pt, -210.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -232pt) -- (490pt, -232pt)
+ -- (490pt, -232pt)
+ -- (490pt, -220.4pt)
+ -- (490pt, -220.4pt)
+ -- (75pt, -220.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -242pt) -- (490pt, -242pt)
+ -- (490pt, -242pt)
+ -- (490pt, -230.4pt)
+ -- (490pt, -230.4pt)
+ -- (75pt, -230.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -252pt) -- (490pt, -252pt)
+ -- (490pt, -252pt)
+ -- (490pt, -240.4pt)
+ -- (490pt, -240.4pt)
+ -- (75pt, -240.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -262pt) -- (490pt, -262pt)
+ -- (490pt, -262pt)
+ -- (490pt, -250.4pt)
+ -- (490pt, -250.4pt)
+ -- (75pt, -250.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -272pt) -- (490pt, -272pt)
+ -- (490pt, -272pt)
+ -- (490pt, -260.4pt)
+ -- (490pt, -260.4pt)
+ -- (75pt, -260.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -282pt) -- (490pt, -282pt)
+ -- (490pt, -282pt)
+ -- (490pt, -270.4pt)
+ -- (490pt, -270.4pt)
+ -- (75pt, -270.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -302pt) -- (490pt, -302pt)
+ -- (490pt, -302pt)
+ -- (490pt, -278.8pt)
+ -- (490pt, -278.8pt)
+ -- (75pt, -278.8pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -322pt) -- (490pt, -322pt)
+ -- (490pt, -322pt)
+ -- (490pt, -298.8pt)
+ -- (490pt, -298.8pt)
+ -- (75pt, -298.8pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -332pt) -- (490pt, -332pt)
+ -- (490pt, -332pt)
+ -- (490pt, -320.4pt)
+ -- (490pt, -320.4pt)
+ -- (75pt, -320.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -342pt) -- (490pt, -342pt)
+ -- (490pt, -342pt)
+ -- (490pt, -330.4pt)
+ -- (490pt, -330.4pt)
+ -- (75pt, -330.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -352pt) -- (490pt, -352pt)
+ -- (490pt, -352pt)
+ -- (490pt, -340.4pt)
+ -- (490pt, -340.4pt)
+ -- (75pt, -340.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -362pt) -- (490pt, -362pt)
+ -- (490pt, -362pt)
+ -- (490pt, -350.4pt)
+ -- (490pt, -350.4pt)
+ -- (75pt, -350.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -372pt) -- (490pt, -372pt)
+ -- (490pt, -372pt)
+ -- (490pt, -360.4pt)
+ -- (490pt, -360.4pt)
+ -- (75pt, -360.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -382pt) -- (490pt, -382pt)
+ -- (490pt, -382pt)
+ -- (490pt, -370.4pt)
+ -- (490pt, -370.4pt)
+ -- (75pt, -370.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -392pt) -- (490pt, -392pt)
+ -- (490pt, -392pt)
+ -- (490pt, -380.4pt)
+ -- (490pt, -380.4pt)
+ -- (75pt, -380.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -402pt) -- (490pt, -402pt)
+ -- (490pt, -402pt)
+ -- (490pt, -390.4pt)
+ -- (490pt, -390.4pt)
+ -- (75pt, -390.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -412pt) -- (490pt, -412pt)
+ -- (490pt, -412pt)
+ -- (490pt, -400.4pt)
+ -- (490pt, -400.4pt)
+ -- (75pt, -400.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -422pt) -- (490pt, -422pt)
+ -- (490pt, -422pt)
+ -- (490pt, -410.4pt)
+ -- (490pt, -410.4pt)
+ -- (75pt, -410.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -432pt) -- (490pt, -432pt)
+ -- (490pt, -432pt)
+ -- (490pt, -420.4pt)
+ -- (490pt, -420.4pt)
+ -- (75pt, -420.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -442pt) -- (490pt, -442pt)
+ -- (490pt, -442pt)
+ -- (490pt, -430.4pt)
+ -- (490pt, -430.4pt)
+ -- (75pt, -430.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -452pt) -- (490pt, -452pt)
+ -- (490pt, -452pt)
+ -- (490pt, -440.4pt)
+ -- (490pt, -440.4pt)
+ -- (75pt, -440.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -462pt) -- (490pt, -462pt)
+ -- (490pt, -462pt)
+ -- (490pt, -450.4pt)
+ -- (490pt, -450.4pt)
+ -- (75pt, -450.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -472pt) -- (490pt, -472pt)
+ -- (490pt, -472pt)
+ -- (490pt, -460.4pt)
+ -- (490pt, -460.4pt)
+ -- (75pt, -460.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -482pt) -- (490pt, -482pt)
+ -- (490pt, -482pt)
+ -- (490pt, -470.4pt)
+ -- (490pt, -470.4pt)
+ -- (75pt, -470.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -492pt) -- (490pt, -492pt)
+ -- (490pt, -492pt)
+ -- (490pt, -480.4pt)
+ -- (490pt, -480.4pt)
+ -- (75pt, -480.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -502pt) -- (490pt, -502pt)
+ -- (490pt, -502pt)
+ -- (490pt, -490.4pt)
+ -- (490pt, -490.4pt)
+ -- (75pt, -490.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -512pt) -- (490pt, -512pt)
+ -- (490pt, -512pt)
+ -- (490pt, -500.4pt)
+ -- (490pt, -500.4pt)
+ -- (75pt, -500.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -522pt) -- (490pt, -522pt)
+ -- (490pt, -522pt)
+ -- (490pt, -510.4pt)
+ -- (490pt, -510.4pt)
+ -- (75pt, -510.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -532pt) -- (490pt, -532pt)
+ -- (490pt, -532pt)
+ -- (490pt, -520.4pt)
+ -- (490pt, -520.4pt)
+ -- (75pt, -520.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -542pt) -- (490pt, -542pt)
+ -- (490pt, -542pt)
+ -- (490pt, -530.4pt)
+ -- (490pt, -530.4pt)
+ -- (75pt, -530.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -552pt) -- (490pt, -552pt)
+ -- (490pt, -552pt)
+ -- (490pt, -540.4pt)
+ -- (490pt, -540.4pt)
+ -- (75pt, -540.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -562pt) -- (490pt, -562pt)
+ -- (490pt, -562pt)
+ -- (490pt, -550.4pt)
+ -- (490pt, -550.4pt)
+ -- (75pt, -550.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -572pt) -- (490pt, -572pt)
+ -- (490pt, -572pt)
+ -- (490pt, -560.4pt)
+ -- (490pt, -560.4pt)
+ -- (75pt, -560.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -582pt) -- (490pt, -582pt)
+ -- (490pt, -582pt)
+ -- (490pt, -570.4pt)
+ -- (490pt, -570.4pt)
+ -- (75pt, -570.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -592pt) -- (490pt, -592pt)
+ -- (490pt, -592pt)
+ -- (490pt, -580.4pt)
+ -- (490pt, -580.4pt)
+ -- (75pt, -580.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -602pt) -- (490pt, -602pt)
+ -- (490pt, -602pt)
+ -- (490pt, -590.4pt)
+ -- (490pt, -590.4pt)
+ -- (75pt, -590.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -612pt) -- (490pt, -612pt)
+ -- (490pt, -612pt)
+ -- (490pt, -600.4pt)
+ -- (490pt, -600.4pt)
+ -- (75pt, -600.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -622pt) -- (490pt, -622pt)
+ -- (490pt, -622pt)
+ -- (490pt, -610.4pt)
+ -- (490pt, -610.4pt)
+ -- (75pt, -610.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -632pt) -- (490pt, -632pt)
+ -- (490pt, -632pt)
+ -- (490pt, -620.4pt)
+ -- (490pt, -620.4pt)
+ -- (75pt, -620.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -642pt) -- (490pt, -642pt)
+ -- (490pt, -642pt)
+ -- (490pt, -630.4pt)
+ -- (490pt, -630.4pt)
+ -- (75pt, -630.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -652pt) -- (490pt, -652pt)
+ -- (490pt, -652pt)
+ -- (490pt, -640.4pt)
+ -- (490pt, -640.4pt)
+ -- (75pt, -640.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -662pt) -- (490pt, -662pt)
+ -- (490pt, -662pt)
+ -- (490pt, -650.4pt)
+ -- (490pt, -650.4pt)
+ -- (75pt, -650.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -672pt) -- (490pt, -672pt)
+ -- (490pt, -672pt)
+ -- (490pt, -660.4pt)
+ -- (490pt, -660.4pt)
+ -- (75pt, -660.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -682pt) -- (490pt, -682pt)
+ -- (490pt, -682pt)
+ -- (490pt, -670.4pt)
+ -- (490pt, -670.4pt)
+ -- (75pt, -670.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -692pt) -- (490pt, -692pt)
+ -- (490pt, -692pt)
+ -- (490pt, -680.4pt)
+ -- (490pt, -680.4pt)
+ -- (75pt, -680.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -702pt) -- (490pt, -702pt)
+ -- (490pt, -702pt)
+ -- (490pt, -690.4pt)
+ -- (490pt, -690.4pt)
+ -- (75pt, -690.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -712pt) -- (490pt, -712pt)
+ -- (490pt, -712pt)
+ -- (490pt, -700.4pt)
+ -- (490pt, -700.4pt)
+ -- (75pt, -700.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -722pt) -- (490pt, -722pt)
+ -- (490pt, -722pt)
+ -- (490pt, -710.4pt)
+ -- (490pt, -710.4pt)
+ -- (75pt, -710.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -732pt) -- (490pt, -732pt)
+ -- (490pt, -732pt)
+ -- (490pt, -720.4pt)
+ -- (490pt, -720.4pt)
+ -- (75pt, -720.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -742pt) -- (490pt, -742pt)
+ -- (490pt, -742pt)
+ -- (490pt, -730.4pt)
+ -- (490pt, -730.4pt)
+ -- (75pt, -730.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -752pt) -- (490pt, -752pt)
+ -- (490pt, -752pt)
+ -- (490pt, -740.4pt)
+ -- (490pt, -740.4pt)
+ -- (75pt, -740.4pt) -- cycle
+;
+\end{scope}
+\end{tikzpicture}
+\newpage
+\begin{tikzpicture}[overlay]
+\path(0pt,0pt);
+\begin{scope}
+\clip
+(75pt, -72pt) -- (490pt, -72pt)
+ -- (490pt, -72pt)
+ -- (490pt, -60.40002pt)
+ -- (490pt, -60.40002pt)
+ -- (75pt, -60.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -82pt) -- (490pt, -82pt)
+ -- (490pt, -82pt)
+ -- (490pt, -70.40002pt)
+ -- (490pt, -70.40002pt)
+ -- (75pt, -70.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -92pt) -- (490pt, -92pt)
+ -- (490pt, -92pt)
+ -- (490pt, -80.40002pt)
+ -- (490pt, -80.40002pt)
+ -- (75pt, -80.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -102pt) -- (490pt, -102pt)
+ -- (490pt, -102pt)
+ -- (490pt, -90.40002pt)
+ -- (490pt, -90.40002pt)
+ -- (75pt, -90.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -112pt) -- (490pt, -112pt)
+ -- (490pt, -112pt)
+ -- (490pt, -100.4pt)
+ -- (490pt, -100.4pt)
+ -- (75pt, -100.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -122pt) -- (490pt, -122pt)
+ -- (490pt, -122pt)
+ -- (490pt, -110.4pt)
+ -- (490pt, -110.4pt)
+ -- (75pt, -110.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -132pt) -- (490pt, -132pt)
+ -- (490pt, -132pt)
+ -- (490pt, -120.4pt)
+ -- (490pt, -120.4pt)
+ -- (75pt, -120.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -142pt) -- (490pt, -142pt)
+ -- (490pt, -142pt)
+ -- (490pt, -130.4pt)
+ -- (490pt, -130.4pt)
+ -- (75pt, -130.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -152pt) -- (490pt, -152pt)
+ -- (490pt, -152pt)
+ -- (490pt, -140.4pt)
+ -- (490pt, -140.4pt)
+ -- (75pt, -140.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -162pt) -- (490pt, -162pt)
+ -- (490pt, -162pt)
+ -- (490pt, -150.4pt)
+ -- (490pt, -150.4pt)
+ -- (75pt, -150.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -172pt) -- (490pt, -172pt)
+ -- (490pt, -172pt)
+ -- (490pt, -160.4pt)
+ -- (490pt, -160.4pt)
+ -- (75pt, -160.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -182pt) -- (490pt, -182pt)
+ -- (490pt, -182pt)
+ -- (490pt, -170.4pt)
+ -- (490pt, -170.4pt)
+ -- (75pt, -170.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -192pt) -- (490pt, -192pt)
+ -- (490pt, -192pt)
+ -- (490pt, -180.4pt)
+ -- (490pt, -180.4pt)
+ -- (75pt, -180.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -202pt) -- (490pt, -202pt)
+ -- (490pt, -202pt)
+ -- (490pt, -190.4pt)
+ -- (490pt, -190.4pt)
+ -- (75pt, -190.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -212pt) -- (490pt, -212pt)
+ -- (490pt, -212pt)
+ -- (490pt, -200.4pt)
+ -- (490pt, -200.4pt)
+ -- (75pt, -200.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -222pt) -- (490pt, -222pt)
+ -- (490pt, -222pt)
+ -- (490pt, -210.4pt)
+ -- (490pt, -210.4pt)
+ -- (75pt, -210.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -232pt) -- (490pt, -232pt)
+ -- (490pt, -232pt)
+ -- (490pt, -220.4pt)
+ -- (490pt, -220.4pt)
+ -- (75pt, -220.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -242pt) -- (490pt, -242pt)
+ -- (490pt, -242pt)
+ -- (490pt, -230.4pt)
+ -- (490pt, -230.4pt)
+ -- (75pt, -230.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -262pt) -- (490pt, -262pt)
+ -- (490pt, -262pt)
+ -- (490pt, -238.8pt)
+ -- (490pt, -238.8pt)
+ -- (75pt, -238.8pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -272pt) -- (490pt, -272pt)
+ -- (490pt, -272pt)
+ -- (490pt, -260.4pt)
+ -- (490pt, -260.4pt)
+ -- (75pt, -260.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -282pt) -- (490pt, -282pt)
+ -- (490pt, -282pt)
+ -- (490pt, -270.4pt)
+ -- (490pt, -270.4pt)
+ -- (75pt, -270.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -292pt) -- (490pt, -292pt)
+ -- (490pt, -292pt)
+ -- (490pt, -280.4pt)
+ -- (490pt, -280.4pt)
+ -- (75pt, -280.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -302pt) -- (490pt, -302pt)
+ -- (490pt, -302pt)
+ -- (490pt, -290.4pt)
+ -- (490pt, -290.4pt)
+ -- (75pt, -290.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -312pt) -- (490pt, -312pt)
+ -- (490pt, -312pt)
+ -- (490pt, -300.4pt)
+ -- (490pt, -300.4pt)
+ -- (75pt, -300.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -322pt) -- (490pt, -322pt)
+ -- (490pt, -322pt)
+ -- (490pt, -310.4pt)
+ -- (490pt, -310.4pt)
+ -- (75pt, -310.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -332pt) -- (490pt, -332pt)
+ -- (490pt, -332pt)
+ -- (490pt, -320.4pt)
+ -- (490pt, -320.4pt)
+ -- (75pt, -320.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -342pt) -- (490pt, -342pt)
+ -- (490pt, -342pt)
+ -- (490pt, -330.4pt)
+ -- (490pt, -330.4pt)
+ -- (75pt, -330.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -352pt) -- (490pt, -352pt)
+ -- (490pt, -352pt)
+ -- (490pt, -340.4pt)
+ -- (490pt, -340.4pt)
+ -- (75pt, -340.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -362pt) -- (490pt, -362pt)
+ -- (490pt, -362pt)
+ -- (490pt, -350.4pt)
+ -- (490pt, -350.4pt)
+ -- (75pt, -350.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -372pt) -- (490pt, -372pt)
+ -- (490pt, -372pt)
+ -- (490pt, -360.4pt)
+ -- (490pt, -360.4pt)
+ -- (75pt, -360.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -382pt) -- (490pt, -382pt)
+ -- (490pt, -382pt)
+ -- (490pt, -370.4pt)
+ -- (490pt, -370.4pt)
+ -- (75pt, -370.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -392pt) -- (490pt, -392pt)
+ -- (490pt, -392pt)
+ -- (490pt, -380.4pt)
+ -- (490pt, -380.4pt)
+ -- (75pt, -380.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -412pt) -- (490pt, -412pt)
+ -- (490pt, -412pt)
+ -- (490pt, -388.8pt)
+ -- (490pt, -388.8pt)
+ -- (75pt, -388.8pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -422pt) -- (490pt, -422pt)
+ -- (490pt, -422pt)
+ -- (490pt, -410.4pt)
+ -- (490pt, -410.4pt)
+ -- (75pt, -410.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -432pt) -- (490pt, -432pt)
+ -- (490pt, -432pt)
+ -- (490pt, -420.4pt)
+ -- (490pt, -420.4pt)
+ -- (75pt, -420.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -442pt) -- (490pt, -442pt)
+ -- (490pt, -442pt)
+ -- (490pt, -430.4pt)
+ -- (490pt, -430.4pt)
+ -- (75pt, -430.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -452pt) -- (490pt, -452pt)
+ -- (490pt, -452pt)
+ -- (490pt, -440.4pt)
+ -- (490pt, -440.4pt)
+ -- (75pt, -440.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -462pt) -- (490pt, -462pt)
+ -- (490pt, -462pt)
+ -- (490pt, -450.4pt)
+ -- (490pt, -450.4pt)
+ -- (75pt, -450.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -472pt) -- (490pt, -472pt)
+ -- (490pt, -472pt)
+ -- (490pt, -460.4pt)
+ -- (490pt, -460.4pt)
+ -- (75pt, -460.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -482pt) -- (490pt, -482pt)
+ -- (490pt, -482pt)
+ -- (490pt, -470.4pt)
+ -- (490pt, -470.4pt)
+ -- (75pt, -470.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -492pt) -- (490pt, -492pt)
+ -- (490pt, -492pt)
+ -- (490pt, -480.4pt)
+ -- (490pt, -480.4pt)
+ -- (75pt, -480.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -502pt) -- (490pt, -502pt)
+ -- (490pt, -502pt)
+ -- (490pt, -490.4pt)
+ -- (490pt, -490.4pt)
+ -- (75pt, -490.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -512pt) -- (490pt, -512pt)
+ -- (490pt, -512pt)
+ -- (490pt, -500.4pt)
+ -- (490pt, -500.4pt)
+ -- (75pt, -500.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -522pt) -- (490pt, -522pt)
+ -- (490pt, -522pt)
+ -- (490pt, -510.4pt)
+ -- (490pt, -510.4pt)
+ -- (75pt, -510.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -532pt) -- (490pt, -532pt)
+ -- (490pt, -532pt)
+ -- (490pt, -520.4pt)
+ -- (490pt, -520.4pt)
+ -- (75pt, -520.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -542pt) -- (490pt, -542pt)
+ -- (490pt, -542pt)
+ -- (490pt, -530.4pt)
+ -- (490pt, -530.4pt)
+ -- (75pt, -530.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -552pt) -- (490pt, -552pt)
+ -- (490pt, -552pt)
+ -- (490pt, -540.4pt)
+ -- (490pt, -540.4pt)
+ -- (75pt, -540.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -562pt) -- (490pt, -562pt)
+ -- (490pt, -562pt)
+ -- (490pt, -550.4pt)
+ -- (490pt, -550.4pt)
+ -- (75pt, -550.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -572pt) -- (490pt, -572pt)
+ -- (490pt, -572pt)
+ -- (490pt, -560.4pt)
+ -- (490pt, -560.4pt)
+ -- (75pt, -560.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -582pt) -- (490pt, -582pt)
+ -- (490pt, -582pt)
+ -- (490pt, -570.4pt)
+ -- (490pt, -570.4pt)
+ -- (75pt, -570.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -592pt) -- (490pt, -592pt)
+ -- (490pt, -592pt)
+ -- (490pt, -580.4pt)
+ -- (490pt, -580.4pt)
+ -- (75pt, -580.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -602pt) -- (490pt, -602pt)
+ -- (490pt, -602pt)
+ -- (490pt, -590.4pt)
+ -- (490pt, -590.4pt)
+ -- (75pt, -590.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -612pt) -- (490pt, -612pt)
+ -- (490pt, -612pt)
+ -- (490pt, -600.4pt)
+ -- (490pt, -600.4pt)
+ -- (75pt, -600.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -622pt) -- (490pt, -622pt)
+ -- (490pt, -622pt)
+ -- (490pt, -610.4pt)
+ -- (490pt, -610.4pt)
+ -- (75pt, -610.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -632pt) -- (490pt, -632pt)
+ -- (490pt, -632pt)
+ -- (490pt, -620.4pt)
+ -- (490pt, -620.4pt)
+ -- (75pt, -620.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -642pt) -- (490pt, -642pt)
+ -- (490pt, -642pt)
+ -- (490pt, -630.4pt)
+ -- (490pt, -630.4pt)
+ -- (75pt, -630.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -652pt) -- (490pt, -652pt)
+ -- (490pt, -652pt)
+ -- (490pt, -640.4pt)
+ -- (490pt, -640.4pt)
+ -- (75pt, -640.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -662pt) -- (490pt, -662pt)
+ -- (490pt, -662pt)
+ -- (490pt, -650.4pt)
+ -- (490pt, -650.4pt)
+ -- (75pt, -650.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -672pt) -- (490pt, -672pt)
+ -- (490pt, -672pt)
+ -- (490pt, -660.4pt)
+ -- (490pt, -660.4pt)
+ -- (75pt, -660.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -682pt) -- (490pt, -682pt)
+ -- (490pt, -682pt)
+ -- (490pt, -670.4pt)
+ -- (490pt, -670.4pt)
+ -- (75pt, -670.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -692pt) -- (490pt, -692pt)
+ -- (490pt, -692pt)
+ -- (490pt, -680.4pt)
+ -- (490pt, -680.4pt)
+ -- (75pt, -680.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -702pt) -- (490pt, -702pt)
+ -- (490pt, -702pt)
+ -- (490pt, -690.4pt)
+ -- (490pt, -690.4pt)
+ -- (75pt, -690.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -712pt) -- (490pt, -712pt)
+ -- (490pt, -712pt)
+ -- (490pt, -700.4pt)
+ -- (490pt, -700.4pt)
+ -- (75pt, -700.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -722pt) -- (490pt, -722pt)
+ -- (490pt, -722pt)
+ -- (490pt, -710.4pt)
+ -- (490pt, -710.4pt)
+ -- (75pt, -710.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -732pt) -- (490pt, -732pt)
+ -- (490pt, -732pt)
+ -- (490pt, -720.4pt)
+ -- (490pt, -720.4pt)
+ -- (75pt, -720.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -742pt) -- (490pt, -742pt)
+ -- (490pt, -742pt)
+ -- (490pt, -730.4pt)
+ -- (490pt, -730.4pt)
+ -- (75pt, -730.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -752pt) -- (490pt, -752pt)
+ -- (490pt, -752pt)
+ -- (490pt, -740.4pt)
+ -- (490pt, -740.4pt)
+ -- (75pt, -740.4pt) -- cycle
+;
+\end{scope}
+\end{tikzpicture}
+\newpage
+\begin{tikzpicture}[overlay]
+\path(0pt,0pt);
+\begin{scope}
+\clip
+(75pt, -72pt) -- (490pt, -72pt)
+ -- (490pt, -72pt)
+ -- (490pt, -60.40002pt)
+ -- (490pt, -60.40002pt)
+ -- (75pt, -60.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -82pt) -- (490pt, -82pt)
+ -- (490pt, -82pt)
+ -- (490pt, -70.40002pt)
+ -- (490pt, -70.40002pt)
+ -- (75pt, -70.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -92pt) -- (490pt, -92pt)
+ -- (490pt, -92pt)
+ -- (490pt, -80.40002pt)
+ -- (490pt, -80.40002pt)
+ -- (75pt, -80.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -102pt) -- (490pt, -102pt)
+ -- (490pt, -102pt)
+ -- (490pt, -90.40002pt)
+ -- (490pt, -90.40002pt)
+ -- (75pt, -90.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -112pt) -- (490pt, -112pt)
+ -- (490pt, -112pt)
+ -- (490pt, -100.4pt)
+ -- (490pt, -100.4pt)
+ -- (75pt, -100.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -122pt) -- (490pt, -122pt)
+ -- (490pt, -122pt)
+ -- (490pt, -110.4pt)
+ -- (490pt, -110.4pt)
+ -- (75pt, -110.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -132pt) -- (490pt, -132pt)
+ -- (490pt, -132pt)
+ -- (490pt, -120.4pt)
+ -- (490pt, -120.4pt)
+ -- (75pt, -120.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -142pt) -- (490pt, -142pt)
+ -- (490pt, -142pt)
+ -- (490pt, -130.4pt)
+ -- (490pt, -130.4pt)
+ -- (75pt, -130.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -152pt) -- (490pt, -152pt)
+ -- (490pt, -152pt)
+ -- (490pt, -140.4pt)
+ -- (490pt, -140.4pt)
+ -- (75pt, -140.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -162pt) -- (490pt, -162pt)
+ -- (490pt, -162pt)
+ -- (490pt, -150.4pt)
+ -- (490pt, -150.4pt)
+ -- (75pt, -150.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -172pt) -- (490pt, -172pt)
+ -- (490pt, -172pt)
+ -- (490pt, -160.4pt)
+ -- (490pt, -160.4pt)
+ -- (75pt, -160.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -182pt) -- (490pt, -182pt)
+ -- (490pt, -182pt)
+ -- (490pt, -170.4pt)
+ -- (490pt, -170.4pt)
+ -- (75pt, -170.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -192pt) -- (490pt, -192pt)
+ -- (490pt, -192pt)
+ -- (490pt, -180.4pt)
+ -- (490pt, -180.4pt)
+ -- (75pt, -180.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -202pt) -- (490pt, -202pt)
+ -- (490pt, -202pt)
+ -- (490pt, -190.4pt)
+ -- (490pt, -190.4pt)
+ -- (75pt, -190.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -212pt) -- (490pt, -212pt)
+ -- (490pt, -212pt)
+ -- (490pt, -200.4pt)
+ -- (490pt, -200.4pt)
+ -- (75pt, -200.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -222pt) -- (490pt, -222pt)
+ -- (490pt, -222pt)
+ -- (490pt, -210.4pt)
+ -- (490pt, -210.4pt)
+ -- (75pt, -210.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -232pt) -- (490pt, -232pt)
+ -- (490pt, -232pt)
+ -- (490pt, -220.4pt)
+ -- (490pt, -220.4pt)
+ -- (75pt, -220.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -242pt) -- (490pt, -242pt)
+ -- (490pt, -242pt)
+ -- (490pt, -230.4pt)
+ -- (490pt, -230.4pt)
+ -- (75pt, -230.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -252pt) -- (490pt, -252pt)
+ -- (490pt, -252pt)
+ -- (490pt, -240.4pt)
+ -- (490pt, -240.4pt)
+ -- (75pt, -240.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -262pt) -- (490pt, -262pt)
+ -- (490pt, -262pt)
+ -- (490pt, -250.4pt)
+ -- (490pt, -250.4pt)
+ -- (75pt, -250.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -272pt) -- (490pt, -272pt)
+ -- (490pt, -272pt)
+ -- (490pt, -260.4pt)
+ -- (490pt, -260.4pt)
+ -- (75pt, -260.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -282pt) -- (490pt, -282pt)
+ -- (490pt, -282pt)
+ -- (490pt, -270.4pt)
+ -- (490pt, -270.4pt)
+ -- (75pt, -270.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -292pt) -- (490pt, -292pt)
+ -- (490pt, -292pt)
+ -- (490pt, -280.4pt)
+ -- (490pt, -280.4pt)
+ -- (75pt, -280.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -302pt) -- (490pt, -302pt)
+ -- (490pt, -302pt)
+ -- (490pt, -290.4pt)
+ -- (490pt, -290.4pt)
+ -- (75pt, -290.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -312pt) -- (490pt, -312pt)
+ -- (490pt, -312pt)
+ -- (490pt, -300.4pt)
+ -- (490pt, -300.4pt)
+ -- (75pt, -300.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -322pt) -- (490pt, -322pt)
+ -- (490pt, -322pt)
+ -- (490pt, -310.4pt)
+ -- (490pt, -310.4pt)
+ -- (75pt, -310.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -332pt) -- (490pt, -332pt)
+ -- (490pt, -332pt)
+ -- (490pt, -320.4pt)
+ -- (490pt, -320.4pt)
+ -- (75pt, -320.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -342pt) -- (490pt, -342pt)
+ -- (490pt, -342pt)
+ -- (490pt, -330.4pt)
+ -- (490pt, -330.4pt)
+ -- (75pt, -330.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -352pt) -- (490pt, -352pt)
+ -- (490pt, -352pt)
+ -- (490pt, -340.4pt)
+ -- (490pt, -340.4pt)
+ -- (75pt, -340.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -362pt) -- (490pt, -362pt)
+ -- (490pt, -362pt)
+ -- (490pt, -350.4pt)
+ -- (490pt, -350.4pt)
+ -- (75pt, -350.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -372pt) -- (490pt, -372pt)
+ -- (490pt, -372pt)
+ -- (490pt, -360.4pt)
+ -- (490pt, -360.4pt)
+ -- (75pt, -360.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -382pt) -- (490pt, -382pt)
+ -- (490pt, -382pt)
+ -- (490pt, -370.4pt)
+ -- (490pt, -370.4pt)
+ -- (75pt, -370.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -392pt) -- (490pt, -392pt)
+ -- (490pt, -392pt)
+ -- (490pt, -380.4pt)
+ -- (490pt, -380.4pt)
+ -- (75pt, -380.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -402pt) -- (490pt, -402pt)
+ -- (490pt, -402pt)
+ -- (490pt, -390.4pt)
+ -- (490pt, -390.4pt)
+ -- (75pt, -390.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -412pt) -- (490pt, -412pt)
+ -- (490pt, -412pt)
+ -- (490pt, -400.4pt)
+ -- (490pt, -400.4pt)
+ -- (75pt, -400.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -422pt) -- (490pt, -422pt)
+ -- (490pt, -422pt)
+ -- (490pt, -410.4pt)
+ -- (490pt, -410.4pt)
+ -- (75pt, -410.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -432pt) -- (490pt, -432pt)
+ -- (490pt, -432pt)
+ -- (490pt, -420.4pt)
+ -- (490pt, -420.4pt)
+ -- (75pt, -420.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -442pt) -- (490pt, -442pt)
+ -- (490pt, -442pt)
+ -- (490pt, -430.4pt)
+ -- (490pt, -430.4pt)
+ -- (75pt, -430.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -452pt) -- (490pt, -452pt)
+ -- (490pt, -452pt)
+ -- (490pt, -440.4pt)
+ -- (490pt, -440.4pt)
+ -- (75pt, -440.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -462pt) -- (490pt, -462pt)
+ -- (490pt, -462pt)
+ -- (490pt, -450.4pt)
+ -- (490pt, -450.4pt)
+ -- (75pt, -450.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -472pt) -- (490pt, -472pt)
+ -- (490pt, -472pt)
+ -- (490pt, -460.4pt)
+ -- (490pt, -460.4pt)
+ -- (75pt, -460.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -482pt) -- (490pt, -482pt)
+ -- (490pt, -482pt)
+ -- (490pt, -470.4pt)
+ -- (490pt, -470.4pt)
+ -- (75pt, -470.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -492pt) -- (490pt, -492pt)
+ -- (490pt, -492pt)
+ -- (490pt, -480.4pt)
+ -- (490pt, -480.4pt)
+ -- (75pt, -480.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -502pt) -- (490pt, -502pt)
+ -- (490pt, -502pt)
+ -- (490pt, -490.4pt)
+ -- (490pt, -490.4pt)
+ -- (75pt, -490.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -522pt) -- (490pt, -522pt)
+ -- (490pt, -522pt)
+ -- (490pt, -498.8pt)
+ -- (490pt, -498.8pt)
+ -- (75pt, -498.8pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -532pt) -- (490pt, -532pt)
+ -- (490pt, -532pt)
+ -- (490pt, -520.4pt)
+ -- (490pt, -520.4pt)
+ -- (75pt, -520.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -542pt) -- (490pt, -542pt)
+ -- (490pt, -542pt)
+ -- (490pt, -530.4pt)
+ -- (490pt, -530.4pt)
+ -- (75pt, -530.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -552pt) -- (490pt, -552pt)
+ -- (490pt, -552pt)
+ -- (490pt, -540.4pt)
+ -- (490pt, -540.4pt)
+ -- (75pt, -540.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -562pt) -- (490pt, -562pt)
+ -- (490pt, -562pt)
+ -- (490pt, -550.4pt)
+ -- (490pt, -550.4pt)
+ -- (75pt, -550.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -572pt) -- (490pt, -572pt)
+ -- (490pt, -572pt)
+ -- (490pt, -560.4pt)
+ -- (490pt, -560.4pt)
+ -- (75pt, -560.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -582pt) -- (490pt, -582pt)
+ -- (490pt, -582pt)
+ -- (490pt, -570.4pt)
+ -- (490pt, -570.4pt)
+ -- (75pt, -570.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -592pt) -- (490pt, -592pt)
+ -- (490pt, -592pt)
+ -- (490pt, -580.4pt)
+ -- (490pt, -580.4pt)
+ -- (75pt, -580.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -602pt) -- (490pt, -602pt)
+ -- (490pt, -602pt)
+ -- (490pt, -590.4pt)
+ -- (490pt, -590.4pt)
+ -- (75pt, -590.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -622pt) -- (490pt, -622pt)
+ -- (490pt, -622pt)
+ -- (490pt, -598.8pt)
+ -- (490pt, -598.8pt)
+ -- (75pt, -598.8pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -632pt) -- (490pt, -632pt)
+ -- (490pt, -632pt)
+ -- (490pt, -620.4pt)
+ -- (490pt, -620.4pt)
+ -- (75pt, -620.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -642pt) -- (490pt, -642pt)
+ -- (490pt, -642pt)
+ -- (490pt, -630.4pt)
+ -- (490pt, -630.4pt)
+ -- (75pt, -630.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -652pt) -- (490pt, -652pt)
+ -- (490pt, -652pt)
+ -- (490pt, -640.4pt)
+ -- (490pt, -640.4pt)
+ -- (75pt, -640.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -662pt) -- (490pt, -662pt)
+ -- (490pt, -662pt)
+ -- (490pt, -650.4pt)
+ -- (490pt, -650.4pt)
+ -- (75pt, -650.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -672pt) -- (490pt, -672pt)
+ -- (490pt, -672pt)
+ -- (490pt, -660.4pt)
+ -- (490pt, -660.4pt)
+ -- (75pt, -660.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -682pt) -- (490pt, -682pt)
+ -- (490pt, -682pt)
+ -- (490pt, -670.4pt)
+ -- (490pt, -670.4pt)
+ -- (75pt, -670.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -692pt) -- (490pt, -692pt)
+ -- (490pt, -692pt)
+ -- (490pt, -680.4pt)
+ -- (490pt, -680.4pt)
+ -- (75pt, -680.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -702pt) -- (490pt, -702pt)
+ -- (490pt, -702pt)
+ -- (490pt, -690.4pt)
+ -- (490pt, -690.4pt)
+ -- (75pt, -690.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -712pt) -- (490pt, -712pt)
+ -- (490pt, -712pt)
+ -- (490pt, -700.4pt)
+ -- (490pt, -700.4pt)
+ -- (75pt, -700.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -722pt) -- (490pt, -722pt)
+ -- (490pt, -722pt)
+ -- (490pt, -710.4pt)
+ -- (490pt, -710.4pt)
+ -- (75pt, -710.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -732pt) -- (490pt, -732pt)
+ -- (490pt, -732pt)
+ -- (490pt, -720.4pt)
+ -- (490pt, -720.4pt)
+ -- (75pt, -720.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -742pt) -- (490pt, -742pt)
+ -- (490pt, -742pt)
+ -- (490pt, -730.4pt)
+ -- (490pt, -730.4pt)
+ -- (75pt, -730.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -752pt) -- (490pt, -752pt)
+ -- (490pt, -752pt)
+ -- (490pt, -740.4pt)
+ -- (490pt, -740.4pt)
+ -- (75pt, -740.4pt) -- cycle
+;
+\end{scope}
+\end{tikzpicture}
+\newpage
+\begin{tikzpicture}[overlay]
+\path(0pt,0pt);
+\begin{scope}
+\clip
+(75pt, -72pt) -- (490pt, -72pt)
+ -- (490pt, -72pt)
+ -- (490pt, -60.40002pt)
+ -- (490pt, -60.40002pt)
+ -- (75pt, -60.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -82pt) -- (490pt, -82pt)
+ -- (490pt, -82pt)
+ -- (490pt, -70.40002pt)
+ -- (490pt, -70.40002pt)
+ -- (75pt, -70.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -92pt) -- (490pt, -92pt)
+ -- (490pt, -92pt)
+ -- (490pt, -80.40002pt)
+ -- (490pt, -80.40002pt)
+ -- (75pt, -80.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -102pt) -- (490pt, -102pt)
+ -- (490pt, -102pt)
+ -- (490pt, -90.40002pt)
+ -- (490pt, -90.40002pt)
+ -- (75pt, -90.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -112pt) -- (490pt, -112pt)
+ -- (490pt, -112pt)
+ -- (490pt, -100.4pt)
+ -- (490pt, -100.4pt)
+ -- (75pt, -100.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -122pt) -- (490pt, -122pt)
+ -- (490pt, -122pt)
+ -- (490pt, -110.4pt)
+ -- (490pt, -110.4pt)
+ -- (75pt, -110.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -132pt) -- (490pt, -132pt)
+ -- (490pt, -132pt)
+ -- (490pt, -120.4pt)
+ -- (490pt, -120.4pt)
+ -- (75pt, -120.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -142pt) -- (490pt, -142pt)
+ -- (490pt, -142pt)
+ -- (490pt, -130.4pt)
+ -- (490pt, -130.4pt)
+ -- (75pt, -130.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -152pt) -- (490pt, -152pt)
+ -- (490pt, -152pt)
+ -- (490pt, -140.4pt)
+ -- (490pt, -140.4pt)
+ -- (75pt, -140.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -162pt) -- (490pt, -162pt)
+ -- (490pt, -162pt)
+ -- (490pt, -150.4pt)
+ -- (490pt, -150.4pt)
+ -- (75pt, -150.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -172pt) -- (490pt, -172pt)
+ -- (490pt, -172pt)
+ -- (490pt, -160.4pt)
+ -- (490pt, -160.4pt)
+ -- (75pt, -160.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -182pt) -- (490pt, -182pt)
+ -- (490pt, -182pt)
+ -- (490pt, -170.4pt)
+ -- (490pt, -170.4pt)
+ -- (75pt, -170.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -192pt) -- (490pt, -192pt)
+ -- (490pt, -192pt)
+ -- (490pt, -180.4pt)
+ -- (490pt, -180.4pt)
+ -- (75pt, -180.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -202pt) -- (490pt, -202pt)
+ -- (490pt, -202pt)
+ -- (490pt, -190.4pt)
+ -- (490pt, -190.4pt)
+ -- (75pt, -190.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -212pt) -- (490pt, -212pt)
+ -- (490pt, -212pt)
+ -- (490pt, -200.4pt)
+ -- (490pt, -200.4pt)
+ -- (75pt, -200.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -222pt) -- (490pt, -222pt)
+ -- (490pt, -222pt)
+ -- (490pt, -210.4pt)
+ -- (490pt, -210.4pt)
+ -- (75pt, -210.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -232pt) -- (490pt, -232pt)
+ -- (490pt, -232pt)
+ -- (490pt, -220.4pt)
+ -- (490pt, -220.4pt)
+ -- (75pt, -220.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -242pt) -- (490pt, -242pt)
+ -- (490pt, -242pt)
+ -- (490pt, -230.4pt)
+ -- (490pt, -230.4pt)
+ -- (75pt, -230.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -252pt) -- (490pt, -252pt)
+ -- (490pt, -252pt)
+ -- (490pt, -240.4pt)
+ -- (490pt, -240.4pt)
+ -- (75pt, -240.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -262pt) -- (490pt, -262pt)
+ -- (490pt, -262pt)
+ -- (490pt, -250.4pt)
+ -- (490pt, -250.4pt)
+ -- (75pt, -250.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -272pt) -- (490pt, -272pt)
+ -- (490pt, -272pt)
+ -- (490pt, -260.4pt)
+ -- (490pt, -260.4pt)
+ -- (75pt, -260.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -282pt) -- (490pt, -282pt)
+ -- (490pt, -282pt)
+ -- (490pt, -270.4pt)
+ -- (490pt, -270.4pt)
+ -- (75pt, -270.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -292pt) -- (490pt, -292pt)
+ -- (490pt, -292pt)
+ -- (490pt, -280.4pt)
+ -- (490pt, -280.4pt)
+ -- (75pt, -280.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -302pt) -- (490pt, -302pt)
+ -- (490pt, -302pt)
+ -- (490pt, -290.4pt)
+ -- (490pt, -290.4pt)
+ -- (75pt, -290.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -312pt) -- (490pt, -312pt)
+ -- (490pt, -312pt)
+ -- (490pt, -300.4pt)
+ -- (490pt, -300.4pt)
+ -- (75pt, -300.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -322pt) -- (490pt, -322pt)
+ -- (490pt, -322pt)
+ -- (490pt, -310.4pt)
+ -- (490pt, -310.4pt)
+ -- (75pt, -310.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -332pt) -- (490pt, -332pt)
+ -- (490pt, -332pt)
+ -- (490pt, -320.4pt)
+ -- (490pt, -320.4pt)
+ -- (75pt, -320.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -342pt) -- (490pt, -342pt)
+ -- (490pt, -342pt)
+ -- (490pt, -330.4pt)
+ -- (490pt, -330.4pt)
+ -- (75pt, -330.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -352pt) -- (490pt, -352pt)
+ -- (490pt, -352pt)
+ -- (490pt, -340.4pt)
+ -- (490pt, -340.4pt)
+ -- (75pt, -340.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -362pt) -- (490pt, -362pt)
+ -- (490pt, -362pt)
+ -- (490pt, -350.4pt)
+ -- (490pt, -350.4pt)
+ -- (75pt, -350.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -372pt) -- (490pt, -372pt)
+ -- (490pt, -372pt)
+ -- (490pt, -360.4pt)
+ -- (490pt, -360.4pt)
+ -- (75pt, -360.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -382pt) -- (490pt, -382pt)
+ -- (490pt, -382pt)
+ -- (490pt, -370.4pt)
+ -- (490pt, -370.4pt)
+ -- (75pt, -370.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -392pt) -- (490pt, -392pt)
+ -- (490pt, -392pt)
+ -- (490pt, -380.4pt)
+ -- (490pt, -380.4pt)
+ -- (75pt, -380.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -402pt) -- (490pt, -402pt)
+ -- (490pt, -402pt)
+ -- (490pt, -390.4pt)
+ -- (490pt, -390.4pt)
+ -- (75pt, -390.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -412pt) -- (490pt, -412pt)
+ -- (490pt, -412pt)
+ -- (490pt, -400.4pt)
+ -- (490pt, -400.4pt)
+ -- (75pt, -400.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -422pt) -- (490pt, -422pt)
+ -- (490pt, -422pt)
+ -- (490pt, -410.4pt)
+ -- (490pt, -410.4pt)
+ -- (75pt, -410.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -432pt) -- (490pt, -432pt)
+ -- (490pt, -432pt)
+ -- (490pt, -420.4pt)
+ -- (490pt, -420.4pt)
+ -- (75pt, -420.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -442pt) -- (490pt, -442pt)
+ -- (490pt, -442pt)
+ -- (490pt, -430.4pt)
+ -- (490pt, -430.4pt)
+ -- (75pt, -430.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -452pt) -- (490pt, -452pt)
+ -- (490pt, -452pt)
+ -- (490pt, -440.4pt)
+ -- (490pt, -440.4pt)
+ -- (75pt, -440.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -462pt) -- (490pt, -462pt)
+ -- (490pt, -462pt)
+ -- (490pt, -450.4pt)
+ -- (490pt, -450.4pt)
+ -- (75pt, -450.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -472pt) -- (490pt, -472pt)
+ -- (490pt, -472pt)
+ -- (490pt, -460.4pt)
+ -- (490pt, -460.4pt)
+ -- (75pt, -460.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -482pt) -- (490pt, -482pt)
+ -- (490pt, -482pt)
+ -- (490pt, -470.4pt)
+ -- (490pt, -470.4pt)
+ -- (75pt, -470.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -492pt) -- (490pt, -492pt)
+ -- (490pt, -492pt)
+ -- (490pt, -480.4pt)
+ -- (490pt, -480.4pt)
+ -- (75pt, -480.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -502pt) -- (490pt, -502pt)
+ -- (490pt, -502pt)
+ -- (490pt, -490.4pt)
+ -- (490pt, -490.4pt)
+ -- (75pt, -490.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -512pt) -- (490pt, -512pt)
+ -- (490pt, -512pt)
+ -- (490pt, -500.4pt)
+ -- (490pt, -500.4pt)
+ -- (75pt, -500.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -522pt) -- (490pt, -522pt)
+ -- (490pt, -522pt)
+ -- (490pt, -510.4pt)
+ -- (490pt, -510.4pt)
+ -- (75pt, -510.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -532pt) -- (490pt, -532pt)
+ -- (490pt, -532pt)
+ -- (490pt, -520.4pt)
+ -- (490pt, -520.4pt)
+ -- (75pt, -520.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -542pt) -- (490pt, -542pt)
+ -- (490pt, -542pt)
+ -- (490pt, -530.4pt)
+ -- (490pt, -530.4pt)
+ -- (75pt, -530.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -552pt) -- (490pt, -552pt)
+ -- (490pt, -552pt)
+ -- (490pt, -540.4pt)
+ -- (490pt, -540.4pt)
+ -- (75pt, -540.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -562pt) -- (490pt, -562pt)
+ -- (490pt, -562pt)
+ -- (490pt, -550.4pt)
+ -- (490pt, -550.4pt)
+ -- (75pt, -550.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -572pt) -- (490pt, -572pt)
+ -- (490pt, -572pt)
+ -- (490pt, -560.4pt)
+ -- (490pt, -560.4pt)
+ -- (75pt, -560.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -582pt) -- (490pt, -582pt)
+ -- (490pt, -582pt)
+ -- (490pt, -570.4pt)
+ -- (490pt, -570.4pt)
+ -- (75pt, -570.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -592pt) -- (490pt, -592pt)
+ -- (490pt, -592pt)
+ -- (490pt, -580.4pt)
+ -- (490pt, -580.4pt)
+ -- (75pt, -580.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -602pt) -- (490pt, -602pt)
+ -- (490pt, -602pt)
+ -- (490pt, -590.4pt)
+ -- (490pt, -590.4pt)
+ -- (75pt, -590.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -612pt) -- (490pt, -612pt)
+ -- (490pt, -612pt)
+ -- (490pt, -600.4pt)
+ -- (490pt, -600.4pt)
+ -- (75pt, -600.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -622pt) -- (490pt, -622pt)
+ -- (490pt, -622pt)
+ -- (490pt, -610.4pt)
+ -- (490pt, -610.4pt)
+ -- (75pt, -610.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -632pt) -- (490pt, -632pt)
+ -- (490pt, -632pt)
+ -- (490pt, -620.4pt)
+ -- (490pt, -620.4pt)
+ -- (75pt, -620.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -642pt) -- (490pt, -642pt)
+ -- (490pt, -642pt)
+ -- (490pt, -630.4pt)
+ -- (490pt, -630.4pt)
+ -- (75pt, -630.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -652pt) -- (490pt, -652pt)
+ -- (490pt, -652pt)
+ -- (490pt, -640.4pt)
+ -- (490pt, -640.4pt)
+ -- (75pt, -640.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -662pt) -- (490pt, -662pt)
+ -- (490pt, -662pt)
+ -- (490pt, -650.4pt)
+ -- (490pt, -650.4pt)
+ -- (75pt, -650.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -672pt) -- (490pt, -672pt)
+ -- (490pt, -672pt)
+ -- (490pt, -660.4pt)
+ -- (490pt, -660.4pt)
+ -- (75pt, -660.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -682pt) -- (490pt, -682pt)
+ -- (490pt, -682pt)
+ -- (490pt, -670.4pt)
+ -- (490pt, -670.4pt)
+ -- (75pt, -670.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -692pt) -- (490pt, -692pt)
+ -- (490pt, -692pt)
+ -- (490pt, -680.4pt)
+ -- (490pt, -680.4pt)
+ -- (75pt, -680.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -702pt) -- (490pt, -702pt)
+ -- (490pt, -702pt)
+ -- (490pt, -690.4pt)
+ -- (490pt, -690.4pt)
+ -- (75pt, -690.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -712pt) -- (490pt, -712pt)
+ -- (490pt, -712pt)
+ -- (490pt, -700.4pt)
+ -- (490pt, -700.4pt)
+ -- (75pt, -700.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -732pt) -- (490pt, -732pt)
+ -- (490pt, -732pt)
+ -- (490pt, -708.8pt)
+ -- (490pt, -708.8pt)
+ -- (75pt, -708.8pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -742pt) -- (490pt, -742pt)
+ -- (490pt, -742pt)
+ -- (490pt, -730.4pt)
+ -- (490pt, -730.4pt)
+ -- (75pt, -730.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -752pt) -- (490pt, -752pt)
+ -- (490pt, -752pt)
+ -- (490pt, -740.4pt)
+ -- (490pt, -740.4pt)
+ -- (75pt, -740.4pt) -- cycle
+;
+\end{scope}
+\end{tikzpicture}
+\newpage
+\begin{tikzpicture}[overlay]
+\path(0pt,0pt);
+\begin{scope}
+\clip
+(75pt, -72pt) -- (490pt, -72pt)
+ -- (490pt, -72pt)
+ -- (490pt, -60.40002pt)
+ -- (490pt, -60.40002pt)
+ -- (75pt, -60.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -82pt) -- (490pt, -82pt)
+ -- (490pt, -82pt)
+ -- (490pt, -70.40002pt)
+ -- (490pt, -70.40002pt)
+ -- (75pt, -70.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -92pt) -- (490pt, -92pt)
+ -- (490pt, -92pt)
+ -- (490pt, -80.40002pt)
+ -- (490pt, -80.40002pt)
+ -- (75pt, -80.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -102pt) -- (490pt, -102pt)
+ -- (490pt, -102pt)
+ -- (490pt, -90.40002pt)
+ -- (490pt, -90.40002pt)
+ -- (75pt, -90.40002pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -112pt) -- (490pt, -112pt)
+ -- (490pt, -112pt)
+ -- (490pt, -100.4pt)
+ -- (490pt, -100.4pt)
+ -- (75pt, -100.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -122pt) -- (490pt, -122pt)
+ -- (490pt, -122pt)
+ -- (490pt, -110.4pt)
+ -- (490pt, -110.4pt)
+ -- (75pt, -110.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -142pt) -- (490pt, -142pt)
+ -- (490pt, -142pt)
+ -- (490pt, -118.8pt)
+ -- (490pt, -118.8pt)
+ -- (75pt, -118.8pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -152pt) -- (490pt, -152pt)
+ -- (490pt, -152pt)
+ -- (490pt, -140.4pt)
+ -- (490pt, -140.4pt)
+ -- (75pt, -140.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -162pt) -- (490pt, -162pt)
+ -- (490pt, -162pt)
+ -- (490pt, -150.4pt)
+ -- (490pt, -150.4pt)
+ -- (75pt, -150.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -172pt) -- (490pt, -172pt)
+ -- (490pt, -172pt)
+ -- (490pt, -160.4pt)
+ -- (490pt, -160.4pt)
+ -- (75pt, -160.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -182pt) -- (490pt, -182pt)
+ -- (490pt, -182pt)
+ -- (490pt, -170.4pt)
+ -- (490pt, -170.4pt)
+ -- (75pt, -170.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -192pt) -- (490pt, -192pt)
+ -- (490pt, -192pt)
+ -- (490pt, -180.4pt)
+ -- (490pt, -180.4pt)
+ -- (75pt, -180.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -202pt) -- (490pt, -202pt)
+ -- (490pt, -202pt)
+ -- (490pt, -190.4pt)
+ -- (490pt, -190.4pt)
+ -- (75pt, -190.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -212pt) -- (490pt, -212pt)
+ -- (490pt, -212pt)
+ -- (490pt, -200.4pt)
+ -- (490pt, -200.4pt)
+ -- (75pt, -200.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -222pt) -- (490pt, -222pt)
+ -- (490pt, -222pt)
+ -- (490pt, -210.4pt)
+ -- (490pt, -210.4pt)
+ -- (75pt, -210.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -232pt) -- (490pt, -232pt)
+ -- (490pt, -232pt)
+ -- (490pt, -220.4pt)
+ -- (490pt, -220.4pt)
+ -- (75pt, -220.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -242pt) -- (490pt, -242pt)
+ -- (490pt, -242pt)
+ -- (490pt, -230.4pt)
+ -- (490pt, -230.4pt)
+ -- (75pt, -230.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -252pt) -- (490pt, -252pt)
+ -- (490pt, -252pt)
+ -- (490pt, -240.4pt)
+ -- (490pt, -240.4pt)
+ -- (75pt, -240.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -262pt) -- (490pt, -262pt)
+ -- (490pt, -262pt)
+ -- (490pt, -250.4pt)
+ -- (490pt, -250.4pt)
+ -- (75pt, -250.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -272pt) -- (490pt, -272pt)
+ -- (490pt, -272pt)
+ -- (490pt, -260.4pt)
+ -- (490pt, -260.4pt)
+ -- (75pt, -260.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -282pt) -- (490pt, -282pt)
+ -- (490pt, -282pt)
+ -- (490pt, -270.4pt)
+ -- (490pt, -270.4pt)
+ -- (75pt, -270.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -292pt) -- (490pt, -292pt)
+ -- (490pt, -292pt)
+ -- (490pt, -280.4pt)
+ -- (490pt, -280.4pt)
+ -- (75pt, -280.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -302pt) -- (490pt, -302pt)
+ -- (490pt, -302pt)
+ -- (490pt, -290.4pt)
+ -- (490pt, -290.4pt)
+ -- (75pt, -290.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -312pt) -- (490pt, -312pt)
+ -- (490pt, -312pt)
+ -- (490pt, -300.4pt)
+ -- (490pt, -300.4pt)
+ -- (75pt, -300.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -322pt) -- (490pt, -322pt)
+ -- (490pt, -322pt)
+ -- (490pt, -310.4pt)
+ -- (490pt, -310.4pt)
+ -- (75pt, -310.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -332pt) -- (490pt, -332pt)
+ -- (490pt, -332pt)
+ -- (490pt, -320.4pt)
+ -- (490pt, -320.4pt)
+ -- (75pt, -320.4pt) -- cycle
+;
+\end{scope}
+\begin{scope}
+\clip
+(75pt, -342pt) -- (490pt, -342pt)
+ -- (490pt, -342pt)
+ -- (490pt, -330.4pt)
+ -- (490pt, -330.4pt)
+ -- (75pt, -330.4pt) -- cycle
+;
+\end{scope}
+\end{tikzpicture}
+\end{document}

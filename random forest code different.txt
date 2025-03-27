@@ -1,0 +1,75 @@
+import pandas as pd
+import numpy as np
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.metrics import mean_squared_error, r2_score
+from itertools import combinations
+import os
+
+# Define the path to the file containing descriptors
+os.chdir("C:\\Users\\HP\\Desktop\\ewmachine")  # Update this path to your file location
+# Read the descriptors from the file
+data = pd.read_csv("data_file.csv")
+# Define the target variable (dependent variable)
+target = 'Hardness'  
+# Assuming the last column is the target variable
+X = data.iloc[:, :-1]
+y = data.iloc[:, -1]
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Define hyperparameter grid for GridSearchCV
+param_grid = {
+    'n_estimators': [50, 100, 200],
+    'max_depth': [None, 10, 20, 30],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4]
+}
+
+# Initialize variables to store the best results
+best_r2 = -np.inf
+best_combination = None
+best_model = None
+best_hyperparams = None
+
+# Function to evaluate model performance with hyperparameter tuning
+def evaluate_model(X_train, X_test, y_train, y_test, combination):
+    model = RandomForestRegressor(random_state=42, n_jobs=-1)
+    grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5, scoring='r2', n_jobs=-1)
+    grid_search.fit(X_train, y_train)
+    best_model = grid_search.best_estimator_
+    y_pred = best_model.predict(X_test)
+    r2 = r2_score(y_test, y_pred)
+    mse = mean_squared_error(y_test, y_pred)
+    return best_model, r2, mse, grid_search.best_params_
+
+# Iterate over all possible combinations of descriptors
+for r in range(1, len(X.columns) + 1):
+    for combination in combinations(X.columns, r):
+        X_train_comb = X_train[list(combination)]
+        X_test_comb = X_test[list(combination)]
+        
+        model, r2, mse, hyperparams = evaluate_model(X_train_comb, X_test_comb, y_train, y_test, combination)
+        
+        if r2 > best_r2:
+            best_r2 = r2
+            best_combination = combination
+            best_model = model
+            best_hyperparams = hyperparams
+
+# Save the best results to a file
+output_file = os.path.join(os.path.dirname(file_path), 'best_random_forest_results.txt')
+with open(output_file, 'w') as f:
+    f.write(f"Best R2 Score: {best_r2}\n")
+    f.write(f"Best Combination of Descriptors: {best_combination}\n")
+    f.write(f"Best Hyperparameters: {best_hyperparams}\n")
+    f.write(f"Mean Squared Error: {mse}\n")
+    f.write("\nFeature Importances:\n")
+    for feature, importance in zip(best_combination, best_model.feature_importances_):
+        f.write(f"{feature}: {importance}\n")
+
+print(f"Best R2 Score: {best_r2}")
+print(f"Best Combination of Descriptors: {best_combination}")
+print(f"Best Hyperparameters: {best_hyperparams}")
+print(f"Results saved to {output_file}")

@@ -1,0 +1,967 @@
+##AdaBoostRegressor advance
+
+import pandas as pd
+import numpy as np
+from sklearn.ensemble import AdaBoostRegressor
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.model_selection import train_test_split, GridSearchCV, cross_val_score
+from sklearn.metrics import mean_squared_error, r2_score
+from itertools import combinations
+import os
+
+# Define the path to the file containing descriptors
+os.chdir("C:\\Users\\HP\\Desktop\\ewmachine")  # Update this path to your file location
+# Read the descriptors from the file
+data = pd.read_csv("data_file.csv")
+# Define the target variable (dependent variable)
+target = 'Hardness'  
+
+# Define the maximum number of descriptors (features) to consider
+n = len(data.columns) - 1  
+
+# Get the list of feature names
+feature_names = data.columns.drop(target)
+
+# Initialize a dictionary to store results
+results = {
+    'Number of Descriptors': [],
+    'Descriptors': [],
+    'Best Hyperparameters': [],
+    'R2 Score (CV)': [],
+    'RMSE (CV)': []
+}
+
+# Define the parameter grid for hyperparameter tuning
+param_grid = {
+    'n_estimators': [50, 100, 200],  # Number of weak learners
+    'learning_rate': [0.01, 0.1, 0.5, 1.0],  # Learning rate
+    'estimator__max_depth': [1, 3, 5]  # Max depth of the base estimator (decision tree)
+}
+
+# Loop through the number of descriptors from 1 to n
+for num_descriptors in range(1, n + 1):
+    # Generate all combinations of descriptors of size 'num_descriptors'
+    for descriptor_combination in combinations(feature_names, num_descriptors):
+        # Prepare the data
+        X = data[list(descriptor_combination)]
+        y = data[target]
+        
+        # Split the data into training and testing sets
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        
+        # Initialize the base estimator (decision tree)
+        estimator = DecisionTreeRegressor(random_state=42)
+        
+        # Initialize the AdaBoost model
+        model = AdaBoostRegressor(estimator=estimator, random_state=42)
+        
+        # Perform Grid Search for hyperparameter tuning
+        grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5, scoring='r2', n_jobs=-1)
+        grid_search.fit(X_train, y_train)
+        
+        # Get the best model and hyperparameters
+        best_model = grid_search.best_estimator_
+        best_params = grid_search.best_params_
+        
+        # Perform cross-validation on the best model
+        cv_r2_scores = cross_val_score(best_model, X_train, y_train, cv=5, scoring='r2')
+        cv_rmse_scores = np.sqrt(-cross_val_score(best_model, X_train, y_train, cv=5, scoring='neg_mean_squared_error'))
+        
+        # Calculate average cross-validation scores
+        avg_r2 = np.mean(cv_r2_scores)
+        avg_rmse = np.mean(cv_rmse_scores)
+        
+        # Store the results
+        results['Number of Descriptors'].append(num_descriptors)
+        results['Descriptors'].append(', '.join(descriptor_combination))
+        results['Best Hyperparameters'].append(str(best_params))
+        results['R2 Score (CV)'].append(avg_r2)
+        results['RMSE (CV)'].append(avg_rmse)
+
+# Convert results to a DataFrame
+results_df = pd.DataFrame(results)
+
+# Save the results to a CSV file in the same folder
+output_file = 'adaboost_regression_advanced_results.csv'
+results_df.to_csv(output_file, index=False)
+
+print(f"Results saved to {output_file}")
+
+
+
+
+
+##DecisionTreeRegressor adavanced
+
+import pandas as pd
+import numpy as np
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.model_selection import train_test_split, GridSearchCV, cross_val_score
+from sklearn.metrics import mean_squared_error, r2_score
+from itertools import combinations
+import os
+
+# Define the path to the file containing descriptors
+os.chdir("C:\\Users\\HP\\Desktop\\ewmachine")  # Update this path to your file location
+# Read the descriptors from the file
+data = pd.read_csv("data_file.csv")
+# Define the target variable (dependent variable)
+target = 'Hardness'  
+
+# Define the maximum number of descriptors (features) to consider
+n = len(data.columns) - 1 
+
+# Get the list of feature names
+feature_names = data.columns.drop(target)
+
+# Initialize a dictionary to store results
+results = {
+    'Number of Descriptors': [],
+    'Descriptors': [],
+    'Best Hyperparameters': [],
+    'R2 Score (CV)': [],
+    'RMSE (CV)': [],
+    'Feature Importance': []
+}
+
+# Define the parameter grid for hyperparameter tuning
+param_grid = {
+    'max_depth': [None, 10, 20, 30],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4],
+    'max_features': ['auto', 'sqrt', 'log2']
+}
+
+# Loop through the number of descriptors from 1 to n
+for num_descriptors in range(1, n + 1):
+    # Generate all combinations of descriptors of size 'num_descriptors'
+    for descriptor_combination in combinations(feature_names, num_descriptors):
+        # Prepare the data
+        X = data[list(descriptor_combination)]
+        y = data[target]
+        
+        # Split the data into training and testing sets
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        
+        # Initialize the Decision Tree model
+        model = DecisionTreeRegressor(random_state=42)
+        
+        # Perform Grid Search for hyperparameter tuning
+        grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5, scoring='r2', n_jobs=-1)
+        grid_search.fit(X_train, y_train)
+        
+        # Get the best model and hyperparameters
+        best_model = grid_search.best_estimator_
+        best_params = grid_search.best_params_
+        
+        # Perform cross-validation on the best model
+        cv_r2_scores = cross_val_score(best_model, X_train, y_train, cv=5, scoring='r2')
+        cv_rmse_scores = np.sqrt(-cross_val_score(best_model, X_train, y_train, cv=5, scoring='neg_mean_squared_error'))
+        
+        # Calculate average cross-validation scores
+        avg_r2 = np.mean(cv_r2_scores)
+        avg_rmse = np.mean(cv_rmse_scores)
+        
+        # Get feature importance
+        feature_importance = best_model.feature_importances_
+        feature_importance_dict = {feature: importance for feature, importance in zip(descriptor_combination, feature_importance)}
+        
+        # Store the results
+        results['Number of Descriptors'].append(num_descriptors)
+        results['Descriptors'].append(', '.join(descriptor_combination))
+        results['Best Hyperparameters'].append(str(best_params))
+        results['R2 Score (CV)'].append(avg_r2)
+        results['RMSE (CV)'].append(avg_rmse)
+        results['Feature Importance'].append(str(feature_importance_dict))
+
+# Convert results to a DataFrame
+results_df = pd.DataFrame(results)
+
+# Save the results to a CSV file in the same folder
+output_file = 'decision_tree_advanced_results.csv'
+results_df.to_csv(output_file, index=False)
+
+print(f"Results saved to {output_file}")
+
+
+
+
+
+##GaussianProcessRegressor advanced
+
+
+import pandas as pd
+import numpy as np
+from sklearn.gaussian_process import GaussianProcessRegressor
+from sklearn.gaussian_process.kernels import RBF, ConstantKernel, Matern
+from sklearn.model_selection import train_test_split, GridSearchCV, cross_val_score
+from sklearn.metrics import mean_squared_error, r2_score
+from itertools import combinations
+import os
+
+# Define the path to the file containing descriptors
+os.chdir("C:\\Users\\HP\\Desktop\\ewmachine")  # Update this path to your file location
+# Read the descriptors from the file
+data = pd.read_csv("data_file.csv")
+# Define the target variable (dependent variable)
+target = 'Hardness'  
+
+# Define the maximum number of descriptors (features) to consider
+n = len(data.columns) - 1  
+
+# Get the list of feature names
+feature_names = data.columns.drop(target)
+
+# Initialize a dictionary to store results
+results = {
+    'Number of Descriptors': [],
+    'Descriptors': [],
+    'Best Hyperparameters': [],
+    'R2 Score (CV)': [],
+    'RMSE (CV)': []
+}
+
+# Define the kernel for the Gaussian Process
+kernel = ConstantKernel(1.0) * RBF(length_scale=1.0)
+
+# Define the parameter grid for hyperparameter tuning
+param_grid = {
+    'kernel__k1__constant_value': [0.1, 1.0, 10.0],
+    'kernel__k2__length_scale': [0.1, 1.0, 10.0],
+    'alpha': [1e-10, 1e-5, 1e-2]
+}
+
+# Loop through the number of descriptors from 1 to n
+for num_descriptors in range(1, n + 1):
+    # Generate all combinations of descriptors of size 'num_descriptors'
+    for descriptor_combination in combinations(feature_names, num_descriptors):
+        # Prepare the data
+        X = data[list(descriptor_combination)]
+        y = data[target]
+        
+        # Split the data into training and testing sets
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        
+        # Initialize the Gaussian Process model
+        model = GaussianProcessRegressor(kernel=kernel, random_state=42)
+        
+        # Perform Grid Search for hyperparameter tuning
+        grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5, scoring='r2', n_jobs=-1)
+        grid_search.fit(X_train, y_train)
+        
+        # Get the best model and hyperparameters
+        best_model = grid_search.best_estimator_
+        best_params = grid_search.best_params_
+        
+        # Perform cross-validation on the best model
+        cv_r2_scores = cross_val_score(best_model, X_train, y_train, cv=5, scoring='r2')
+        cv_rmse_scores = np.sqrt(-cross_val_score(best_model, X_train, y_train, cv=5, scoring='neg_mean_squared_error'))
+        
+        # Calculate average cross-validation scores
+        avg_r2 = np.mean(cv_r2_scores)
+        avg_rmse = np.mean(cv_rmse_scores)
+        
+        # Store the results
+        results['Number of Descriptors'].append(num_descriptors)
+        results['Descriptors'].append(', '.join(descriptor_combination))
+        results['Best Hyperparameters'].append(str(best_params))
+        results['R2 Score (CV)'].append(avg_r2)
+        results['RMSE (CV)'].append(avg_rmse)
+
+# Convert results to a DataFrame
+results_df = pd.DataFrame(results)
+
+# Save the results to a CSV file in the same folder
+output_file = 'gaussian_process_advanced_results.csv'
+results_df.to_csv(output_file, index=False)
+
+print(f"Results saved to {output_file}")
+
+
+##GradientBoostingRegressor adavanced
+
+import pandas as pd
+import numpy as np
+from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.model_selection import train_test_split, GridSearchCV, cross_val_score
+from sklearn.metrics import mean_squared_error, r2_score
+from itertools import combinations
+import os
+
+# Define the path to the file containing descriptors
+os.chdir("C:\\Users\\HP\\Desktop\\ewmachine")  # Update this path to your file location
+# Read the descriptors from the file
+data = pd.read_csv("data_file.csv")
+# Define the target variable (dependent variable)
+target = 'Hardness'  
+
+# Define the maximum number of descriptors (features) to consider
+n = len(data.columns) - 1  
+
+# Get the list of feature names
+feature_names = data.columns.drop(target)
+
+# Initialize a dictionary to store results
+results = {
+    'Number of Descriptors': [],
+    'Descriptors': [],
+    'Best Hyperparameters': [],
+    'R2 Score (CV)': [],
+    'RMSE (CV)': [],
+    'Feature Importance': []
+}
+
+# Define the parameter grid for hyperparameter tuning
+param_grid = {
+    'n_estimators': [50, 100, 200],
+    'learning_rate': [0.01, 0.1, 0.2],
+    'max_depth': [3, 5, 10],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4],
+    'max_features': ['auto', 'sqrt', 'log2']
+}
+
+# Loop through the number of descriptors from 1 to n
+for num_descriptors in range(1, n + 1):
+    # Generate all combinations of descriptors of size 'num_descriptors'
+    for descriptor_combination in combinations(feature_names, num_descriptors):
+        # Prepare the data
+        X = data[list(descriptor_combination)]
+        y = data[target]
+        
+        # Split the data into training and testing sets
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        
+        # Initialize the Gradient Boosting model
+        model = GradientBoostingRegressor(random_state=42)
+        
+        # Perform Grid Search for hyperparameter tuning
+        grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5, scoring='r2', n_jobs=-1)
+        grid_search.fit(X_train, y_train)
+        
+        # Get the best model and hyperparameters
+        best_model = grid_search.best_estimator_
+        best_params = grid_search.best_params_
+        
+        # Perform cross-validation on the best model
+        cv_r2_scores = cross_val_score(best_model, X_train, y_train, cv=5, scoring='r2')
+        cv_rmse_scores = np.sqrt(-cross_val_score(best_model, X_train, y_train, cv=5, scoring='neg_mean_squared_error'))
+        
+        # Calculate average cross-validation scores
+        avg_r2 = np.mean(cv_r2_scores)
+        avg_rmse = np.mean(cv_rmse_scores)
+        
+        # Get feature importance
+        feature_importance = best_model.feature_importances_
+        feature_importance_dict = {feature: importance for feature, importance in zip(descriptor_combination, feature_importance)}
+        
+        # Store the results
+        results['Number of Descriptors'].append(num_descriptors)
+        results['Descriptors'].append(', '.join(descriptor_combination))
+        results['Best Hyperparameters'].append(str(best_params))
+        results['R2 Score (CV)'].append(avg_r2)
+        results['RMSE (CV)'].append(avg_rmse)
+        results['Feature Importance'].append(str(feature_importance_dict))
+
+# Convert results to a DataFrame
+results_df = pd.DataFrame(results)
+
+# Save the results to a CSV file in the same folder
+output_file = 'gradient_boosting_advanced_results.csv'
+results_df.to_csv(output_file, index=False)
+
+print(f"Results saved to {output_file}")
+
+
+##KNeighborsRegressor
+
+import pandas as pd
+import numpy as np
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.model_selection import GridSearchCV, cross_val_score
+from sklearn.metrics import mean_squared_error, r2_score
+from itertools import combinations
+import os
+
+# Define the path to the file containing descriptors
+os.chdir("C:\\Users\\HP\\Desktop\\ewmachine")  # Update this path to your file location
+# Read the descriptors from the file
+data = pd.read_csv("data_file.csv")
+# Define the target variable (dependent variable)
+target = 'Hardness'  
+
+# Define the maximum number of descriptors (features) to consider
+n = len(data.columns) - 1  
+
+# Get the list of feature names
+feature_names = data.columns.drop(target)
+
+# Initialize a dictionary to store results
+results = {
+    'Number of Descriptors': [],
+    'Descriptors': [],
+    'Best Hyperparameters': [],
+    'R2 Score (CV)': [],
+    'RMSE (CV)': []
+}
+
+# Define the parameter grid for hyperparameter tuning
+param_grid = {
+    'n_neighbors': [3, 5, 7, 10],  # Number of neighbors
+    'weights': ['uniform', 'distance'],  # Weight function used in prediction
+    'p': [1, 2]  # Power parameter for Minkowski distance (1: Manhattan, 2: Euclidean)
+}
+
+# Loop through the number of descriptors from 1 to n
+for num_descriptors in range(1, n + 1):
+    # Generate all combinations of descriptors of size 'num_descriptors'
+    for descriptor_combination in combinations(feature_names, num_descriptors):
+        # Prepare the data
+        X = data[list(descriptor_combination)]
+        y = data[target]
+        
+        # Initialize the KNN model
+        model = KNeighborsRegressor()
+        
+        # Perform Grid Search for hyperparameter tuning
+        grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5, scoring='r2', n_jobs=-1)
+        grid_search.fit(X, y)
+        
+        # Get the best model and hyperparameters
+        best_model = grid_search.best_estimator_
+        best_params = grid_search.best_params_
+        
+        # Perform cross-validation on the best model
+        cv_r2_scores = cross_val_score(best_model, X, y, cv=5, scoring='r2')
+        cv_rmse_scores = np.sqrt(-cross_val_score(best_model, X, y, cv=5, scoring='neg_mean_squared_error'))
+        
+        # Calculate average cross-validation scores
+        avg_r2 = np.mean(cv_r2_scores)
+        avg_rmse = np.mean(cv_rmse_scores)
+        
+        # Store the results
+        results['Number of Descriptors'].append(num_descriptors)
+        results['Descriptors'].append(', '.join(descriptor_combination))
+        results['Best Hyperparameters'].append(str(best_params))
+        results['R2 Score (CV)'].append(avg_r2)
+        results['RMSE (CV)'].append(avg_rmse)
+
+# Convert results to a DataFrame
+results_df = pd.DataFrame(results)
+
+# Save the results to a CSV file in the same folder
+output_file = 'knn_regression_advanced_results.csv'
+results_df.to_csv(output_file, index=False)
+
+print(f"Results saved to {output_file}")
+
+
+##Lasso advanced
+
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import Lasso
+from sklearn.model_selection import train_test_split, GridSearchCV, cross_val_score
+from sklearn.metrics import mean_squared_error, r2_score
+from itertools import combinations
+import os
+
+# Define the path to the file containing descriptors
+os.chdir("C:\\Users\\HP\\Desktop\\ewmachine")  # Update this path to your file location
+# Read the descriptors from the file
+data = pd.read_csv("data_file.csv")
+# Define the target variable (dependent variable)
+target = 'Hardness'  
+# Define the maximum number of descriptors (features) to consider
+n = len(data.columns) - 1  
+
+# Get the list of feature names
+feature_names = data.columns.drop(target)
+
+# Initialize a dictionary to store results
+results = {
+    'Number of Descriptors': [],
+    'Descriptors': [],
+    'Best Alpha': [],
+    'R2 Score (CV)': [],
+    'RMSE (CV)': [],
+    'Selected Coefficients': []
+}
+
+# Define the parameter grid for hyperparameter tuning
+param_grid = {
+    'alpha': [0.001, 0.01, 0.1, 1.0, 10.0]  # Regularization strength
+}
+
+# Loop through the number of descriptors from 1 to n
+for num_descriptors in range(1, n + 1):
+    # Generate all combinations of descriptors of size 'num_descriptors'
+    for descriptor_combination in combinations(feature_names, num_descriptors):
+        # Prepare the data
+        X = data[list(descriptor_combination)]
+        y = data[target]
+        
+        # Split the data into training and testing sets
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        
+        # Initialize the LASSO model
+        model = Lasso(random_state=42)
+        
+        # Perform Grid Search for hyperparameter tuning
+        grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5, scoring='r2', n_jobs=-1)
+        grid_search.fit(X_train, y_train)
+        
+        # Get the best model and hyperparameters
+        best_model = grid_search.best_estimator_
+        best_alpha = grid_search.best_params_['alpha']
+        
+        # Perform cross-validation on the best model
+        cv_r2_scores = cross_val_score(best_model, X_train, y_train, cv=5, scoring='r2')
+        cv_rmse_scores = np.sqrt(-cross_val_score(best_model, X_train, y_train, cv=5, scoring='neg_mean_squared_error'))
+        
+        # Calculate average cross-validation scores
+        avg_r2 = np.mean(cv_r2_scores)
+        avg_rmse = np.mean(cv_rmse_scores)
+        
+        # Get the selected coefficients
+        coefficients = best_model.coef_
+        selected_coefficients = {feature: coef for feature, coef in zip(descriptor_combination, coefficients)}
+        
+        # Store the results
+        results['Number of Descriptors'].append(num_descriptors)
+        results['Descriptors'].append(', '.join(descriptor_combination))
+        results['Best Alpha'].append(best_alpha)
+        results['R2 Score (CV)'].append(avg_r2)
+        results['RMSE (CV)'].append(avg_rmse)
+        results['Selected Coefficients'].append(str(selected_coefficients))
+
+# Convert results to a DataFrame
+results_df = pd.DataFrame(results)
+
+# Save the results to a CSV file in the same folder
+output_file = 'lasso_advanced_results.csv'
+results_df.to_csv(output_file, index=False)
+
+print(f"Results saved to {output_file}")
+
+
+##linear_regression_advanced
+
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.metrics import mean_squared_error, r2_score
+from itertools import combinations
+import os
+
+# Define the path to the file containing descriptors
+os.chdir("C:\\Users\\HP\\Desktop\\ewmachine")  # Update this path to your file location
+# Read the descriptors from the file
+data = pd.read_csv("data_file.csv")
+# Define the target variable (dependent variable)
+target = 'Hardness'  
+
+# Define the maximum number of descriptors (features) to consider
+n = len(data.columns) - 1  
+
+# Get the list of feature names
+feature_names = data.columns.drop(target)
+
+# Initialize a dictionary to store results
+results = {
+    'Number of Descriptors': [],
+    'Descriptors': [],
+    'R2 Score (CV)': [],
+    'RMSE (CV)': [],
+    'Coefficients': []
+}
+
+# Loop through the number of descriptors from 1 to n
+for num_descriptors in range(1, n + 1):
+    # Generate all combinations of descriptors of size 'num_descriptors'
+    for descriptor_combination in combinations(feature_names, num_descriptors):
+        # Prepare the data
+        X = data[list(descriptor_combination)]
+        y = data[target]
+        
+        # Split the data into training and testing sets
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        
+        # Initialize the Linear Regression model
+        model = LinearRegression()
+        
+        # Perform cross-validation on the model
+        cv_r2_scores = cross_val_score(model, X_train, y_train, cv=5, scoring='r2')
+        cv_rmse_scores = np.sqrt(-cross_val_score(model, X_train, y_train, cv=5, scoring='neg_mean_squared_error'))
+        
+        # Calculate average cross-validation scores
+        avg_r2 = np.mean(cv_r2_scores)
+        avg_rmse = np.mean(cv_rmse_scores)
+        
+        # Train the model on the full training set
+        model.fit(X_train, y_train)
+        
+        # Get the coefficients
+        coefficients = model.coef_
+        coefficients_dict = {feature: coef for feature, coef in zip(descriptor_combination, coefficients)}
+        
+        # Store the results
+        results['Number of Descriptors'].append(num_descriptors)
+        results['Descriptors'].append(', '.join(descriptor_combination))
+        results['R2 Score (CV)'].append(avg_r2)
+        results['RMSE (CV)'].append(avg_rmse)
+        results['Coefficients'].append(str(coefficients_dict))
+
+# Convert results to a DataFrame
+results_df = pd.DataFrame(results)
+
+# Save the results to a CSV file in the same folder
+output_file = 'linear_regression_advanced_results.csv'
+results_df.to_csv(output_file, index=False)
+
+print(f"Results saved to {output_file}")
+
+
+
+##polynomial_regression_advanced
+
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.metrics import mean_squared_error, r2_score
+from itertools import combinations
+import os
+
+# Define the path to the file containing descriptors
+os.chdir("C:\\Users\\HP\\Desktop\\ewmachine")  # Update this path to your file location
+# Read the descriptors from the file
+data = pd.read_csv("data_file.csv")
+# Define the target variable (dependent variable)
+target = 'Hardness'  
+
+# Define the maximum number of descriptors (features) to consider
+n = len(data.columns) - 1  
+
+# Define the degree of polynomial features
+degree = 2  # You can change this to any desired degree
+
+# Get the list of feature names
+feature_names = data.columns.drop(target)
+
+# Initialize a dictionary to store results
+results = {
+    'Number of Descriptors': [],
+    'Descriptors': [],
+    'R2 Score (CV)': [],
+    'RMSE (CV)': [],
+    'Coefficients': []
+}
+
+# Loop through the number of descriptors from 1 to n
+for num_descriptors in range(1, n + 1):
+    # Generate all combinations of descriptors of size 'num_descriptors'
+    for descriptor_combination in combinations(feature_names, num_descriptors):
+        # Prepare the data
+        X = data[list(descriptor_combination)]
+        y = data[target]
+        
+        # Generate polynomial features
+        poly = PolynomialFeatures(degree=degree, include_bias=False)
+        X_poly = poly.fit_transform(X)
+        
+        # Split the data into training and testing sets
+        X_train, X_test, y_train, y_test = train_test_split(X_poly, y, test_size=0.2, random_state=42)
+        
+        # Initialize the Linear Regression model
+        model = LinearRegression()
+        
+        # Perform cross-validation on the model
+        cv_r2_scores = cross_val_score(model, X_train, y_train, cv=5, scoring='r2')
+        cv_rmse_scores = np.sqrt(-cross_val_score(model, X_train, y_train, cv=5, scoring='neg_mean_squared_error'))
+        
+        # Calculate average cross-validation scores
+        avg_r2 = np.mean(cv_r2_scores)
+        avg_rmse = np.mean(cv_rmse_scores)
+        
+        # Train the model on the full training set
+        model.fit(X_train, y_train)
+        
+        # Get the coefficients
+        coefficients = model.coef_
+        feature_names_poly = poly.get_feature_names_out(input_features=descriptor_combination)
+        coefficients_dict = {feature: coef for feature, coef in zip(feature_names_poly, coefficients)}
+        
+        # Store the results
+        results['Number of Descriptors'].append(num_descriptors)
+        results['Descriptors'].append(', '.join(descriptor_combination))
+        results['R2 Score (CV)'].append(avg_r2)
+        results['RMSE (CV)'].append(avg_rmse)
+        results['Coefficients'].append(str(coefficients_dict))
+
+# Convert results to a DataFrame
+results_df = pd.DataFrame(results)
+
+# Save the results to a CSV file in the same folder
+output_file = 'polynomial_regression_advanced_results.csv'
+results_df.to_csv(output_file, index=False)
+
+print(f"Results saved to {output_file}")
+
+
+
+
+
+##random forest code different
+
+import pandas as pd
+import numpy as np
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.metrics import mean_squared_error, r2_score
+from itertools import combinations
+import os
+
+# Define the path to the file containing descriptors
+os.chdir("C:\\Users\\HP\\Desktop\\ewmachine")  # Update this path to your file location
+# Read the descriptors from the file
+data = pd.read_csv("data_file.csv")
+# Define the target variable (dependent variable)
+target = 'Hardness'  
+# Assuming the last column is the target variable
+X = data.iloc[:, :-1]
+y = data.iloc[:, -1]
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Define hyperparameter grid for GridSearchCV
+param_grid = {
+    'n_estimators': [50, 100, 200],
+    'max_depth': [None, 10, 20, 30],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4]
+}
+
+# Initialize variables to store the best results
+best_r2 = -np.inf
+best_combination = None
+best_model = None
+best_hyperparams = None
+
+# Function to evaluate model performance with hyperparameter tuning
+def evaluate_model(X_train, X_test, y_train, y_test, combination):
+    model = RandomForestRegressor(random_state=42, n_jobs=-1)
+    grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5, scoring='r2', n_jobs=-1)
+    grid_search.fit(X_train, y_train)
+    best_model = grid_search.best_estimator_
+    y_pred = best_model.predict(X_test)
+    r2 = r2_score(y_test, y_pred)
+    mse = mean_squared_error(y_test, y_pred)
+    return best_model, r2, mse, grid_search.best_params_
+
+# Iterate over all possible combinations of descriptors
+for r in range(1, len(X.columns) + 1):
+    for combination in combinations(X.columns, r):
+        X_train_comb = X_train[list(combination)]
+        X_test_comb = X_test[list(combination)]
+        
+        model, r2, mse, hyperparams = evaluate_model(X_train_comb, X_test_comb, y_train, y_test, combination)
+        
+        if r2 > best_r2:
+            best_r2 = r2
+            best_combination = combination
+            best_model = model
+            best_hyperparams = hyperparams
+
+# Save the best results to a file
+output_file = os.path.join(os.path.dirname(file_path), 'best_random_forest_results.txt')
+with open(output_file, 'w') as f:
+    f.write(f"Best R2 Score: {best_r2}\n")
+    f.write(f"Best Combination of Descriptors: {best_combination}\n")
+    f.write(f"Best Hyperparameters: {best_hyperparams}\n")
+    f.write(f"Mean Squared Error: {mse}\n")
+    f.write("\nFeature Importances:\n")
+    for feature, importance in zip(best_combination, best_model.feature_importances_):
+        f.write(f"{feature}: {importance}\n")
+
+print(f"Best R2 Score: {best_r2}")
+print(f"Best Combination of Descriptors: {best_combination}")
+print(f"Best Hyperparameters: {best_hyperparams}")
+print(f"Results saved to {output_file}")
+
+
+##svr_advanced_results
+
+import pandas as pd
+import numpy as np
+from sklearn.svm import SVR
+from sklearn.model_selection import train_test_split, GridSearchCV, cross_val_score
+from sklearn.metrics import mean_squared_error, r2_score
+from itertools import combinations
+import os
+
+# Define the path to the file containing descriptors
+os.chdir("C:\\Users\\HP\\Desktop\\ewmachine")  # Update this path to your file location
+# Read the descriptors from the file
+data = pd.read_csv("data_file.csv")
+# Define the target variable (dependent variable)
+target = 'Hardness'  # Replace with your target column name
+# Define the maximum number of descriptors (features) to consider
+n = len(data.columns) - 1  
+
+# Get the list of feature names
+feature_names = data.columns.drop(target)
+
+# Initialize a dictionary to store results
+results = {
+    'Number of Descriptors': [],
+    'Descriptors': [],
+    'Best Hyperparameters': [],
+    'R2 Score (CV)': [],
+    'RMSE (CV)': []
+}
+
+# Define the parameter grid for hyperparameter tuning
+param_grid = {
+    'kernel': ['linear', 'rbf', 'poly'],  # Kernel type
+    'C': [0.1, 1, 10],  # Regularization parameter
+    'gamma': ['scale', 'auto'],  # Kernel coefficient for 'rbf' and 'poly'
+    'epsilon': [0.01, 0.1, 0.2]  # Epsilon in the epsilon-SVR model
+}
+
+# Loop through the number of descriptors from 1 to n
+for num_descriptors in range(1, n + 1):
+    # Generate all combinations of descriptors of size 'num_descriptors'
+    for descriptor_combination in combinations(feature_names, num_descriptors):
+        # Prepare the data
+        X = data[list(descriptor_combination)]
+        y = data[target]
+        
+        # Split the data into training and testing sets
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        
+        # Initialize the SVR model
+        model = SVR()
+        
+        # Perform Grid Search for hyperparameter tuning
+        grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5, scoring='r2', n_jobs=-1)
+        grid_search.fit(X_train, y_train)
+        
+        # Get the best model and hyperparameters
+        best_model = grid_search.best_estimator_
+        best_params = grid_search.best_params_
+        
+        # Perform cross-validation on the best model
+        cv_r2_scores = cross_val_score(best_model, X_train, y_train, cv=5, scoring='r2')
+        cv_rmse_scores = np.sqrt(-cross_val_score(best_model, X_train, y_train, cv=5, scoring='neg_mean_squared_error'))
+        
+        # Calculate average cross-validation scores
+        avg_r2 = np.mean(cv_r2_scores)
+        avg_rmse = np.mean(cv_rmse_scores)
+        
+        # Store the results
+        results['Number of Descriptors'].append(num_descriptors)
+        results['Descriptors'].append(', '.join(descriptor_combination))
+        results['Best Hyperparameters'].append(str(best_params))
+        results['R2 Score (CV)'].append(avg_r2)
+        results['RMSE (CV)'].append(avg_rmse)
+
+# Convert results to a DataFrame
+results_df = pd.DataFrame(results)
+
+# Save the results to a CSV file in the same folder
+output_file = 'svr_advanced_results.csv'
+results_df.to_csv(output_file, index=False)
+
+print(f"Results saved to {output_file}")
+
+##xgboost_regression_advanced
+
+import pandas as pd
+import numpy as np
+from xgboost import XGBRegressor
+from sklearn.model_selection import train_test_split, GridSearchCV, cross_val_score
+from sklearn.metrics import mean_squared_error, r2_score
+from itertools import combinations
+import os
+
+# Define the path to the file containing descriptors
+os.chdir("C:\\Users\\HP\\Desktop\\ewmachine")  # Update this path to your file location
+# Read the descriptors from the file
+data = pd.read_csv("data_file.csv")
+# Define the target variable (dependent variable)
+target = 'Hardness'  
+
+# Define the maximum number of descriptors (features) to consider
+n = len(data.columns) - 1  
+
+# Get the list of feature names
+feature_names = data.columns.drop(target)
+
+# Initialize a dictionary to store results
+results = {
+    'Number of Descriptors': [],
+    'Descriptors': [],
+    'Best Hyperparameters': [],
+    'R2 Score (CV)': [],
+    'RMSE (CV)': []
+}
+
+# Define the parameter grid for hyperparameter tuning
+param_grid = {
+    'n_estimators': [50, 100, 200],  # Number of boosting rounds
+    'max_depth': [3, 5, 7],  # Maximum depth of a tree
+    'learning_rate': [0.01, 0.1, 0.2],  # Learning rate
+    'subsample': [0.8, 1.0],  # Subsample ratio of the training instances
+    'colsample_bytree': [0.8, 1.0],  # Subsample ratio of columns when constructing each tree
+    'gamma': [0, 0.1, 0.2]  # Minimum loss reduction required to make a split
+}
+
+# Loop through the number of descriptors from 1 to n
+for num_descriptors in range(1, n + 1):
+    # Generate all combinations of descriptors of size 'num_descriptors'
+    for descriptor_combination in combinations(feature_names, num_descriptors):
+        # Prepare the data
+        X = data[list(descriptor_combination)]
+        y = data[target]
+        
+        # Split the data into training and testing sets
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        
+        # Initialize the XGBoost model
+        model = XGBRegressor(random_state=42)
+        
+        # Perform Grid Search for hyperparameter tuning
+        grid_search = GridSearchCV(estimator=model, param_grid=param_grid, cv=5, scoring='r2', n_jobs=-1)
+        grid_search.fit(X_train, y_train)
+        
+        # Get the best model and hyperparameters
+        best_model = grid_search.best_estimator_
+        best_params = grid_search.best_params_
+        
+        # Perform cross-validation on the best model
+        cv_r2_scores = cross_val_score(best_model, X_train, y_train, cv=5, scoring='r2')
+        cv_rmse_scores = np.sqrt(-cross_val_score(best_model, X_train, y_train, cv=5, scoring='neg_mean_squared_error'))
+        
+        # Calculate average cross-validation scores
+        avg_r2 = np.mean(cv_r2_scores)
+        avg_rmse = np.mean(cv_rmse_scores)
+        
+        # Store the results
+        results['Number of Descriptors'].append(num_descriptors)
+        results['Descriptors'].append(', '.join(descriptor_combination))
+        results['Best Hyperparameters'].append(str(best_params))
+        results['R2 Score (CV)'].append(avg_r2)
+        results['RMSE (CV)'].append(avg_rmse)
+
+# Convert results to a DataFrame
+results_df = pd.DataFrame(results)
+
+# Save the results to a CSV file in the same folder
+output_file = 'xgboost_regression_advanced_results.csv'
+results_df.to_csv(output_file, index=False)
+
+print(f"Results saved to {output_file}")
